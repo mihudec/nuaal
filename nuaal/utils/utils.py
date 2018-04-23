@@ -4,8 +4,10 @@ import os
 import re
 import collections
 from nuaal.definitions import LOG_PATH, ROOT_DIR
-def get_logger(name, DEBUG=False, logfile_path=f"{LOG_PATH}/log.txt", handle=["stderr"]):
 
+
+def get_logger(name, DEBUG=False, handle=["stderr"]):
+    logfile_path = os.path.join(check_path(LOG_PATH), "log.txt")
     formatter = logging.Formatter("[%(asctime)s] : %(name)s - %(levelname)s - %(message)s")
     stdout_handler = logging.StreamHandler(sys.stdout)
     stderr_handler = logging.StreamHandler(sys.stderr)
@@ -103,7 +105,7 @@ def vlan_range_shortener(full_vlan_list):
             continue
     # Close with end element
     if full_vlan_list[-1] == full_vlan_list[-2] + 1:
-        temp_element = temp_element + str(full_vlan_list[-1])
+        temp_element = temp_element + "-" + str(full_vlan_list[-1])
         shortened_vlan_list.append(temp_element)
         temp_element = ""
     else:

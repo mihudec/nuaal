@@ -191,7 +191,7 @@ class Patterns:
                 "show etherchannel summary": {
                     "ports": [
                         re.compile(
-                            pattern=r"(?P<port>\w+\d+(?:\/\d+)*)\((?P<status>[A-Za-z])\)"
+                            pattern=r"(?P<port>\w+\d+(?:\/\d+)*)\((?P<status>[A-Za-z]+)\)"
                         )
                     ]
                 },

@@ -134,7 +134,7 @@ class CliBaseConnection(object):
         if self.device is not None:
             self.device.disconnect()
             if not self.device.is_alive():
-                self.logger.info(msg=f"Sucessfully disconnected from device {self.ip}")
+                self.logger.info(msg=f"Successfully disconnected from device {self.ip}")
             else:
                 self.logger.error(msg=f"Failed to disconnect from device {self.ip}")
         else:
