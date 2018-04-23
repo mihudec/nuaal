@@ -10,4 +10,5 @@ Welcome to NUAAL's documentation!
    :maxdepth: 2
 
    Connections/index
+   Parsers/index
 
