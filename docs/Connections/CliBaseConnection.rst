@@ -1,6 +1,8 @@
 CliBaseConnection
 =================
-**``CliBaseConnection(object)``**
+
+``CliBaseConnection(object)``
+
 This class represents the base object, from which other (vendor specific classes) inherit. This class is basically a wrapper class around Kirk Byers' excellent library, netmiko. Even though the netmiko library already provides pretty straightforward and easy way to access network devices, the CliBaseConnection tries to handle multiple events which can arise, such as:
 
 - Device is unreachable
