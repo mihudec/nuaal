@@ -1,5 +1,5 @@
-``ParserModule(object)``
-========================
+ParserModule
+============
 
 This class represents the base object, from which other (vendor specific classes) inherit. This class provides basic set of functions which handle parsing of raw text outputs based on Python's  ``re`` module and *regex* strings provided by `Patterns` class.
 

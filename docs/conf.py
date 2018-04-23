@@ -24,7 +24,7 @@ copyright = '2018, nuaal'
 author = 'nuaal'
 
 # The short X.Y version
-version = ''
+version = '0.1.0'
 # The full version, including alpha/beta/rc tags
 release = ''
 

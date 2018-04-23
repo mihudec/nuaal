@@ -1,6 +1,6 @@
-``Cisco_IOS_Cli(CliBaseConnection)``
-====================================
-
+Cisco_IOS_Cli
+=============
+**``Cisco_IOS_Cli(CliBaseConnection)``**
 Object for interaction with network devices running Cisco IOS (or IOS XE) software via CLI interface.
 
 ``self.__init__(**kwargs)``
