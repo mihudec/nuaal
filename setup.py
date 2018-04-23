@@ -1,14 +1,16 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+
+with open("requirements.txt", "r") as fs:
+    reqs = [r for r in fs.read().splitlines() if (len(r) > 0 and not r.startswith("#"))]
 
 setup(
     name='nuaal',
     version='0.1.0',
-    packages=['nuaal', 'nuaal.tests', 'nuaal.utils', 'nuaal.Parsers', 'nuaal.Readers', 'nuaal.Writers', 'nuaal.examples', 'nuaal.Discovery',
-              'nuaal.connections', 'nuaal.connections.api', 'nuaal.connections.api.epnm', 'nuaal.connections.api.apic-em', 'nuaal.connections.cli',
-              'nuaal.connections.snmp'],
+    packages=find_packages(exclude=("test*", )),
     url='https://github.com/mijujda/nuaal',
     license='',
     author='Miroslav Hudec',
     author_email='mijujda@gmail.com',
-    description=''
+    description='Network Unified Abstraction API Library',
+    install_requires=reqs
 )
