@@ -8,6 +8,6 @@ Welcome to NUAAL's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+
    Connections/index
 
