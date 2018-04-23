@@ -152,17 +152,3 @@ class Neighbor_Discovery:
                 self.process_neighbors()
         with open(f"{DATA_PATH}\discovery\{ip}-{str(datetime.now()).replace(':', '-')}.json", mode="w") as f:
             json.dump(self.data, f, indent=2)
-
-if __name__ == '__main__':
-    provider = {
-        "method": "ssh",
-        "store_outputs": True,
-        "DEBUG": True,
-        "enable": True,
-        "username": "admin",
-        "password": "cisco",
-        "secret": "cisco"
-    }
-    dis = Neighbor_Discovery(provider=provider, DEBUG=True)
-    dis.run(ip="192.168.100.181")
-    print(dis.data)
