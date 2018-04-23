@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+.idea/
+
+nuaal/data/logs/
+
+nuaal/examples/cez\.py
