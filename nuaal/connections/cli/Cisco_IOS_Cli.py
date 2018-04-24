@@ -1,5 +1,5 @@
-from nuaal.connections.cli.CliBase import CliBaseConnection
-from nuaal.Parsers.CiscoIOSParser import CiscoIOSParser
+from nuaal.connections.cli import CliBaseConnection
+from nuaal.Parsers import CiscoIOSParser
 from nuaal.utils import vlan_range_expander, vlan_range_shortener
 from nuaal.definitions import DATA_PATH
 import json
@@ -65,6 +65,12 @@ class Cisco_IOS_Cli(CliBaseConnection):
         }
 
     def get_neighbors(self, output_filter=None, strip_domain=False):
+        """
+        Function to get neighbors of the device with possibility to filter neighbors
+        :param output_filter: (Filter) Instance of Filter class, used to filter neighbors, such as only "Switch" or "Router"
+        :param strip_domain: (bool) Whether or not to strip domain names and leave only device hostname
+        :return: List of dictionaries
+        """
         command = "show cdp neighbors detail"
         raw_output = self._send_command(command=command)
         if self.store_outputs:
@@ -79,6 +85,11 @@ class Cisco_IOS_Cli(CliBaseConnection):
         return parsed_output
 
     def get_trunks(self, expand_vlan_groups=False):
+        """
+        Custom parsing function for output of "show interfaces trunk"
+        :param expand_vlan_groups: (bool) Whether or not to expand VLAN ranges, for example '100-102' -> [100, 101, 102]
+        :return: List of dictionaries
+        """
         command = "show interfaces trunk"
         raw_output = self._send_command(command=command)
         if self.store_outputs:
@@ -92,6 +103,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
         self.data["trunk_interfaces"] = parsed_output
         print(parsed_output)
         return parsed_output
-
+if __name__ == '__main__':
+    client = Cisco_IOS_Cli()
 
 

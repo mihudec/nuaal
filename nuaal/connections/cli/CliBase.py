@@ -7,7 +7,27 @@ from nuaal.definitions import DATA_PATH
 import timeit
 
 class CliBaseConnection(object):
+    """
+    This class represents the base object, from which other (vendor specific classes) inherit. This class is basically a wrapper class around Kirk Byers' excellent library, netmiko. Even though the netmiko library already provides pretty straightforward and easy way to access network devices, the CliBaseConnection tries to handle multiple events which can arise, such as:
+
+    - Device is unreachable
+    - Fallback to Telnet if SSH is not supported by device (and vice-versa)
+    - Handles errors in outputs
+
+    Apart from the 'send command, receive output'  this class also performs the parsing and storing outputs.
+    """
     def __init__(self, ip=None, username=None, password=None, parser=None, secret=None, enable=False, store_outputs=False, DEBUG=False):
+        """
+
+        :param ip: (str) IP address or FQDN of the device you're trying to connect to
+        :param username: (str) Username used for login to device
+        :param password: (str) Password used for login to device
+        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs. By default, new instance of ParserModule is created.
+        :param secret: (str) Enable secret for accessing Privileged EXEC Mode
+        :param enable: (bool) Whether or not enable Privileged EXEC Mode on device
+        :param store_outputs: (bool) Whether or not store text outputs of sent commands
+        :param DEBUG: (bool) Enable debugging logging
+        """
         self.ip = ip
         self.username = username
         self.password = password
@@ -39,6 +59,11 @@ class CliBaseConnection(object):
         self.disconnect()
 
     def _get_provider(self):
+        """
+        Creates provider dictionary for Netmiko connection
+
+        :return: ``None``
+        """
         self.provider = {
             "ip": self.ip,
             "username": self.username,
@@ -48,6 +73,11 @@ class CliBaseConnection(object):
             self.provider["secret"] = self.secret
 
     def _connect_telnet(self):
+        """
+        This function tries to establish connection with device via Telnet
+
+        :return: (``netmiko.ConnectHandler``) device
+        """
         device = None
         self.provider["device_type"] = self.telnet_method
         self.logger.debug(msg=f"Trying to connect to device {self.ip} via Telnet...")
@@ -66,6 +96,11 @@ class CliBaseConnection(object):
             return device
 
     def _connect_ssh(self):
+        """
+        This function tries to establish connection with device via SSH
+
+        :return: (``netmiko.ConnectHandler``) device
+        """
         device = None
         self.logger.debug(msg=f"Trying to connect to device {self.ip} via SSH...")
         self.provider["device_type"] = self.ssh_method
@@ -84,6 +119,11 @@ class CliBaseConnection(object):
             return device
 
     def _connect(self):
+        """
+        This function handles connection to device, if primary method fails, it will try to connect using secondary method.
+
+        :return: ``None``
+        """
         device = None
 
         if self.primary_method == self.ssh_method:
@@ -102,6 +142,13 @@ class CliBaseConnection(object):
             self.logger.error(msg=f"Could not connect to device '{self.ip}'")
 
     def _check_enable_level(self, device):
+        """
+        This function is called at the end of ``self._connect()`` to ensure that the connection is actually alive
+        and that the proper privilege level is set.
+
+        :param device: (``Netmiko.ConnectHandler``) Instance of ``netmiko.ConnectHandler``. If the connection is working, this will be set as ``self.device``
+        :return: ``None``
+        """
         try:
             prompt = device.find_prompt()
             self.data["hostname"] = prompt[:-1]
@@ -131,6 +178,11 @@ class CliBaseConnection(object):
             self.device = device
 
     def disconnect(self):
+        """
+        This function handles graceful disconnect from the device.
+
+        :return: ``None``
+        """
         if self.device is not None:
             self.device.disconnect()
             if not self.device.is_alive():
@@ -141,6 +193,11 @@ class CliBaseConnection(object):
             self.logger.info(msg=f"Device {self.ip} is not connected.")
 
     def _send_command(self, command):
+        """
+
+        :param command: (str) Command to send to device
+        :return: (str) Output of command from device
+        """
         if not self.device:
             self.logger.error(msg=f"Device {self.ip} is not connected, cannot send command.")
             return None
@@ -164,7 +221,8 @@ class CliBaseConnection(object):
         This function tries to send multiple 'types' of given command and waits for correct output.
         This should solve the problem with different command syntax, such as 'show mac address-table' vs
         'show mac-address-table' on different versions of Cisco IOS.
-        When correct output is returned, it is then parsed and the result is returned
+        When correct output is returned, it is then parsed and the result is returned.
+
         :param commands: List of command string to try, such as ['show mac-address-table', 'show mac address-table']
         :return: JSON representation of command output
         """

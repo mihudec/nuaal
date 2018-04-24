@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+import os
 #
 # Configuration file for the Sphinx documentation builder.
 #
@@ -14,11 +16,10 @@
 #
 # import os
 # import sys
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('../'))
 
 
 # -- Project information -----------------------------------------------------
-
 project = 'NUAAL'
 copyright = '2018, nuaal'
 author = 'nuaal'
@@ -38,6 +39,7 @@ release = ''
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+autoclass_content = 'both'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest'

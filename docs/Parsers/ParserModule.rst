@@ -20,4 +20,5 @@ The core idea behind ``ParserModule`` is that the complexity of various command 
 .. autoclass:: nuaal.Parsers.ParserModule
     :members:
     :undoc-members:
+    :private-members:
     :show-inheritance:

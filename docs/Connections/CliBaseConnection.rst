@@ -3,13 +3,11 @@ CliBaseConnection
 
 ``CliBaseConnection(object)``
 
-This class represents the base object, from which other (vendor specific classes) inherit. This class is basically a wrapper class around Kirk Byers' excellent library, netmiko. Even though the netmiko library already provides pretty straightforward and easy way to access network devices, the CliBaseConnection tries to handle multiple events which can arise, such as:
-
-- Device is unreachable
-- Fallback to Telnet if SSH is not supported by device (and vice-versa)
-- Handles errors in outputs
-
-Apart from the 'send command, receive output'  this class also performs the parsing and storing outputs.
+.. autoclass:: nuaal.connections.cli.CliBaseConnection
+    :members:
+    :private-members:
+    :undoc-members:
+    :show-inheritance:
 
 **Base Functions**
 
