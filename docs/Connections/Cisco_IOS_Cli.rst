@@ -18,7 +18,7 @@ Object for interaction with network devices running Cisco IOS (or IOS XE) softwa
 - **store_outputs** - Boolean value, if True, all commands outputs will be stored as TXT files in default data directory.
 - **DEBUG** - Boolean value, if True, the self.logger will produce debugging output.
 
-.. autoclass:: nuaal.connections.cli.Cisco_IOS_Cli
+.. autoclass:: nuaal.connections.cli.Cisco_IOS_Cli.Cisco_IOS_Cli
     :members:
     :undoc-members:
     :show-inheritance:
