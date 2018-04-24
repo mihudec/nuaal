@@ -31,8 +31,8 @@ print(json.dumps(data, indent=2))
 # Writing results to excel file
 writer = ExcelWriter()
 # Create Excel file to write the results to
-workbook = writer.create_workbook(path=f"{DATA_PATH}", filename="example01.xlsx")
+workbook = writer.create_workbook(path="{}".format(DATA_PATH), filename="example01.xlsx")
 # Write the data
 # Note that ExcelWriter.write_data() expects list of dictionaries, in which each dictionary represents one device
 writer.write_data(workbook=workbook, data=data)
-print(f"Data writen to {DATA_PATH}\example01.xlsx")
+print("Data writen to {}\example01.xlsx".format(DATA_PATH))

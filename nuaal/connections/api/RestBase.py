@@ -14,7 +14,7 @@ class RestBase(object):
         logging.getLogger("urllib3").setLevel(logging.WARNING)
 
         self.url = url
-        self.logger = get_logger(name=f"{con_type if con_type else 'REST'}-{self.url}", DEBUG=DEBUG)
+        self.logger = get_logger(name="{}-{}".format(con_type if con_type else 'REST', self.url), DEBUG=DEBUG)
         self.username = username
         self.password = password
         self.api_base_path = api_base_path
@@ -32,11 +32,11 @@ class RestBase(object):
             except:
                 self.logger.warning(msg="Failed to disable Certificate Warnings")
         if self.username is None or self.password is None:
-            self.logger.info(msg=f"No credentials provided, using cached instead.")
+            self.logger.info(msg="No credentials provided, using cached instead.")
             if self._load_credentials():
-                self.logger.info(msg=f"Credentials successfully loaded.")
+                self.logger.info(msg="Credentials successfully loaded.")
             else:
-                self.logger.info(msg=f"Failed to load valid credentials.")
+                self.logger.info(msg="Failed to load valid credentials.")
         else:
             self._authorize()
 
@@ -46,60 +46,60 @@ class RestBase(object):
     def _get(self, path, params=None):
         response = None
         try:
-            self.logger.debug(msg=f"_GET: Path: '{path}', Params: '{params}'")
+            self.logger.debug(msg="_GET: Path: '{}', Params: '{}'".format(path, params))
             if params:
                 response = requests.get(url=self.path_base + path, **self.common_headers, params=params)
             else:
                 response = requests.get(url=self.path_base + path, **self.common_headers)
         except ConnectionError:
-            self.logger.critical(msg=f"_GET: Could not connect to {self.url}. Wrong address?")
+            self.logger.critical(msg="_GET: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
-            self.logger.error(msg=f"_GET: Encountered unhandled Exception: {repr(e)}")
+            self.logger.error(msg="_GET: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
             return response
 
     def _post(self, path, data, params=None):
         response = None
         try:
-            self.logger.debug(msg=f"_POST: Path: '{path}', Data: '{data}', Params: '{params}'")
+            self.logger.debug(msg="_POST: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
             if params:
                 response = requests.post(url=self.path_base + path, data=data, **self.common_headers, params=params)
             else:
                 response = requests.post(url=self.path_base + path, data=data, **self.common_headers)
         except ConnectionError:
-            self.logger.critical(msg=f"_POST: Could not connect to {self.url}. Wrong address?")
+            self.logger.critical(msg="_POST: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
-            self.logger.error(msg=f"_POST: Encountered unhandled Exception: {repr(e)}")
+            self.logger.error(msg="_POST: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
             return response
 
     def _delete(self, path, params):
         response = None
         try:
-            self.logger.debug(msg=f"_DELETE: Path: '{path}', Data: '{data}', Params: '{params}'")
+            self.logger.debug(msg="_DELETE: Path: '{}', Params: '{}'".format(path, params))
             if params:
                 response = requests.delete(url=self.path_base + path, **self.common_headers, params=params)
             else:
                 response = requests.delete(url=path, **self.common_headers)
         except ConnectionError:
-            self.logger.critical(msg=f"_DELETE: Could not connect to {self.url}. Wrong address?")
+            self.logger.critical(msg="_DELETE: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
-            self.logger.error(msg=f"_DELETE: Encountered unhandled Exception: {repr(e)}")
+            self.logger.error(msg="_DELETE: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
             return response
 
     def _put(self, path, data, params):
         response = None
         try:
-            self.logger.debug(msg=f"_PUT: Path: '{path}', Data: '{data}', Params: '{params}'")
+            self.logger.debug(msg="_PUT: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
             if params:
                 response = requests.put(url=self.path_base + path, data=data, **self.common_headers, params=params)
             else:
                 response = requests.put(url=self.path_base + path, data=data, **self.common_headers)
         except ConnectionError:
-            self.logger.critical(msg=f"_PUT: Could not connect to {self.url}. Wrong address?")
+            self.logger.critical(msg="_PUT: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
-            self.logger.error(msg=f"_PUT: Encountered unhandled Exception: {repr(e)}")
+            self.logger.error(msg="_PUT: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
             return response
 
@@ -109,27 +109,27 @@ class RestBase(object):
         try:
             status_code = response.status_code
             if status_code in range(200, 208):
-                self.logger.debug(msg=f"Response_Handler: Server returned Status Code: {status_code} OK")
+                self.logger.debug(msg="Response_Handler: Server returned Status Code: {} OK".format(status_code))
                 return response.json(), status_code
             if status_code == 400:
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, Bad Request.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Bad Request.".format(status_code))
                 return None, status_code
             if status_code == 401:
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, Unauthorized.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {status_code}, Unauthorized.".format(status_code))
                 return response.json(), status_code
             if status_code == 403:
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, Forbidden.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Forbidden.".format(status_code))
                 return response.text, status_code
             if status_code == 404:
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, Not Found.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Not Found.".format(status_code))
                 return response.text, status_code
             if status_code in range(400, 500):
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, cannot process response.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, cannot process response.".format(status_code))
                 return None, status_code
             if status_code in range(500, 600):
-                self.logger.error(msg=f"Response_Handler: Server returned Status Code: {status_code}, cannot process response.")
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, cannot process response.".format(status_code))
                 return None, status_code
         except Exception as e:
-            self.logger.critical(msg=f"Response Handler: Unhandled exception occurred. Exception: {repr(e)}")
+            self.logger.critical(msg="Response Handler: Unhandled exception occurred. Exception: {}".format(repr(e)))
 
 

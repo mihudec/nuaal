@@ -3,7 +3,7 @@ from nuaal.definitions import LOG_PATH
 
 class IP:
     def __init__(self, ip, DEBUG=False):
-        self.logger = get_logger(name="IP", logfile_path=f"{LOG_PATH}/ip_log.txt", DEBUG=DEBUG)
+        self.logger = get_logger(name="IP", logfile_path="{}/ip_log.txt".format(LOG_PATH), DEBUG=DEBUG)
         self.decAddress = None
         self.binAddress = None
         self.decMask = None
@@ -40,14 +40,14 @@ class IP:
         octects = [int(x) for x in dec.split(".")]
         # Check
         if len(octects) != 4:
-            self.logger.critical(msg=f"Given decimal representation doesn't have correct length. Expected 4 octect, got {len(octects)}")
-            raise ValueError(f"Given decimal representation doesn't have correct length. Expected 4 octect, got {len(octects)}")
+            self.logger.critical(msg="Given decimal representation doesn't have correct length. Expected 4 octect, got {}".format(len(octects)))
+            raise ValueError("Given decimal representation doesn't have correct length. Expected 4 octect, got {}".format(len(octects)))
         return "".join(bin(int(x) + 256)[3:] for x in dec.split("."))
 
     def binToDec(self, bin):
         if len(bin) != 32:
-            self.logger.critical(msg=f"Given binary representation doesn't have correct length. Expected 24, got {len(bin)}")
-            raise ValueError(f"Given binary representation doesn't have correct length. Expected 24, got {len(bin)}")
+            self.logger.critical(msg="Given binary representation doesn't have correct length. Expected 24, got {}".format(len(bin)))
+            raise ValueError("Given binary representation doesn't have correct length. Expected 24, got {}".format(len(bin)))
         octects = [bin[i:i + 8] for i in range(0, len(bin), 8)]
         return ".".join([str(int(x, 2)) for x in octects])
 
@@ -72,10 +72,10 @@ class IPv4Addr(IP):
         super(IPv4Addr, self).__init__(ip=address, DEBUG=DEBUG)
 
     def __str__(self):
-        return f"[IPv4Addr {self.decAddress}/{self.slashMask}]"
+        return "[IPv4Addr {}/{}]".format(self.decAddress, self.slashMask)
 
     def __repr__(self):
-        return f"[IPv4Addr {self.decNetAddress}/{self.slashMask}]"
+        return "[IPv4Addr {}/{}]".format(self.decAddress, self.slashMask)
 
 
 class IPv4Net(IP):
@@ -86,12 +86,12 @@ class IPv4Net(IP):
 
     def has_address(self, addr):
         if not isinstance(addr, IPv4Addr):
-            self.logger.info(msg=f"Trying to convert {addr} to IPv4Addr object.")
+            self.logger.info(msg="Trying to convert {} to IPv4Addr object.".format(addr))
             try:
                 addr = IPv4Addr(address=addr)
             except Exception as e:
-                self.logger.critical(msg=f"Could not convert {type(addr)} to IPv4Addr")
-                raise TypeError(f"Could not convert {type(addr)} to IPv4Addr")
+                self.logger.critical(msg="Could not convert {} to IPv4Addr".format(type(addr)))
+                raise TypeError("Could not convert {} to IPv4Addr".format(type(addr)))
         if self.binNetAddress[:self.slashMask] == addr.binAddress[:self.slashMask]:
             return True
         else:
@@ -99,22 +99,22 @@ class IPv4Net(IP):
 
     def has_subnet(self, addr):
         if not isinstance(addr, IPv4Net):
-            self.logger.info(msg=f"Trying to convert {addr} to IPv4Addr object.")
+            self.logger.info(msg="Trying to convert {} to IPv4Addr object.".format(addr))
             try:
                 addr = IPv4Net(addr)
             except Exception as e:
-                self.logger.critical(msg=f"Could not convert {type(addr)} to IPv4Net")
-                raise TypeError(f"Could not convert {type(addr)} to IPv4Net")
+                self.logger.critical(msg="Could not convert {} to IPv4Net".format(type(addr)))
+                raise TypeError("Could not convert {} to IPv4Net".format(type(addr)))
         if self.binNetAddress[:self.slashMask] == addr.binNetAddress[:self.slashMask]:
             return True
         else:
             return False
 
     def __str__(self):
-        return f"[IPv4Net {self.decNetAddress}/{self.slashMask}]"
+        return "[IPv4Net {}/{}]".format(self.decAddress, self.slashMask)
 
     def __repr__(self):
-        return f"[IPv4Net {self.decNetAddress}/{self.slashMask}]"
+        return "[IPv4Net {}/{}]".format(self.decAddress, self.slashMask)
 
 
 net = IPv4Net("192.168.1.0 255.255.255.0", DEBUG=True)

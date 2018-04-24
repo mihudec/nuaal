@@ -42,7 +42,7 @@ class CliBaseConnection(object):
         self.store_outputs = store_outputs
         self.enabled = None
         self.prompt_end = [">", "#"] # The first item is for 'not-enabled mode', the second is for 'Privileged EXEC Mode'
-        self.logger = get_logger(f"Connection-{self.ip}", DEBUG=DEBUG)
+        self.logger = get_logger(name="Connection-{}".format(self.ip), DEBUG=DEBUG)
         self.parser = parser
         self.connected = False
 
@@ -55,7 +55,7 @@ class CliBaseConnection(object):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.store_raw_output(f"{self.data['hostname']}", json.dumps(self.data, indent=2), ext="json")
+        self.store_raw_output(self.data["hostname"], json.dumps(self.data, indent=2), ext="json")
         self.disconnect()
 
     def _get_provider(self):
@@ -80,19 +80,19 @@ class CliBaseConnection(object):
         """
         device = None
         self.provider["device_type"] = self.telnet_method
-        self.logger.debug(msg=f"Trying to connect to device {self.ip} via Telnet...")
+        self.logger.debug(msg="Trying to connect to device {} via Telnet...".format(self.ip))
         try:
             device = ConnectHandler(**self.provider)
         except TimeoutError:
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.telnet_method}'. Reason: TimeOut.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: TimeOut.".format(self.ip, self.telnet_method))
         except ConnectionRefusedError:
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.telnet_method}'. Reason: Connection Refused.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Connection Refused.".format(self.ip, self.telnet_method))
         except Exception as e:
             print(repr(e))
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.telnet_method}'. Reason: Unknown.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.telnet_method))
         finally:
             if device:
-                self.logger.info(msg=f"Connected to '{self.ip}' using '{self.telnet_method}'.")
+                self.logger.info(msg="Connected to '{}' using '{}'.".format(self.ip, self.telnet_method))
             return device
 
     def _connect_ssh(self):
@@ -102,20 +102,20 @@ class CliBaseConnection(object):
         :return: (``netmiko.ConnectHandler``) device
         """
         device = None
-        self.logger.debug(msg=f"Trying to connect to device {self.ip} via SSH...")
+        self.logger.debug(msg="Trying to connect to device {} via SSH...".format(self.ip))
         self.provider["device_type"] = self.ssh_method
         try:
             device = ConnectHandler(**self.provider)
         except NetMikoTimeoutException:
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.ssh_method}'. Reason: Timeout.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Timeout.".format(self.ip, self.ssh_method))
         except NetMikoAuthenticationException:
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.ssh_method}'. Reason: Authentication Failed.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Authentication Failed.".format(self.ip, self.ssh_method))
         except Exception as e:
             print(repr(e))
-            self.logger.error(msg=f"Could not connect to '{self.ip}' using '{self.ssh_method}'. Reason: Unknown.")
+            self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.ssh_method))
         finally:
             if device:
-                self.logger.info(msg=f"Connected to '{self.ip}' using '{self.ssh_method}'.")
+                self.logger.info(msg="Connected to '{}' using '{}'.".format(self.ip, self.ssh_method))
             return device
 
     def _connect(self):
@@ -139,7 +139,7 @@ class CliBaseConnection(object):
         if device is not None:
             self._check_enable_level(device)
         else:
-            self.logger.error(msg=f"Could not connect to device '{self.ip}'")
+            self.logger.error(msg="Could not connect to device '{}'".format(self.ip))
 
     def _check_enable_level(self, device):
         """
@@ -159,19 +159,19 @@ class CliBaseConnection(object):
             if self.enable and not self.enabled:
                 device.enable()
                 if device.find_prompt()[-1] == self.prompt_end[1]:
-                    self.logger.debug(msg=f"Successfully enabled Privileged EXEC Mode on device '{self.ip}'")
+                    self.logger.debug(msg="Successfully enabled Privileged EXEC Mode on device '{}'".format(self.ip))
                     self.enabled = True
                 else:
-                    self.logger.error(msg=f"Failed to enable Privileged EXEC Mode on device '{self.ip}'")
+                    self.logger.error(msg="Failed to enable Privileged EXEC Mode on device '{}'".format(self.ip))
             if not self.enable and self.enabled:
                 device.exit_enable_mode()
                 if device.find_prompt()[-1] ==self.prompt_end[0]:
-                    self.logger.debug(msg=f"Successfully disabled Privileged EXEC Mode on device '{self.ip}'")
+                    self.logger.debug(msg="Successfully disabled Privileged EXEC Mode on device '{}'".format(self.ip))
                     self.enabled = True
                 else:
-                    self.logger.error(msg=f"Failed to disable Privileged EXEC Mode on device '{self.ip}'")
+                    self.logger.error(msg="Failed to disable Privileged EXEC Mode on device '{}'".format(self.ip))
         except ValueError as e:
-            self.logger.critical(msg=f"Could not enter enable mode: {repr(e)}")
+            self.logger.critical(msg="Could not enter enable mode: {}".format(repr(e)))
         except Exception as e:
             print(repr(e))
         finally:
@@ -186,11 +186,11 @@ class CliBaseConnection(object):
         if self.device is not None:
             self.device.disconnect()
             if not self.device.is_alive():
-                self.logger.info(msg=f"Successfully disconnected from device {self.ip}")
+                self.logger.info(msg="Successfully disconnected from device {}".format(self.ip))
             else:
-                self.logger.error(msg=f"Failed to disconnect from device {self.ip}")
+                self.logger.error(msg="Failed to disconnect from device {}".format(self.ip))
         else:
-            self.logger.info(msg=f"Device {self.ip} is not connected.")
+            self.logger.info(msg="Device {} is not connected.".format(self.ip))
 
     def _send_command(self, command):
         """
@@ -199,14 +199,14 @@ class CliBaseConnection(object):
         :return: (str) Output of command from device
         """
         if not self.device:
-            self.logger.error(msg=f"Device {self.ip} is not connected, cannot send command.")
+            self.logger.error(msg="Device {} is not connected, cannot send command.".format(self.ip))
             return None
-        self.logger.debug(msg=f"Sending command '{command}' to device {self.data['hostname']} ({self.ip})")
+        self.logger.debug(msg="Sending command '{}' to device {} ({})".format(command, self.data["hostname"], self.ip))
         output = ""
         try:
             output = self.device.send_command_expect(command)
         except AttributeError:
-            self.logger.critical(msg=f"Connection to device {self.ip} has not been initialized.")
+            self.logger.critical(msg="Connection to device {} has not been initialized.".format(self.ip))
         finally:
             return output
 
@@ -234,17 +234,16 @@ class CliBaseConnection(object):
         for command in commands:
             command_output = self._send_command(command)
             if not command_output:
-                self.logger.error(msg=f"Could not retrieve any output. Possibly non-active connection.")
+                self.logger.error(msg="Could not retrieve any output. Possibly non-active connection.")
                 return []
-            #print(f"Command '{command}' returned output: \n'{command_output}'")
             if "% Invalid input detected at '^' marker." in command_output:
-                self.logger.error(msg=f"Device {self.ip} does not support command '{command}'")
+                self.logger.error(msg="Device {} does not support command '{}'".format(self.ip, command))
             elif "% Ambiguous command:" in command_output:
-                self.logger.error(msg=f"Device {self.ip}: Ambiguous command: '{command}'")
+                self.logger.error(msg="Device {self.ip}: Ambiguous command: '{command}'")
             elif command_output == "":
-                self.logger.error(msg=f"Device {self.ip} returned empty output for command '{command}'")
+                self.logger.error(msg="Device {} returned empty output for command '{}'".format(self.ip, command))
             else:
-                self.logger.debug(msg=f"Device {self.ip} returned output for command '{command}'")
+                self.logger.debug(msg="Device {} returned output for command '{}'".format(self.ip, command))
                 used_command = command
                 break
         if self.store_outputs and command_output != "":
@@ -259,16 +258,16 @@ class CliBaseConnection(object):
             self.data[action[4:]] = parsed_output
         except Exception as e:
             print(repr(e))
-            self.logger.error(msg=f"Device {self.ip}: Failed to parse output of command '{used_command}'")
+            self.logger.error(msg="Device {}: Failed to parse output of command '{}'".format(self.ip, used_command))
         finally:
-            self.logger.debug(msg=f"Processing of action {action} took {timeit.default_timer()-start_time} seconds.")
+            self.logger.debug(msg="Processing of action {} took {} seconds.".format(action, timeit.default_timer()-start_time))
             return parsed_output
 
     def store_raw_output(self, command, raw_output, ext="txt"):
-        path = f"{DATA_PATH}/outputs/{self.ip}"
+        path = "{}/outputs/{}".format(DATA_PATH, self.ip)
         path = check_path(path)
         if path:
-            with open(f"{path}/{command}.{ext}", mode="w+") as f:
+            with open("{}/{}.{}".format(path, command, ext), mode="w+") as f:
                 f.write(raw_output)
 
     #####################
@@ -300,7 +299,7 @@ class CliBaseConnection(object):
         return self._command_handler(action="get_arp")
 
     def __str__(self):
-        return f"[Connection -> {self.ip}]"
+        return "[Connection -> {self.ip}]".format(self.ip)
 
     def __repr__(self):
-        return f"[Connection -> {self.ip}]"
+        return "[Connection -> {self.ip}]".format(self.ip)

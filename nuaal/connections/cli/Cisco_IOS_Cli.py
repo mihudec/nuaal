@@ -25,7 +25,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
         :param DEBUG: (bool) Enable debugging logging
         """
         super(Cisco_IOS_Cli, self).__init__(ip=ip, username=username, password=password,
-                                            parser=parser if isinstance(parser, CiscoIOSParser) else CiscoIOSParser(DEBUG=True),
+                                            parser=parser if isinstance(parser, CiscoIOSParser) else CiscoIOSParser(DEBUG=False),
                                             secret=secret, enable=enable, store_outputs=store_outputs, DEBUG=DEBUG)
         self.prompt_end = [">", "#"]
         self.ssh_method = "cisco_ios"
@@ -103,7 +103,13 @@ class Cisco_IOS_Cli(CliBaseConnection):
         self.data["trunk_interfaces"] = parsed_output
         print(parsed_output)
         return parsed_output
-if __name__ == '__main__':
-    client = Cisco_IOS_Cli()
+
+    def get_config(self):
+        command = "show running-config"
+        raw_output = self._send_command(command=command)
+        if self.store_outputs:
+            self.store_raw_output(command=command, raw_output=raw_output)
+        return raw_output
+
 
 

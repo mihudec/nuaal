@@ -9,13 +9,13 @@ class ExcelWriter(Writer):
 
     def create_workbook(self, path, filename):
         path = check_path(path)
-        workbook = xlsxwriter.Workbook(f"{path}/{filename}")
+        workbook = xlsxwriter.Workbook("{}/{}".format(path, filename))
         return workbook
 
     def write_list(self, workbook, data, worksheetname=None, headers=None):
         if isinstance(data, list):
             if worksheetname:
-                self.logger.info(msg=f"Creating new worksheet with name {worksheetname}.")
+                self.logger.info(msg="Creating new worksheet with name {}.".format(worksheetname))
                 worksheet = workbook.add_worksheet(name=worksheetname)
             else:
                 self.logger.info(msg="Creating new worksheet.")
@@ -32,7 +32,7 @@ class ExcelWriter(Writer):
                     row_pointer += 1
             if headers:
                 worksheet.autofilter(0, 0, row_pointer-1, len(data[0])-1)
-            self.logger.info(msg=f"{len(data)} entries written.")
+            self.logger.info(msg="{} entries written.".format(len(data)))
 
     def write_json(self, workbook, data, worksheetname=None, headers=None):
         if isinstance(data, list):
@@ -43,7 +43,7 @@ class ExcelWriter(Writer):
             # Create new worksheet
             worksheet = None
             if worksheetname:
-                self.logger.info(msg=f"Creating new worksheet with name {worksheetname}.")
+                self.logger.info(msg="Creating new worksheet with name {}.".format(worksheetname))
                 worksheet = workbook.add_worksheet(name=worksheetname)
             else:
                 self.logger.info(msg="Creating new worksheet.")
@@ -63,11 +63,11 @@ class ExcelWriter(Writer):
                 worksheet.write_row(row_pointer, column_pointer, row)
                 row_pointer += 1
 
-            self.logger.info(msg=f"{len(data)} entries writen.")
+            self.logger.info(msg="{} entries writen.".format(len(data)))
 
         else:
             # TODO: Implement other JSON types
-            self.logger.error(msg=f"Given JSON is not a list of dictionaries. Not yet implemented.")
+            self.logger.error(msg="Given JSON is not a list of dictionaries. Not yet implemented.")
 
     def write_data(self, workbook, data):
         headers, content = self.combine_device_data(data)
@@ -80,6 +80,6 @@ class ExcelWriter(Writer):
 if __name__ == '__main__':
 
     xls = ExcelWriter()
-    workbook = xls.create_workbook(path=f"{DATA_PATH}/XLS", filename="test.xlsx")
+    workbook = xls.create_workbook(path="{}/XLS".format(DATA_PATH), filename="test.xlsx")
     xls.write_json(workbook, [{"A": 1, "B": 2}])
     workbook.close()

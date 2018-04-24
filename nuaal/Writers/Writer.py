@@ -9,13 +9,13 @@ from nuaal.definitions import ROOT_DIR, DATA_PATH
 class Writer:
     def __init__(self, type, DEBUG=False):
         self.type = type
-        self.logger = get_logger(name=f"{self.type}-Writer", DEBUG=DEBUG)
+        self.logger = get_logger(name="{}-Writer".format(self.type), DEBUG=DEBUG)
 
     def __str__(self):
-        return f"[{self.type}-Writer]"
+        return "[{}-Writer]".format(self.type)
 
     def __repr__(self):
-        return f"[{self.type}-Writer]"
+        return "[{}-Writer]".format(self.type)
 
     def json_to_lists(self, data):
         headers = []
@@ -23,7 +23,7 @@ class Writer:
         if isinstance(data, list) and len(data) > 0:
             if isinstance(data[0], dict):
                 headers = list(data[0].keys())
-                self.logger.debug(msg=f"Successfully created headers: {headers}")
+                self.logger.debug(msg="Successfully created headers: {}".format(headers))
                 for entry in data:
                     entry_list = []
                     for element in [entry[x] for x in headers]:
@@ -72,12 +72,12 @@ class Writer:
             return section_headers, section_content
 
         elif isinstance(data, str):
-            self.logger.warning(msg=f"Given data is a string. List of dictionaries is preferred.")
+            self.logger.warning(msg="Given data is a string. List of dictionaries is preferred.")
             try:
                 data = json.loads(data)
                 return self.json_to_lists(data=data)
             except:
-                self.logger.critical(msg=f"Given data is not a valid JSON string.")
+                self.logger.critical(msg="Given data is not a valid JSON string.")
                 return None
 
         pass
@@ -110,11 +110,11 @@ class Writer:
                             if header not in section_headers[section]:
                                 section_headers[section].append(header)
                     except Exception as e:
-                        self.logger.error(msg=f"Combine Device Data raised an Exception: {repr(e)}. Maybe inconsistent data?")
+                        self.logger.error(msg="Combine Device Data raised an Exception: {}. Maybe inconsistent data?".format(repr(e)))
             for section in section_headers.keys():
                 section_headers[section] = common_headers + section_headers[section]
         else:
-            self.logger.critical(msg=f"Given data is not a list of dictionaries.")
+            self.logger.critical(msg="Given data is not a list of dictionaries.")
         for device in data:
             for section in sections:
                 #print(section_headers[section])
@@ -126,7 +126,7 @@ class Writer:
                         try:
                             temp.append(entry[header])
                         except Exception as e:
-                            self.logger.warning(msg=f"Exception raised: {repr(e)}, maybe missing key?")
+                            self.logger.warning(msg="Exception raised: {}, maybe missing key?".format(repr(e)))
                             temp.append(None)
                     section_data[section].append(temp)
         return section_headers, section_data

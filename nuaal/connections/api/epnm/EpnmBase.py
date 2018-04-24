@@ -12,12 +12,12 @@ class EpnmBase(RestBase):
         self._store_credentials()
 
     def _store_credentials(self):
-        self.logger.info(msg=f"Storing credentials.")
-        with open(file=f"{DATA_PATH}/epnm_credentials.json", mode="w") as f:
+        self.logger.info(msg="Storing credentials.")
+        with open(file="{}/epnm_credentials.json".format(DATA_PATH), mode="w") as f:
             json.dump({"username": self.username, "password": self.password}, f)
 
     def _load_credentials(self):
-        with open(file=f"{DATA_PATH}/epnm_credentials.json", mode="r") as f:
+        with open(file="{}/epnm_credentials.json".format(DATA_PATH), mode="r") as f:
             credentials = json.load(fp=f)
             for value in credentials.values():
                 if value == "":

@@ -20,23 +20,25 @@ class CliMultiRunner(object):
         for i in range(len(self.ips)):
             provider = dict(self.provider)
             provider["ip"] = self.ips[i]
-            self.logger.debug(msg=f"Putting {self.ips[i]} to queue {i%self.workers}")
             self.queue.put(provider)
 
     def worker(self):
-        self.logger.info(msg=f"Spawned new worker in {threading.current_thread()}")
+        self.logger.info(msg="Spawned new worker in {}".format(threading.current_thread()))
         while not self.queue.empty():
             provider = self.queue.get()
             if provider is None:
                 break
             with Cisco_IOS_Cli(**provider) as device:
-                device.get_neighbors()
+                device.get_inventory()
+                device.get_license()
+                device.get_version()
+                device.get_config()
                 self.data.append(device.data)
             self.queue.task_done()
 
     def thread_factory(self):
         for i in range(self.workers):
-            t = threading.Thread(name=f"WorkerThread-{i}", target=self.worker, args=())
+            t = threading.Thread(name="WorkerThread-{}".format(i), target=self.worker, args=())
             self.threads.append(t)
 
     def run(self):

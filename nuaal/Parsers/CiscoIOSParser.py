@@ -35,5 +35,5 @@ class CiscoIOSParser(ParserModule):
             except AttributeError:
                 entry["forwarding"] = [x["vlan_group"] for x in forwarding if x["interface"] == entry["interface"]][0]
             trunks.append(entry)
-        self.logger.info(msg=f"Parsing of 'show interfaces trunk' took {(timeit.default_timer()-start_time)} seconds.")
+        self.logger.info(msg="Parsing of 'show interfaces trunk' took {} seconds.".format((timeit.default_timer()-start_time)))
         return trunks
