@@ -8,7 +8,22 @@ import queue
 import datetime
 
 class Cisco_IOS_Cli(CliBaseConnection):
+    """
+    Object for interaction with network devices running Cisco IOS (or IOS XE) software via CLI interface.
+    """
     def __init__(self, ip=None, username=None, password=None, parser=None, secret=None, method="ssh", enable=False, store_outputs=False, DEBUG=False):
+        """
+
+        :param ip: (str) IP address or FQDN of the device you're trying to connect to
+        :param username: (str) Username used for login to device
+        :param password: (str) Password used for login to device
+        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs. By default, new instance of ParserModule is created.
+        :param secret: (str) Enable secret for accessing Privileged EXEC Mode
+        :param method: (str) Primary method of connection, 'ssh' or 'telnet'. (Default is 'ssh')
+        :param enable: (bool) Whether or not enable Privileged EXEC Mode on device
+        :param store_outputs: (bool) Whether or not store text outputs of sent commands
+        :param DEBUG: (bool) Enable debugging logging
+        """
         super(Cisco_IOS_Cli, self).__init__(ip=ip, username=username, password=password,
                                             parser=parser if isinstance(parser, CiscoIOSParser) else CiscoIOSParser(DEBUG=True),
                                             secret=secret, enable=enable, store_outputs=store_outputs, DEBUG=DEBUG)
