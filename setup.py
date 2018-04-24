@@ -6,11 +6,12 @@ with open("requirements.txt", "r") as fs:
 setup(
     name='nuaal',
     version='0.1.0',
-    packages=find_packages(exclude=("test*", )),
+    packages=find_packages(exclude=("test*", "examples")),
     url='https://github.com/mijujda/nuaal',
     license='',
     author='Miroslav Hudec',
     author_email='mijujda@gmail.com',
     description='Network Unified Abstraction API Library',
-    install_requires=reqs
+    install_requires=reqs,
+    include_package_data=True
 )

@@ -99,6 +99,10 @@ class Patterns:
                         re.compile(
                             pattern=r"^System\simage\sfile\sis\s\"(?P<imageFile>.*)\"",
                             flags=re.MULTILINE
+                        ),
+                        re.compile(
+                            pattern=r"Experimental\sVersion\s(?P<experimental_version>\S+)",
+                            flags=re.MULTILINE
                         )
                     ]
                 },
