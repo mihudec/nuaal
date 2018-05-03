@@ -1,3 +1,2 @@
-nuaal
 netmiko
 requests
