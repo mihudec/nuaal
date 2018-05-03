@@ -7,7 +7,15 @@ import timeit
 
 
 class ParserModule(object):
-    def __init__(self, device_type, DEBUG):
+    """
+
+    """
+    def __init__(self, device_type, DEBUG=False):
+        """
+
+        :param str device_type:
+        :param bool DEBUG: Enables/disables debugging output
+        """
         self.device_type = device_type
         self.DEBUG = DEBUG
         self.logger = get_logger(name="ParserModule-{}".format(device_type), DEBUG=DEBUG)
@@ -15,6 +23,15 @@ class ParserModule(object):
         self.patterns = Patterns(device_type=device_type).get_patterns()
 
     def match_single_pattern(self, text, pattern):
+        """
+        This function tries to match given regex ``pattern`` against given ``text``. If ``pattern`` contains named groups,
+        list of dictionaries with these groups as keys is returned. If ``pattern`` does not contain any named groups,
+        list of matching strings is returned.
+
+        :param str text:
+        :param pattern: ``re`` compiled regex pattern
+        :return: List of matches, either dictionaries or strings
+        """
         if not re.search(pattern=pattern, string=text):
             return []
         named_groups = [x for x in pattern.groupindex.keys() if isinstance(x, str)]
@@ -35,6 +52,14 @@ class ParserModule(object):
             return entries
 
     def update_entry(self, orig_entry, new_entry):
+        """
+        This function simply updates dictionary ``orig_entry`` with keys and values from ``new_entry``. Only ``None`` values in ``orig_entry``
+        are updated. Keys with value ``None`` from ``new_entry`` are also used in order to ensure coherent output.
+
+        :param dict orig_entry: Original dictionary to be updated based on entries in ``new_entry``
+        :param dict new_entry: New dictionary containing new data which should be added to ``orig_entry``
+        :return: Updated dictionary
+        """
         if not isinstance(orig_entry, dict) or not isinstance(new_entry, dict):
             raise TypeError()
         for k, v in new_entry.items():
@@ -47,6 +72,13 @@ class ParserModule(object):
         return orig_entry
 
     def match_multi_pattern(self, text, patterns):
+        """
+        This functions tries to match multiple regex ``patterns`` against given ``text`` .
+
+        :param str text: Text output to be processed
+        :param lst patterns: List of ``re`` compiled patterns for parsing.
+        :return: Dictionary with names of all groups from *all* ``patterns`` as keys, with matching strings as values.
+        """
         named_groups = []
         entry = {}
         match_counter = 0
@@ -75,6 +107,12 @@ class ParserModule(object):
         return entry
 
     def _level_zero(self, text, patterns):
+        """
+
+        :param text:
+        :param patterns:
+        :return:
+        """
         if not isinstance(text, str):
             self.logger.debug(msg="Level Zero: Expected string, got {}".format(type(text)))
             return []
@@ -101,6 +139,12 @@ class ParserModule(object):
         return level_zero_outputs
 
     def _level_one(self, text, command):
+        """
+
+        :param text:
+        :param command:
+        :return:
+        """
         level_one_outputs = []
         level_zero_outputs = self._level_zero(text=text, patterns=self.patterns["level0"][command])
         if len(level_zero_outputs) == 0:
@@ -134,6 +178,13 @@ class ParserModule(object):
         return level_one_outputs
 
     def command_mapping(self, command):
+        """
+        This function determines the max_level of command - based on level of complexity of the output, the parsing is processed in 1 or 2 steps.
+        Used for :ref:`autoparse <autoparse>`
+
+        :param str command: Command used to generate the output, eg. `show vlan brief`
+        :return:
+        """
         levels = ["level0", "level1"]
         max_level = None
         for level in levels:
@@ -143,6 +194,15 @@ class ParserModule(object):
         return max_level
 
     def autoparse(self, text, command):
+        """
+        .. _autoparse:
+
+        The main entry point for parsing, given just the ``text`` output and ``command`` it determines the proper way to parse the output and returns result.
+
+        :param str text: Text output to be processed
+        :param str command: Command used to generate ``text`` output. Based on this parameter, correct regex patterns are selected.
+        :return: List of found entities, usually list of dictionaries
+        """
         command_level = self.command_mapping(command=command)
         parsed_output = None
         if command_level == "level0":

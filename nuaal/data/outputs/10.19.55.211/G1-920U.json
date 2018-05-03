@@ -1,0 +1,186 @@
+{
+  "ipAddress": "10.19.55.211",
+  "hostname": "G1-920U",
+  "inventory": [
+    {
+      "name": "Chassis",
+      "desc": "Cisco ASR920U Series - 12GE and 4-10GE - Modular FAN, PSU and IM",
+      "pid": "ASR-920U-12SZ-IM",
+      "vid": "V01",
+      "sn": "CAT2151U0HQ"
+    },
+    {
+      "name": "IM subslot 0/1",
+      "desc": "14 port serial IM",
+      "pid": "A900-IMASER14A/S",
+      "vid": "V01",
+      "sn": "FOC21321Y8J"
+    },
+    {
+      "name": "Power Supply Module 0",
+      "desc": "ASR 920 400W DC Power Supply",
+      "pid": "A920-PWR400-D",
+      "vid": "V02",
+      "sn": "SDG2201EJ5Z"
+    },
+    {
+      "name": "Power Supply Module 1",
+      "desc": "ASR 920 400W DC Power Supply",
+      "pid": "A920-PWR400-D",
+      "vid": "V02",
+      "sn": "SDG2201EJ6C"
+    },
+    {
+      "name": "Fan Tray",
+      "desc": "ASR 920 Fan tray",
+      "pid": "ASR-920-FAN-TRAY",
+      "vid": "V01",
+      "sn": "CAT2150U4QU"
+    }
+  ],
+  "license": [
+    {
+      "index": 1,
+      "feature": "advancedmetroipaccess",
+      "period_left": "Life time",
+      "period_used": null,
+      "license_type": "Permanent",
+      "license_state": "Active, In Use",
+      "license_count": "Non-Counted",
+      "license_priority": "Medium"
+    },
+    {
+      "index": 2,
+      "feature": "metroipaccess",
+      "period_left": "Not Activated",
+      "period_used": null,
+      "license_type": "Evaluation",
+      "license_state": "Active, Not in Use, EULA not accepted",
+      "license_count": "Non-Counted",
+      "license_priority": "None"
+    },
+    {
+      "index": 3,
+      "feature": "metroaccess",
+      "period_left": "Not Activated",
+      "period_used": null,
+      "license_type": "Evaluation",
+      "license_state": "Active, Not in Use, EULA not accepted",
+      "license_count": "Non-Counted",
+      "license_priority": "None"
+    },
+    {
+      "index": 4,
+      "feature": "atm",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 5,
+      "feature": "oc3",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 6,
+      "feature": "oc12",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 7,
+      "feature": 1588,
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 8,
+      "feature": "1GEupgradelicense",
+      "period_left": "Life time",
+      "period_used": null,
+      "license_type": "Permanent",
+      "license_state": "Active, Not in Use",
+      "license_count": "1/0/0  (Active/In-use/Violation)",
+      "license_priority": "Medium"
+    },
+    {
+      "index": 9,
+      "feature": "10GEupgradelicense",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 10,
+      "feature": "12portGE4port10GE",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 11,
+      "feature": "gnss",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 12,
+      "feature": "upoe",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 13,
+      "feature": "ipsec",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    }
+  ],
+  "version": [
+    {
+      "vendor": "Cisco",
+      "software": "IOS XE",
+      "version": "2018-04-05_18.25_sasmani",
+      "platform": "ASR-920U-12SZ-IM",
+      "systemMemory": "903025K/6147K",
+      "hostname": "G1-920U",
+      "uptime": "1 week, 6 days, 3 hours, 8 minutes",
+      "imageFile": "bootflash:/packages.conf",
+      "experimental_version": "16.6.20180405:114909"
+    }
+  ]
+}

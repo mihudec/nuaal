@@ -8,7 +8,20 @@ from nuaal.definitions import DATA_PATH
 from nuaal.utils import get_logger
 
 class RestBase(object):
+    """
+    Parent class for all REST-like connections
+    """
     def __init__(self, url, username=None, password=None, api_base_path=None, verify_ssl=False, DEBUG=False, con_type=None):
+        """
+
+        :param url: URL or IP address of the target machine
+        :param username: Username for authentication
+        :param password: Password for authentication
+        :param api_base_path: Base path for the API resource, such as "/api/v1"
+        :param verify_ssl: Enable SSL certificate verification. For self-signed certificates, set this to False
+        :param DEBUG: Enable debugging output
+        :param con_type: String representation of connection type, set by child classes
+        """
         # Disable logging for external libraries
         logging.getLogger("requests").setLevel(logging.WARNING)
         logging.getLogger("urllib3").setLevel(logging.WARNING)
@@ -24,7 +37,21 @@ class RestBase(object):
         self.headers = {"Content-type": "application/json"}
         self.common_headers = {"headers": self.headers, "verify": self.verify_ssl}
 
+    def __enter__(self):
+        """Allow usage of Python Context Manager"""
+        self._initialize()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Allow usage of Python Context Manager"""
+        pass
+
     def _initialize(self):
+        """
+        Function for credentials loading and session preparation. Might be overwritten in child classes
+
+        :return: ``None``
+        """
         if self.verify_ssl == False:
             # Disable certificate warning
             try:
@@ -41,9 +68,21 @@ class RestBase(object):
             self._authorize()
 
     def _authorize(self):
+        """
+        Connection-specific function for handling authorization. Overridden by child classes
+
+        :return: ``None``
+        """
         pass
 
     def _get(self, path, params=None):
+        """
+        Wrapper function for GET method of the requests library
+
+        :param path: Path of the API resource used in URL
+        :param params: Parameters for the request
+        :return: Instance of ``requests`` response object
+        """
         response = None
         try:
             self.logger.debug(msg="_GET: Path: '{}', Params: '{}'".format(path, params))
@@ -59,6 +98,14 @@ class RestBase(object):
             return response
 
     def _post(self, path, data, params=None):
+        """
+        Wrapper function for POST method of the requests library
+
+        :param path: Path of the API resource used in URL
+        :param data: Data payload for POST request. JSON string
+        :param params: Parameters for the request
+        :return: Instance of ``requests`` response object
+        """
         response = None
         try:
             self.logger.debug(msg="_POST: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
@@ -74,6 +121,13 @@ class RestBase(object):
             return response
 
     def _delete(self, path, params):
+        """
+        Wrapper function for DELETE method of the requests library
+
+        :param path: Path of the API resource used in URL
+        :param params: Parameters for the request
+        :return: Instance of ``requests`` response object
+        """
         response = None
         try:
             self.logger.debug(msg="_DELETE: Path: '{}', Params: '{}'".format(path, params))
@@ -89,6 +143,14 @@ class RestBase(object):
             return response
 
     def _put(self, path, data, params):
+        """
+        Wrapper function for PUT method of the requests library
+
+        :param path: Path of the API resource used in URL
+        :param data: Data payload for POST request. JSON string
+        :param params: Parameters for the request
+        :return: Instance of ``requests`` response object
+        """
         response = None
         try:
             self.logger.debug(msg="_PUT: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
@@ -104,6 +166,14 @@ class RestBase(object):
             return response
 
     def _response_handler(self, response):
+        """
+        Function for handling request's response objects. Main purpose of this action is to handle HTTP return codes.
+        In case of JSON formatted reply, returns this data as dictionary. In case of errors, either string representation
+        of data is returned, or None. Status code is returned alongside the content to allow further processing if needed.
+
+        :param response: Instance of request's response object.
+        :return: content, status code
+        """
         if response is None:
             return None, None
         try:
@@ -115,7 +185,7 @@ class RestBase(object):
                 self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Bad Request.".format(status_code))
                 return None, status_code
             if status_code == 401:
-                self.logger.error(msg="Response_Handler: Server returned Status Code: {status_code}, Unauthorized.".format(status_code))
+                self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Unauthorized.".format(status_code))
                 return response.json(), status_code
             if status_code == 403:
                 self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Forbidden.".format(status_code))

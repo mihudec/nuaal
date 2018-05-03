@@ -1,0 +1,182 @@
+{
+  "ipAddress": "10.19.55.205",
+  "hostname": "E-903U",
+  "inventory": [
+    {
+      "name": "Chassis",
+      "desc": "ASR 903U Series Router Chassis",
+      "pid": "ASR-903U",
+      "vid": "V01",
+      "sn": "FOX2143PCEY"
+    },
+    {
+      "name": "IM subslot 0/0",
+      "desc": "8-port Gigabit Ethernet Interface Module",
+      "pid": "A900-IMA8S",
+      "vid": "V02",
+      "sn": "FOC2146N61Q"
+    },
+    {
+      "name": "subslot 0/0 transceiver 0",
+      "desc": "GE LX",
+      "pid": "GLC-LH-SMD",
+      "vid": "V01",
+      "sn": "OPM21250Y8S"
+    },
+    {
+      "name": "subslot 0/0 transceiver 1",
+      "desc": "GE LX",
+      "pid": "GLC-LH-SMD",
+      "vid": "V01",
+      "sn": "OPM21250Y6P"
+    },
+    {
+      "name": "subslot 0/0 transceiver 2",
+      "desc": "GE LX",
+      "pid": "GLC-LH-SMD",
+      "vid": "V01",
+      "sn": "OPM21250Y63"
+    },
+    {
+      "name": "subslot 0/0 transceiver 3",
+      "desc": "GE T",
+      "pid": "GLC-TE",
+      "vid": "V01",
+      "sn": "MTC21290VSY"
+    },
+    {
+      "name": "IM subslot 0/1",
+      "desc": "8-port Gigabit Ethernet Interface Module",
+      "pid": "A900-IMA8T",
+      "vid": "V02",
+      "sn": "FOC2137NX2C"
+    },
+    {
+      "name": "IM subslot 0/4",
+      "desc": "6 port ENM IM",
+      "pid": "A900-IMA6EM",
+      "vid": "V02",
+      "sn": "FOC2146NSSC"
+    },
+    {
+      "name": "module R0",
+      "desc": "ASR 900U Route Switch Processor 2, Base Scale, 128Gbps",
+      "pid": "A900U-RSP2A-128",
+      "vid": "V01",
+      "sn": "FOC2141PPTB"
+    },
+    {
+      "name": "module R1",
+      "desc": "ASR 900U Route Switch Processor 2, Base Scale, 128Gbps",
+      "pid": "A900U-RSP2A-128",
+      "vid": "V01",
+      "sn": "FOC2139N1DC"
+    },
+    {
+      "name": "Power Supply Module 0",
+      "desc": "ASR 900 550W DC Power Supply",
+      "pid": "A900-PWR550-D-E",
+      "vid": "V01",
+      "sn": "DCB2138T2R2"
+    },
+    {
+      "name": "Power Supply Module 1",
+      "desc": "ASR 900 550W DC Power Supply",
+      "pid": "A900-PWR550-D-E",
+      "vid": "V01",
+      "sn": "DCB2138T2QX"
+    },
+    {
+      "name": "Fan Tray",
+      "desc": "ASR 903 FAN Tray",
+      "pid": "A903-FAN-E",
+      "vid": "V02",
+      "sn": "FOC2053N1CA"
+    }
+  ],
+  "license": [
+    {
+      "index": 1,
+      "feature": "metroaggrservices",
+      "period_left": "Life time",
+      "period_used": null,
+      "license_type": "Permanent",
+      "license_state": "Active, In Use",
+      "license_count": "Non-Counted",
+      "license_priority": "Medium"
+    },
+    {
+      "index": 2,
+      "feature": "metroipservices",
+      "period_left": "Not Activated",
+      "period_used": "0  minute  0  second  ",
+      "license_type": "EvalRightToUse",
+      "license_state": "Active, Not in Use, EULA not accepted",
+      "license_count": "Non-Counted",
+      "license_priority": "None"
+    },
+    {
+      "index": 3,
+      "feature": "metroservices",
+      "period_left": "Not Activated",
+      "period_used": "0  minute  0  second  ",
+      "license_type": "EvalRightToUse",
+      "license_state": "Active, Not in Use, EULA not accepted",
+      "license_count": "Non-Counted",
+      "license_priority": "None"
+    },
+    {
+      "index": 4,
+      "feature": "atm",
+      "period_left": "Not Activated",
+      "period_used": "0  minute  0  second  ",
+      "license_type": "EvalRightToUse",
+      "license_state": "Active, Not in Use, EULA not accepted",
+      "license_count": "Non-Counted",
+      "license_priority": "None"
+    },
+    {
+      "index": 5,
+      "feature": "oc3",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 6,
+      "feature": "oc12",
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    },
+    {
+      "index": 7,
+      "feature": 1588,
+      "period_left": null,
+      "period_used": null,
+      "license_type": null,
+      "license_state": null,
+      "license_count": null,
+      "license_priority": null
+    }
+  ],
+  "version": [
+    {
+      "vendor": "Cisco",
+      "software": "IOS XE",
+      "version": "2018-03-22_19.41_mibhaska",
+      "platform": "ASR-903U",
+      "systemMemory": "906427K/6147K",
+      "hostname": "E-903U",
+      "uptime": "2 weeks, 4 days, 15 hours, 3 minutes",
+      "imageFile": "bootflash:/packages.conf",
+      "experimental_version": "16.6.20180320:122946"
+    }
+  ]
+}

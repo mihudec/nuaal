@@ -73,6 +73,8 @@ class Cisco_IOS_Cli(CliBaseConnection):
         """
         command = "show cdp neighbors detail"
         raw_output = self._send_command(command=command)
+        if not raw_output:
+            return []
         if self.store_outputs:
             self.store_raw_output(command=command, raw_output=raw_output)
         parsed_output = self.parser.autoparse(text=raw_output, command=command)
@@ -92,6 +94,9 @@ class Cisco_IOS_Cli(CliBaseConnection):
         """
         command = "show interfaces trunk"
         raw_output = self._send_command(command=command)
+        if len(raw_output) == 0:
+            self.data["trunk_interfaces"] = []
+            return []
         if self.store_outputs:
             self.store_raw_output(command=command, raw_output=raw_output)
         parsed_output = self.parser.trunk_parser(text=raw_output)
@@ -101,7 +106,6 @@ class Cisco_IOS_Cli(CliBaseConnection):
                 trunk["active"] = vlan_range_expander(trunk["active"])
                 trunk["forwarding"] = vlan_range_expander(trunk["forwarding"])
         self.data["trunk_interfaces"] = parsed_output
-        print(parsed_output)
         return parsed_output
 
     def get_config(self):
@@ -110,6 +114,4 @@ class Cisco_IOS_Cli(CliBaseConnection):
         if self.store_outputs:
             self.store_raw_output(command=command, raw_output=raw_output)
         return raw_output
-
-
 

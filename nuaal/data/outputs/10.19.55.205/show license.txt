@@ -1,0 +1,30 @@
+Index 1 Feature: metroaggrservices              
+	Period left: Life time
+	License Type: Permanent
+	License State: Active, In Use
+	License Count: Non-Counted
+	License Priority: Medium
+Index 2 Feature: metroipservices                
+	Period left: Not Activated
+	Period Used: 0  minute  0  second  
+	License Type: EvalRightToUse
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 3 Feature: metroservices                  
+	Period left: Not Activated
+	Period Used: 0  minute  0  second  
+	License Type: EvalRightToUse
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 4 Feature: atm                            
+	Period left: Not Activated
+	Period Used: 0  minute  0  second  
+	License Type: EvalRightToUse
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 5 Feature: oc3                            
+Index 6 Feature: oc12                           
+Index 7 Feature: 1588                           

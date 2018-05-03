@@ -51,6 +51,7 @@ class ApicEmBase(RestBase):
 
     def get(self, path, params=None):
         if not self.authorized:
+            self.logger.error(msg="Connection is not authorized")
             return None
         response, status_code = self._response_handler(self._get(path=path, params=params))
         if status_code in range(200, 208):
@@ -76,3 +77,8 @@ class ApicEmBase(RestBase):
         else:
             self.logger.error(msg="GET: Could not retrieve valid response for path '{}'".format(path))
             return None
+
+if __name__ == '__main__':
+    with ApicEmBase(url="https://sandboxapicem.cisco.com", DEBUG=True) as apic:
+
+        print(json.dumps(apic.get(path="/interface/network-device/26450a30-57d8-4b56-b8f1-6fc535d67645"), indent=2))

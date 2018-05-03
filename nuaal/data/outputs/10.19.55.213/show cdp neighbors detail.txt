@@ -1,0 +1,20 @@
+-------------------------
+Device ID: F-903U.lab.local
+Entry address(es): 
+  IP address: 10.0.46.6
+Platform: cisco ASR-903U,  Capabilities: Router IGMP 
+Interface: GigabitEthernet0/0/0,  Port ID (outgoing port): GigabitEthernet0/1/2
+Holdtime : 147 sec
+
+Version :
+Cisco IOS Software [Everest], ASR900  Software (PPC_LINUX_IOSD-UNIVERSALK9_NPE-M), Experimental Version 16.6.20180320:122946 [v166_throttle-/nobackup/mibhaska/bug_CSCvh52244_cco 104]
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Tue 20-Mar-18 19:01 by mibhaska
+
+advertisement version: 2
+Duplex: full
+Management address(es): 
+  IP address: 10.0.46.6
+
+
+Total cdp entries displayed : 1

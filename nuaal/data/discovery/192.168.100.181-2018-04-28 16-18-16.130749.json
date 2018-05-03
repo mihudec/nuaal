@@ -1,0 +1,108 @@
+{
+  "SW1": [
+    {
+      "hostname": "SW5",
+      "ipAddress": "192.168.100.185",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/2",
+      "remoteInterface": "Ethernet0/0"
+    },
+    {
+      "hostname": "SW2",
+      "ipAddress": "192.168.100.182",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/1",
+      "remoteInterface": "Ethernet0/0"
+    }
+  ],
+  "SW2": [
+    {
+      "hostname": "SW4",
+      "ipAddress": "192.168.100.184",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/2",
+      "remoteInterface": "Ethernet0/0"
+    },
+    {
+      "hostname": "SW3",
+      "ipAddress": "192.168.100.183",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/1",
+      "remoteInterface": "Ethernet0/0"
+    },
+    {
+      "hostname": "SW1",
+      "ipAddress": "192.168.100.181",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/0",
+      "remoteInterface": "Ethernet0/1"
+    }
+  ],
+  "SW5": [
+    {
+      "hostname": "SW4",
+      "ipAddress": "192.168.100.184",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/1",
+      "remoteInterface": "Ethernet0/1"
+    },
+    {
+      "hostname": "SW1",
+      "ipAddress": "192.168.100.181",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/0",
+      "remoteInterface": "Ethernet0/2"
+    }
+  ],
+  "SW4": [
+    {
+      "hostname": "SW5",
+      "ipAddress": "192.168.100.185",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/1",
+      "remoteInterface": "Ethernet0/1"
+    },
+    {
+      "hostname": "SW2",
+      "ipAddress": "192.168.100.182",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/0",
+      "remoteInterface": "Ethernet0/2"
+    },
+    {
+      "hostname": "SW3",
+      "ipAddress": "192.168.100.183",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/3",
+      "remoteInterface": "Ethernet0/3"
+    }
+  ],
+  "SW3": [
+    {
+      "hostname": "SW4",
+      "ipAddress": "192.168.100.184",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/3",
+      "remoteInterface": "Ethernet0/3"
+    },
+    {
+      "hostname": "SW2",
+      "ipAddress": "192.168.100.182",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/0",
+      "remoteInterface": "Ethernet0/1"
+    }
+  ]
+}

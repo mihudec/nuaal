@@ -1,0 +1,496 @@
+Building configuration...
+
+Current configuration : 10411 bytes
+!
+! No configuration change since last restart
+! NVRAM config last updated at 18:26:36 CEST Thu Apr 19 2018
+!
+version 16.6
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+platform bfd-debug-trace 1
+platform xconnect load-balance-hash-algo mac-ip-instanceid
+platform qos-policer queue 15 2000000 200000
+platform tcam-parity-error enable
+platform tcam-threshold alarm-frequency 1
+!
+hostname H-920U
+!
+boot-start-marker
+boot system bootflash:/packages.conf
+boot system bootflash:/cco_16_6_raghu_meyap_cemStat_c37flap_pktLen_tbInit_fix_enm_feature_920.bin
+boot system bootflash:IOS1671/packages.conf
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+card type e1 0 1
+logging buffered 64000 informational
+no logging console
+enable secret 5 $1$ubUI$EeNafft8dJ6wo3wyS.CSD/
+!
+no aaa new-model
+ethernet evc Test17-ETH
+!
+clock timezone CET 1 0
+clock summer-time CEST recurring last Sun Mar 2:00 last Sun Oct 3:00
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name lab.local
+!
+!
+!
+login on-failure log
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+mpls label range 6000 32767 static 100 5999
+mpls label protocol ldp
+mpls ldp nsr
+mpls ldp explicit-null
+mpls ldp graceful-restart
+mpls ldp session protection
+mpls ldp igp sync holddown 1000
+mpls ldp discovery targeted-hello accept
+mpls traffic-eng tunnels
+mpls traffic-eng fault-oam
+mpls traffic-eng nsr
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+license feature ptp
+license udi pid ASR-920U-12SZ-IM sn CAT2151U0HL
+license boot level advancedmetroipaccess
+!
+spanning-tree extend system-id
+sdm prefer default 
+diagnostic bootup level minimal
+!
+username alef privilege 15 password 7 0831434D
+!
+redundancy
+bfd-template single-hop BFD-1hop
+ interval min-tx 5 min-rx 5 multiplier 3
+!
+bfd-template single-hop bfd-tunnel2
+ interval min-tx 4 min-rx 4 multiplier 3
+!
+bfd-template single-hop bfd-tunnel3
+ interval min-tx 4 min-rx 4 multiplier 3
+!
+bridge-domain 7 
+bridge-domain 1007 
+!
+!
+!
+!
+controller E1 0/1/0
+!
+controller E1 0/1/1
+!
+controller E1 0/1/2
+!
+controller E1 0/1/3
+!
+controller E1 0/1/4
+!
+controller E1 0/1/5
+ framing unframed 
+ clock source recovered 2
+  cem-group 0 unframed
+!
+controller E1 0/1/6
+!
+controller E1 0/1/7
+ framing unframed 
+ clock source recovered 0
+  cem-group 0 unframed
+!
+!
+transceiver type all
+ monitoring
+recovered-clock 0 1
+ clock recovered 0 adaptive cem 7 0
+ clock recovered 2 adaptive cem 5 0
+cdp run
+!
+!
+!
+class-map match-any EXP-1
+ match mpls experimental topmost 1 
+class-map match-all EXP-2
+ match mpls experimental topmost 2 
+class-map match-any EXP-3
+ match mpls experimental topmost 3 
+ match dscp cs3 
+class-map match-all EXP-4
+ match mpls experimental topmost 4 
+class-map match-all EXP-5
+ match mpls experimental topmost 5 
+class-map match-any EXP-6
+ match mpls experimental topmost 6 
+ match dscp cs6  cs7 
+ match mpls experimental topmost 6  7 
+!
+policy-map PM-CEM-in
+ class class-default
+policy-map PM-Service-mark-in
+ class class-default
+policy-map PM-MPLS-1G-out
+ class EXP-4
+  police cir 100000000 bc 3125000
+   conform-action transmit 
+   exceed-action drop 
+ class EXP-5
+  police cir 100000000 bc 3125000
+   conform-action transmit 
+   exceed-action drop 
+ class EXP-2
+  bandwidth remaining percent 50 
+ class EXP-6
+  bandwidth remaining percent 2 
+ class class-default
+  bandwidth remaining percent 20 
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description >> global <<
+ ip address 10.0.0.7 255.255.255.255
+!
+interface Tunnel2
+ bandwidth 5000
+ ip unnumbered Loopback0
+ tunnel mode mpls traffic-eng
+ tunnel destination 10.0.0.3
+ tunnel mpls traffic-eng priority 7 7
+ tunnel mpls traffic-eng bandwidth 5000
+ tunnel mpls traffic-eng path-option 10 explicit name CEH
+ tunnel mpls traffic-eng path-option protect 10 diverse lockdown
+ tunnel mpls traffic-eng record-route
+ tunnel mpls traffic-eng name FlexCH
+ tunnel mpls traffic-eng bidirectional association id 15 source-address 10.0.0.7
+ tunnel mpls traffic-eng bidirectional association type co-routed fault-oam wrap-protection
+ tunnel mpls traffic-eng bfd encap-mode gal bfd-tunnel2
+!
+interface Tunnel3
+ ip unnumbered Loopback0
+ tunnel mode mpls traffic-eng
+ tunnel destination 10.0.0.1
+ tunnel mpls traffic-eng path-option 10 explicit name ACEH
+ tunnel mpls traffic-eng path-option protect 10 diverse lockdown
+ tunnel mpls traffic-eng record-route
+ tunnel mpls traffic-eng name FlexAH
+ tunnel mpls traffic-eng bidirectional association id 5 source-address 10.0.0.7
+ tunnel mpls traffic-eng bidirectional association type co-routed fault-oam wrap-protection
+ tunnel mpls traffic-eng bfd encap-mode gal bfd-tunnel3
+!
+interface pseudowire1
+ encapsulation mpls
+ neighbor 10.0.0.3 20
+ preferred-path interface Tunnel2
+ bandwidth 2144 persistent
+!
+interface pseudowire3
+ encapsulation mpls
+ neighbor 10.0.0.3 18
+ preferred-path interface Tunnel2
+ bandwidth 2144 persistent
+!
+interface pseudowire17701
+ encapsulation mpls
+ signaling protocol ldp
+ neighbor 10.0.0.1 17701
+ preferred-path interface Tunnel3
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ description >> Test-17 EVPL to A 0/1/3 <<
+ mtu 1540
+ no ip address
+ load-interval 30
+ media-type rj45
+ negotiation auto
+ service instance 701 ethernet Test17-ETH
+  description >> Test 17 - VLAN 701 best-effort <<
+  encapsulation dot1q 701
+  rewrite ingress tag pop 1 symmetric
+  snmp trap link-status
+ !
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/3
+ no ip address
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/4
+ no ip address
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/5
+ no ip address
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/6
+ no ip address
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/7
+ no ip address
+ shutdown
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet0/0/8
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/9
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/10
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/11
+ description >> to E-903U Gi0/0/2 <<
+ mtu 1540
+ no ip address
+ load-interval 30
+ media-type sfp
+ negotiation auto
+ synchronous mode
+ cdp enable
+ service-policy output PM-MPLS-1G-out
+ service instance 7 ethernet
+  description >> to E-903U Gi0/0/2 primary <<
+  encapsulation untagged
+  l2protocol peer cdp
+  bridge-domain 7
+ !
+ service instance 1007 ethernet
+  description >> to E-903U Gi0/0/2 backup <<
+  encapsulation dot1q 1007
+  rewrite ingress tag pop 1 symmetric
+  l2protocol peer cdp
+  bridge-domain 1007
+ !
+!
+interface TenGigabitEthernet0/0/12
+ no ip address
+!
+interface TenGigabitEthernet0/0/13
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface TenGigabitEthernet0/0/14
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface TenGigabitEthernet0/0/15
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0
+ description >> MGMT_Alef <<
+ vrf forwarding Mgmt-intf
+ ip address 10.19.55.207 255.255.255.0
+ negotiation auto
+!
+interface CEM0/1/5
+ no ip address
+ cem 0
+ !
+!
+interface CEM0/1/7
+ no ip address
+ cem 0
+ !
+!
+interface BDI7
+ description >> to E-903U Gi0/0/2 primary <<
+ ip address 10.0.57.7 255.255.255.0
+ ip mtu 1540
+ ip router isis tsdr
+ load-interval 30
+ mpls ip
+ mpls traffic-eng tunnels
+ bfd template BFD-1hop
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis metric 10
+ ip rsvp bandwidth percent 90
+ ip rsvp signalling hello graceful-restart
+!
+interface BDI1007
+ description >> to E-903U Gi0/0/2 backup <<
+ ip address 10.1.57.7 255.255.255.0
+ ip mtu 1540
+ ip router isis tsdr
+ load-interval 30
+ encapsulation dot1Q 1007
+ mpls ip
+ mpls traffic-eng tunnels
+ bfd template BFD-1hop
+ isis circuit-type level-2-only
+ isis network point-to-point 
+ isis metric 110
+ ip rsvp bandwidth percent 90
+ ip rsvp signalling hello graceful-restart
+!
+router isis tsdr
+ net 49.1001.0100.0000.0007.00
+ metric-style wide
+ fast-flood 10
+ set-overload-bit on-startup 180
+ max-lsp-lifetime 65535
+ lsp-refresh-interval 65000
+ spf-interval 5 50 200
+ prc-interval 5 50 200
+ lsp-gen-interval 5 5 200
+ log-adjacency-changes
+ nsf cisco
+ passive-interface Loopback0
+ bfd all-interfaces
+ mpls traffic-eng router-id Loopback0
+ mpls traffic-eng level-2
+!
+ip forward-protocol nd
+ip telnet tos 40
+ip ssh version 2
+ip ssh dscp 16
+!
+no ip http server
+no ip http secure-server
+ip tftp source-interface GigabitEthernet0
+ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.19.55.1
+!
+ip explicit-path name ACE enable
+ index 1 next-address 10.0.35.5
+ index 2 next-address 10.0.13.3
+!
+ip explicit-path name ACEH enable
+ index 1 next-address 10.0.57.5
+ index 2 next-address 10.0.35.5
+ index 3 next-address 10.0.13.3
+!
+ip explicit-path name CEH enable
+ index 1 next-address 10.0.57.5
+ index 2 next-address 10.0.35.5
+!
+logging source-interface Loopback0
+logging host 10.0.254.254
+logging host 10.19.55.237 vrf Mgmt-intf
+logging host 10.0.254.253 transport udp port 1514
+logging host 10.0.254.252
+!
+mpls ldp router-id Loopback0 force
+snmp-server group epnm-users v3 auth read epnm-ro write epnm-rw 
+snmp-server view epnm-ro iso included
+snmp-server view epnm-rw iso included
+snmp-server ip dscp 16
+snmp-server host 10.0.254.254 version 2c cisco 
+snmp-server host 10.0.254.252 version 2c public 
+snmp-server host 10.0.254.254 version 2c public 
+!
+l2vpn xconnect context 17701
+ member pseudowire17701
+ member GigabitEthernet0/0/1 service-instance 701 
+!
+l2vpn xconnect context XCon_18_10.0.0.3
+ member pseudowire3
+ member CEM0/1/5 0 
+!
+l2vpn xconnect context XCon_20_10.0.0.3
+ member pseudowire1
+ member CEM0/1/7 0 
+!
+!
+control-plane
+!
+alias exec spm show policy-map int 
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ session-timeout 5 
+ logging synchronous
+ login local
+ transport input telnet ssh
+!
+
+network-clock revertive 
+network-clock synchronization automatic
+network-clock synchronization mode QL-enabled
+network-clock input-source 10 interface GigabitEthernet0/0/11
+network-clock wait-to-restore 60 global
+esmc process
+ntp server vrf Mgmt-intf 10.19.55.1
+!
+!
+!
+!
+
+!
+end

@@ -1,0 +1,33 @@
+Index 1 Feature: advancedmetroipaccess          
+	Period left: Life time
+	License Type: Permanent
+	License State: Active, In Use
+	License Count: Non-Counted
+	License Priority: Medium
+Index 2 Feature: metroipaccess                  
+	Period left: Not Activated
+	License Type: Evaluation
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 3 Feature: metroaccess                    
+	Period left: Not Activated
+	License Type: Evaluation
+	License State: Active, Not in Use, EULA not accepted
+	License Count: Non-Counted
+	License Priority: None
+Index 4 Feature: atm                            
+Index 5 Feature: oc3                            
+Index 6 Feature: oc12                           
+Index 7 Feature: 1588                           
+Index 8 Feature: 1GEupgradelicense              
+	Period left: Life time
+	License Type: Permanent
+	License State: Active, Not in Use
+	License Count: 1/0/0  (Active/In-use/Violation)
+	License Priority: Medium
+Index 9 Feature: 10GEupgradelicense             
+Index 10 Feature: 12portGE4port10GE              
+Index 11 Feature: gnss                           
+Index 12 Feature: upoe                           
+Index 13 Feature: ipsec                          

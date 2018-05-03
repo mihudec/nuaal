@@ -142,9 +142,16 @@ class Patterns:
                             flags=re.MULTILINE
                         )
                     ],
-                    "duplex": [re.compile(
-                        pattern=r"^\s+(?P<duplex>\S+)-duplex,\s(?P<speed>(?:\d+)?\S+)(?:,\s+link\stype\sis\s(?P<linkType>\S+))?,\smedia\stype\sis\s(?P<mediaType>.*)",
-                        flags=re.MULTILINE)],
+                    "duplex": [
+                        re.compile(
+                            pattern=r"^\s+(?P<duplex>\S+)-duplex,\s(?P<speed>(?:\d+)?\S+)(?:,\s+link\stype\sis\s(?P<linkType>\S+))?,\smedia\stype\sis\s(?P<mediaType>.*)",
+                            flags=re.MULTILINE
+                        ),
+                        re.compile(
+                            pattern=r"^\s+(?P<duplex>\S+)-duplex,\s(?P<sped>\S+)$",
+                            flags=re.MULTILINE
+                        )
+                    ],
                     "mtu": [re.compile(pattern=r"^\s+MTU\s(?P<mtu>\d+).*BW\s(?P<bandwidth>\d+)\sKbit(?:/sec)?,\sDLY\s(?P<delay>\d+).*$"
                                                r"\s+reliability\s(?P<reliability>\S+),\stxload\s(?P<txLoad>\S+),\srxload\s(?P<rxLoad>\S+)",
                                        flags=re.MULTILINE),
@@ -200,7 +207,10 @@ class Patterns:
                     ]
                 },
                 "show cdp neighbors detail": {
-                    "hostname": [re.compile(pattern=r"^Device\sID:\s(?P<hostname>\S+)", flags=re.MULTILINE)],
+                    "hostname": [
+                        re.compile(pattern=r"^Device\sID:\s(?P<hostname>[\w\_\-\(\)]+)(?:.\S+)?", flags=re.MULTILINE),
+                        re.compile(pattern=r"^Device\sID:\s(?P<hostname>\S+)", flags=re.MULTILINE)
+                    ],
                     "ipAddress": [re.compile(pattern=r"IP\saddress:\s(?P<ipAddress>(?:\d{1,3}\.?){4})", flags=re.MULTILINE)],
                     "platform": [re.compile(pattern=r"^Platform:\s(?:(?:Cisco|cisco\s)?(?P<platform>(?:\S+\s?)+))", flags=re.MULTILINE)],
                     "capabilities": [re.compile(pattern=r"Capabilities:\s(?P<capabilities>(?:\S+\s)+)")],

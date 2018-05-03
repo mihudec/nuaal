@@ -55,7 +55,10 @@ class CliBaseConnection(object):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.store_raw_output(self.data["hostname"], json.dumps(self.data, indent=2), ext="json")
+        try:
+            self.store_raw_output(self.data["hostname"], json.dumps(self.data, indent=2), ext="json")
+        except KeyError:
+            self.logger.error(msg="Could not store data of device {}.".format(self.ip))
         self.disconnect()
 
     def _get_provider(self):
@@ -124,22 +127,28 @@ class CliBaseConnection(object):
 
         :return: ``None``
         """
-        device = None
-
-        if self.primary_method == self.ssh_method:
-            device = self._connect_ssh()
-        elif self.primary_method == self.telnet_method:
-            device = self._connect_telnet()
-        if not device:
-            if self.secondary_method == self.telnet_method:
-                device = self._connect_telnet()
-            elif self.secondary_method == self.ssh_method:
-                self._connect_ssh()
-
-        if device is not None:
-            self._check_enable_level(device)
+        if self.device is not None:
+            try:
+                self.device.establish_connection()
+                self._check_enable_level(self.device)
+            except Exception as e:
+                self.logger.critical(msg="Failed to reconnect do device.")
         else:
-            self.logger.error(msg="Could not connect to device '{}'".format(self.ip))
+            device = None
+
+            if self.primary_method == self.ssh_method:
+                device = self._connect_ssh()
+            elif self.primary_method == self.telnet_method:
+                device = self._connect_telnet()
+            if not device:
+                if self.secondary_method == self.telnet_method:
+                    device = self._connect_telnet()
+                elif self.secondary_method == self.ssh_method:
+                    self._connect_ssh()
+            if device is not None:
+                self._check_enable_level(device)
+            else:
+                self.logger.error(msg="Could not connect to device '{}'".format(self.ip))
 
     def _check_enable_level(self, device):
         """
@@ -195,8 +204,8 @@ class CliBaseConnection(object):
     def _send_command(self, command):
         """
 
-        :param command: (str) Command to send to device
-        :return: (str) Output of command from device
+        :param str command: Command to send to device
+        :return: Plaintext output of command from device
         """
         if not self.device:
             self.logger.error(msg="Device {} is not connected, cannot send command.".format(self.ip))
@@ -211,6 +220,12 @@ class CliBaseConnection(object):
             return output
 
     def _send_commands(self, commands):
+        """
+        Sends multiple commands to device.
+
+        :param list commands: List of commands to run
+        :return: Dictionary with key=command, value=output_of_the_command
+        """
         output = {}
         for command in commands:
             output[command] = self._send_command(command)
@@ -223,7 +238,7 @@ class CliBaseConnection(object):
         'show mac-address-table' on different versions of Cisco IOS.
         When correct output is returned, it is then parsed and the result is returned.
 
-        :param commands: List of command string to try, such as ['show mac-address-table', 'show mac address-table']
+        :param list commands: List of command string to try, such as ['show mac-address-table', 'show mac address-table']
         :return: JSON representation of command output
         """
         start_time = timeit.default_timer()
@@ -239,7 +254,7 @@ class CliBaseConnection(object):
             if "% Invalid input detected at '^' marker." in command_output:
                 self.logger.error(msg="Device {} does not support command '{}'".format(self.ip, command))
             elif "% Ambiguous command:" in command_output:
-                self.logger.error(msg="Device {self.ip}: Ambiguous command: '{command}'")
+                self.logger.error(msg="Device {}: Ambiguous command: '{}'".format(self.ip, command))
             elif command_output == "":
                 self.logger.error(msg="Device {} returned empty output for command '{}'".format(self.ip, command))
             else:
@@ -248,7 +263,7 @@ class CliBaseConnection(object):
                 break
         if self.store_outputs and command_output != "":
             self.store_raw_output(command=used_command, raw_output=command_output)
-        if command_output == "":
+        if command_output == "" or command_output is None:
             return []
         # Try parsing the output
         try:
@@ -275,27 +290,59 @@ class CliBaseConnection(object):
     #####################
 
     def get_vlans(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_vlans")
 
     def get_inventory(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_inventory")
 
     def get_interfaces(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_interfaces")
 
     def get_portchannels(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_portchannels")
 
     def get_license(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_license")
 
     def get_version(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_version")
 
     def get_mac_address_table(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_mac_address_table")
 
     def get_arp(self):
+        """
+
+        :return:
+        """
         return self._command_handler(action="get_arp")
 
     def __str__(self):

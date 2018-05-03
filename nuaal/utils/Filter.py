@@ -1,5 +1,6 @@
 from nuaal.utils import get_logger
 
+
 class Filter:
     """
     Object for making filtering of required field easier

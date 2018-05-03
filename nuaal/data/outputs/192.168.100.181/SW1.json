@@ -1,0 +1,22 @@
+{
+  "ipAddress": "192.168.100.181",
+  "hostname": "SW1",
+  "neighbors": [
+    {
+      "hostname": "SW5",
+      "ipAddress": "192.168.100.185",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/2",
+      "remoteInterface": "Ethernet0/0"
+    },
+    {
+      "hostname": "SW2",
+      "ipAddress": "192.168.100.182",
+      "platform": "Linux Unix, ",
+      "capabilities": "Router Switch ",
+      "localInterface": "Ethernet0/1",
+      "remoteInterface": "Ethernet0/0"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 from nuaal.utils import get_logger
 from nuaal.utils import Filter
 from nuaal.connections.cli import Cisco_IOS_Cli
+from nuaal.Discovery.Topology import CliTopology
 import threading
 from nuaal.definitions import DATA_PATH
 import json
@@ -19,7 +20,7 @@ class Neighbor_Discovery:
         self.logger = get_logger(name="NeighborDiscovery", DEBUG=self.DEBUG)
         self.provider = provider
         self.data = {}
-        self.topology = {"nodes": {}, "links": {}}
+        self.topology = None
         self.visited = []
         self.discovered = []
         self.to_process = []
@@ -152,3 +153,8 @@ class Neighbor_Discovery:
                 self.process_neighbors()
         with open("{}\discovery\{}-{}.json".format(DATA_PATH, ip, str(datetime.now()).replace(':', '-')), mode="w") as f:
             json.dump(self.data, f, indent=2)
+        topo = CliTopology()
+        topo.build_topology(self.data)
+        self.topology = topo.topology
+
+

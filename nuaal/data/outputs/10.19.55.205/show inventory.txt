@@ -1,0 +1,39 @@
+NAME: "Chassis", DESCR: "ASR 903U Series Router Chassis"
+PID: ASR-903U          , VID: V01  , SN: FOX2143PCEY
+
+NAME: "IM subslot 0/0", DESCR: "8-port Gigabit Ethernet Interface Module"
+PID: A900-IMA8S        , VID: V02  , SN: FOC2146N61Q
+
+NAME: "subslot 0/0 transceiver 0", DESCR: "GE LX"
+PID: GLC-LH-SMD          , VID: V01  , SN: OPM21250Y8S     
+
+NAME: "subslot 0/0 transceiver 1", DESCR: "GE LX"
+PID: GLC-LH-SMD          , VID: V01  , SN: OPM21250Y6P     
+
+NAME: "subslot 0/0 transceiver 2", DESCR: "GE LX"
+PID: GLC-LH-SMD          , VID: V01  , SN: OPM21250Y63     
+
+NAME: "subslot 0/0 transceiver 3", DESCR: "GE T"
+PID: GLC-TE              , VID: V01  , SN: MTC21290VSY     
+
+NAME: "IM subslot 0/1", DESCR: "8-port Gigabit Ethernet Interface Module"
+PID: A900-IMA8T        , VID: V02  , SN: FOC2137NX2C
+
+NAME: "IM subslot 0/4", DESCR: "6 port ENM IM"
+PID: A900-IMA6EM       , VID: V02  , SN: FOC2146NSSC
+
+NAME: "module R0", DESCR: "ASR 900U Route Switch Processor 2, Base Scale, 128Gbps"
+PID: A900U-RSP2A-128   , VID: V01  , SN: FOC2141PPTB
+
+NAME: "module R1", DESCR: "ASR 900U Route Switch Processor 2, Base Scale, 128Gbps"
+PID: A900U-RSP2A-128   , VID: V01  , SN: FOC2139N1DC
+
+NAME: "Power Supply Module 0", DESCR: "ASR 900 550W DC Power Supply"
+PID: A900-PWR550-D-E   , VID: V01  , SN: DCB2138T2R2
+
+NAME: "Power Supply Module 1", DESCR: "ASR 900 550W DC Power Supply"
+PID: A900-PWR550-D-E   , VID: V01  , SN: DCB2138T2QX
+
+NAME: "Fan Tray", DESCR: "ASR 903 FAN Tray"
+PID: A903-FAN-E        , VID: V02  , SN: FOC2053N1CA
+

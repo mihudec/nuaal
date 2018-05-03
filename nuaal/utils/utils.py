@@ -27,7 +27,7 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
         if DEBUG:
             handler.setLevel(logging.DEBUG)
         else:
-            handler.setLevel(logging.WARNING)
+            handler.setLevel(logging.INFO)
 
     root = logging.getLogger(name)
     root.setLevel(logging.DEBUG)
@@ -115,8 +115,8 @@ def vlan_range_shortener(full_vlan_list):
 
 def int_name_convert(int_name):
     int_type, int_num = interface_split(int_name)
-    short = ["Eth", "Se", "Fa", "Gi", "Te", "Po"]
-    long = ["Ethernet", "Serial", "FastEthernet", "GigabitEthernet", "TenGigabitEthernet", "Port-channel"]
+    short = ["Eth", "Et", "Se", "Fa", "Gi", "Te", "Po"]
+    long = ["Ethernet", "Ethernet", "Serial", "FastEthernet", "GigabitEthernet", "TenGigabitEthernet", "Port-channel"]
     new_int = ""
     if int_type in short:
         new_int = long[short.index(int_type)] + int_num
@@ -125,6 +125,18 @@ def int_name_convert(int_name):
     else:
         new_int = int_type + int_num
     return new_int
+
+
+def mac_addr_convert(mac_address=u""):
+    try:
+        mac = mac_address.replace(".", "")
+        mac = [mac[i:i + 2].upper() for i in range(0, len(mac), 2)]
+        mac = ":".join(mac)
+        return mac
+    except Exception as e:
+        return mac_address
+
+
 
 def update_dict(orig_dict, update_dict):
     for k, v in update_dict.items():

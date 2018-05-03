@@ -1,0 +1,16 @@
+
+Port        Mode             Encapsulation  Status        Native vlan
+Po30        on               802.1q         trunking      1
+Po48        on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Po30        11,20,24,28-29,31-34,47,61-62,100,130-135,138,151,154,518,711-715,751
+Po48        600-699
+
+Port        Vlans allowed and active in management domain
+Po30        11,20,24,28-29,31-34,47,61-62,100,130-135,138,151,154,518,711-715,751
+Po48        601-620,680-693,695-696
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Po30        11,20,24,28-29,31-34,47,61-62,100,130-135,138,151,154,518,711-715,751
+Po48        601-620,680-693,695-696

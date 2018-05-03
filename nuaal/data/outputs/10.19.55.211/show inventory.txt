@@ -1,0 +1,15 @@
+NAME: "Chassis", DESCR: "Cisco ASR920U Series - 12GE and 4-10GE - Modular FAN, PSU and IM"
+PID: ASR-920U-12SZ-IM  , VID: V01  , SN: CAT2151U0HQ
+
+NAME: "IM subslot 0/1", DESCR: "14 port serial IM"
+PID: A900-IMASER14A/S  , VID: V01  , SN: FOC21321Y8J
+
+NAME: "Power Supply Module 0", DESCR: "ASR 920 400W DC Power Supply"
+PID: A920-PWR400-D     , VID: V02  , SN: SDG2201EJ5Z
+
+NAME: "Power Supply Module 1", DESCR: "ASR 920 400W DC Power Supply"
+PID: A920-PWR400-D     , VID: V02  , SN: SDG2201EJ6C
+
+NAME: "Fan Tray", DESCR: "ASR 920 Fan tray"
+PID: ASR-920-FAN-TRAY  , VID: V01  , SN: CAT2150U4QU
+
