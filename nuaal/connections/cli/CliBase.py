@@ -40,7 +40,9 @@ class CliBaseConnection(object):
         self.provider = None
         self._get_provider()
         self.store_outputs = store_outputs
-        self.enabled = None
+        self.enabled = False
+        self.is_alive = False
+        self.config = False
         self.prompt_end = [">", "#"] # The first item is for 'not-enabled mode', the second is for 'Privileged EXEC Mode'
         self.logger = get_logger(name="Connection-{}".format(self.ip), DEBUG=DEBUG)
         self.parser = parser
@@ -128,12 +130,18 @@ class CliBaseConnection(object):
         :return: ``None``
         """
         if self.device is not None:
-            try:
-                self.device.establish_connection()
-                self._check_enable_level(self.device)
-            except Exception as e:
-                self.logger.critical(msg="Failed to reconnect do device.")
+            if self.device.is_alive():
+                self.is_alive = True
+                self.logger.debug(msg="Connection is already established.")
+            else:
+                try:
+                    self.logger.debug(msg="Trying to re-establish connection to device.")
+                    self.device.establish_connection()
+                    self._check_enable_level(self.device)
+                except Exception as e:
+                    self.logger.critical(msg="Failed to reconnect do device.")
         else:
+            self.is_alive = False
             device = None
 
             if self.primary_method == self.ssh_method:
@@ -159,6 +167,10 @@ class CliBaseConnection(object):
         :return: ``None``
         """
         try:
+            if device.is_alive():
+                self.is_alive = True
+            else:
+                self.logger.critical(msg="Connection is not alive.")
             prompt = device.find_prompt()
             self.data["hostname"] = prompt[:-1]
             if prompt[-1] == self.prompt_end[0]:
@@ -195,29 +207,35 @@ class CliBaseConnection(object):
         if self.device is not None:
             self.device.disconnect()
             if not self.device.is_alive():
+                self.is_alive = False
                 self.logger.info(msg="Successfully disconnected from device {}".format(self.ip))
             else:
+                self.is_alive = True
                 self.logger.error(msg="Failed to disconnect from device {}".format(self.ip))
         else:
             self.logger.info(msg="Device {} is not connected.".format(self.ip))
 
-    def _send_command(self, command):
+    def _send_command(self, command, expect_string=None):
         """
 
         :param str command: Command to send to device
         :return: Plaintext output of command from device
         """
-        if not self.device:
+        if (not self.device) or (not self.is_alive):
             self.logger.error(msg="Device {} is not connected, cannot send command.".format(self.ip))
             return None
         self.logger.debug(msg="Sending command '{}' to device {} ({})".format(command, self.data["hostname"], self.ip))
         output = ""
+
         try:
-            output = self.device.send_command_expect(command)
+            output = self.device.send_command(command_string=command, expect_string=expect_string)
         except AttributeError:
             self.logger.critical(msg="Connection to device {} has not been initialized.".format(self.ip))
+        except Exception as e:
+            self.logger.error(msg="Unhandled exception occured when trying to send command. Exception: {}".format(repr(e)))
         finally:
             return output
+
 
     def _send_commands(self, commands):
         """
@@ -285,6 +303,39 @@ class CliBaseConnection(object):
             with open("{}/{}.{}".format(path, command, ext), mode="w+") as f:
                 f.write(raw_output)
 
+    def check_connection(self):
+        if self.device is not None:
+            if self.device.is_alive():
+                self.is_alive = True
+                return True
+            else:
+                self.logger.error(msg="Connection is prepared, but not established.")
+                self.is_alive = False
+                return False
+        else:
+            self.logger.error(msg="Connection has not been initialized.")
+            self.is_alive = False
+            return False
+
+    def config_mode(self):
+        if self.check_connection():
+            if self.device.check_config_mode():
+                self.logger.debug(msg="Configuration mode is already enabled.")
+                return True
+            else:
+                self.device.config_mode()
+                if self.device.check_config_mode():
+                    self.logger.info(msg="Configuration mode has been enabled.")
+                    return True
+                else:
+                    self.logger.error(msg="Failed to enter configuration mode.")
+                    return False
+        else:
+            self.logger.error(msg="Could not enter device configuration mode. Reason: Connection is not established.")
+            return False
+
+
+
     #####################
     ### GET Functions ###
     #####################
@@ -346,7 +397,7 @@ class CliBaseConnection(object):
         return self._command_handler(action="get_arp")
 
     def __str__(self):
-        return "[Connection -> {self.ip}]".format(self.ip)
+        return "[Connection -> {}]".format(self.ip)
 
     def __repr__(self):
-        return "[Connection -> {self.ip}]".format(self.ip)
+        return "[Connection -> {}]".format(self.ip)

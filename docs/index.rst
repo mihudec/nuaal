@@ -14,4 +14,5 @@ This project aims to bring multiple ways of communicating with networking gear u
    Parsers/index
    Models/index
    Writers/index
+   Discovery/index
 

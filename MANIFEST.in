@@ -1,3 +1,5 @@
 include requirements.txt
 include nuaal/data *.json
 recursive-include docs *
+prune nuaal/examples
+prune nuaal/tests

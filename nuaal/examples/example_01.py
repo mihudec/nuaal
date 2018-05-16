@@ -10,7 +10,7 @@ provider = {
     "username": "admin",        # Username to login
     "password": "cisco",        # Password to login
     "method": "ssh",            # Primary method of connection, either "ssh" or "telnet". If not given, defaults to "ssh"
-    "DEBUG": True,             # If you want to see more detailed output, set this to True
+    "DEBUG": True,              # If you want to see more detailed output, set this to True
     "enable": False,            # If you want to use commands that require Privileged EXEC Mode, set this to True
     "secret": "cisco",          # Password to enter Privileged EXEC Mode, only required with enable: True
     "store_outputs": True,      # If set to true, the raw text outputs will be stored in DATA_PATH\outputs\<device_IP_Address>\

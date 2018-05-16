@@ -114,4 +114,3 @@ class Cisco_IOS_Cli(CliBaseConnection):
         if self.store_outputs:
             self.store_raw_output(command=command, raw_output=raw_output)
         return raw_output
-

@@ -32,9 +32,17 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
     root = logging.getLogger(name)
     root.setLevel(logging.DEBUG)
     root.propagate = 0
-    root.addHandler(file_handler)
-    for handler in handlers:
-        root.addHandler(handler)
+    has_handler = {"file_handler": False, "stderr_handler": False, "stdout_handler": False}
+    for handler in root.handlers:
+        if isinstance(handler, logging.FileHandler):
+            has_handler["file_handler"] = True
+        if isinstance(handler, logging.StreamHandler):
+            has_handler["stderr_handler"] = True
+    if not has_handler["file_handler"]:
+        root.addHandler(file_handler)
+    if not has_handler["stderr_handler"]:
+        root.addHandler(stderr_handler)
+
 
     return root
 
@@ -145,6 +153,7 @@ def update_dict(orig_dict, update_dict):
         else:
             orig_dict[k] = v
     return orig_dict
+
 
 def check_path(path, create_missing=True):
     if os.path.isabs(path):

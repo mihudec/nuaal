@@ -97,27 +97,34 @@ class RestBase(object):
         finally:
             return response
 
-    def _post(self, path, data, params=None):
+    def _post(self, path, data=None, files=None, params=None):
         """
         Wrapper function for POST method of the requests library
 
         :param path: Path of the API resource used in URL
         :param data: Data payload for POST request. JSON string
+        :param dict files: Dictionary with files to upload
         :param params: Parameters for the request
         :return: Instance of ``requests`` response object
         """
         response = None
+        args = {}
+        if data:
+            args["data"] = data
+        if files:
+            args["files"] = files
+            del self.common_headers["headers"]["Content-type"]
+        if params:
+            args["params"] = params
         try:
             self.logger.debug(msg="_POST: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
-            if params:
-                response = requests.post(url=self.path_base + path, data=data, **self.common_headers, params=params)
-            else:
-                response = requests.post(url=self.path_base + path, data=data, **self.common_headers)
+            response = requests.post(url=self.path_base + path, **args, **self.common_headers)
         except ConnectionError:
             self.logger.critical(msg="_POST: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
             self.logger.error(msg="_POST: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
+            self.common_headers["headers"]["Content-type"] = "application/json"
             return response
 
     def _delete(self, path, params):
@@ -134,7 +141,7 @@ class RestBase(object):
             if params:
                 response = requests.delete(url=self.path_base + path, **self.common_headers, params=params)
             else:
-                response = requests.delete(url=path, **self.common_headers)
+                response = requests.delete(url=self.path_base + path, **self.common_headers)
         except ConnectionError:
             self.logger.critical(msg="_DELETE: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
@@ -142,7 +149,7 @@ class RestBase(object):
         finally:
             return response
 
-    def _put(self, path, data, params):
+    def _put(self, path, data=None, files=None, params=None):
         """
         Wrapper function for PUT method of the requests library
 
@@ -152,17 +159,23 @@ class RestBase(object):
         :return: Instance of ``requests`` response object
         """
         response = None
+        args = {}
+        if data:
+            args["data"] = data
+        if files:
+            args["files"] = files
+            del self.common_headers["headers"]["Content-type"]
+        if params:
+            args["params"] = params
         try:
             self.logger.debug(msg="_PUT: Path: '{}', Data: '{}', Params: '{}'".format(path, data, params))
-            if params:
-                response = requests.put(url=self.path_base + path, data=data, **self.common_headers, params=params)
-            else:
-                response = requests.put(url=self.path_base + path, data=data, **self.common_headers)
+            response = requests.put(url=self.path_base + path, **args, **self.common_headers)
         except ConnectionError:
             self.logger.critical(msg="_PUT: Could not connect to {}. Wrong address?".format(self.url))
         except Exception as e:
             self.logger.error(msg="_PUT: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
+            self.common_headers["headers"]["Content-type"] = "application/json"
             return response
 
     def _response_handler(self, response):
@@ -183,7 +196,11 @@ class RestBase(object):
                 return response.json(), status_code
             if status_code == 400:
                 self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Bad Request.".format(status_code))
-                return None, status_code
+                try:
+                    return response.json(), status_code
+                except Exception as e:
+                    self.logger.error(msg="Response_Handler: Could not return JSON error representation. Raw Text: {} Exception: {}.".format(response.text, status_code))
+                    return response.text, status_code
             if status_code == 401:
                 self.logger.error(msg="Response_Handler: Server returned Status Code: {}, Unauthorized.".format(status_code))
                 return response.json(), status_code
