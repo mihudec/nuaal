@@ -45,7 +45,7 @@ class CliMultiRunner(object):
 
         :return: ``None``
         """
-        self.logger.info(msg="Spawned new worker in {}".format(threading.current_thread()))
+        self.logger.debug(msg="Spawned new worker in {}".format(threading.current_thread()))
         while not self.queue.empty():
             provider = self.queue.get()
             if provider is None:
@@ -68,6 +68,8 @@ class CliMultiRunner(object):
                         device.get_license()
                     if "get_inventory" in self.actions:
                         device.get_inventory()
+                    if "get_config" in self.actions:
+                        device.get_config()
                     self.data.append(device.data)
             except Exception as e:
                 self.logger.error(msg="Unhandled Exception occurred in thread '{}'. Exception: {}".format(threading.current_thread().getName(), repr(e)))

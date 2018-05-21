@@ -151,8 +151,11 @@ class Neighbor_Discovery:
                 break
             finally:
                 self.process_neighbors()
-        with open("{}\discovery\{}-{}.json".format(DATA_PATH, ip, str(datetime.now()).replace(':', '-')), mode="w") as f:
-            json.dump(self.data, f, indent=2)
+        try:
+            with open("{}\discovery\{}-{}.json".format(DATA_PATH, ip, str(datetime.now()).replace(':', '-')), mode="w") as f:
+                json.dump(self.data, f, indent=2)
+        except FileNotFoundError:
+            self.logger.error(msg="Could not write discovery results to file. Reason: File does not exist.")
         topo = CliTopology()
         topo.build_topology(self.data)
         self.topology = topo.topology

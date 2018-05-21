@@ -137,6 +137,7 @@ class CliBaseConnection(object):
                 try:
                     self.logger.debug(msg="Trying to re-establish connection to device.")
                     self.device.establish_connection()
+                    self.device.session_preparation()
                     self._check_enable_level(self.device)
                 except Exception as e:
                     self.logger.critical(msg="Failed to reconnect do device.")
@@ -225,14 +226,14 @@ class CliBaseConnection(object):
             self.logger.error(msg="Device {} is not connected, cannot send command.".format(self.ip))
             return None
         self.logger.debug(msg="Sending command '{}' to device {} ({})".format(command, self.data["hostname"], self.ip))
-        output = ""
+        output = None
 
         try:
             output = self.device.send_command(command_string=command, expect_string=expect_string)
         except AttributeError:
             self.logger.critical(msg="Connection to device {} has not been initialized.".format(self.ip))
         except Exception as e:
-            self.logger.error(msg="Unhandled exception occured when trying to send command. Exception: {}".format(repr(e)))
+            self.logger.error(msg="Unhandled exception occurred when trying to send command. Exception: {}".format(repr(e)))
         finally:
             return output
 

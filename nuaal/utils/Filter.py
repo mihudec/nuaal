@@ -1,4 +1,5 @@
 from nuaal.utils import get_logger
+import copy
 
 
 class Filter:
@@ -174,6 +175,7 @@ class Filter:
         return data
 
     def universal_cleanup(self, data=None):
+        data = copy.deepcopy(data)
         output = None
         if isinstance(data, list):
             output = self.list_cleanup(data=data)
@@ -182,3 +184,59 @@ class Filter:
         else:
             self.logger.error(msg="Universal_Cleanup: Given data is neither list nor dict.")
         return output
+
+class OutputFilter:
+    """
+    Object for making filtering dictionaries easier
+    """
+    def __init__(self, data=None, required=[], excluded=[]):
+        self.logger = get_logger(name="OutputFilter")
+        self.data = copy.deepcopy(data)
+        self.required = None
+        self.excluded = None
+        if isinstance(required, list):
+            self.required = required
+        else:
+            self.required = []
+            self.logger.error(msg="Required is not a list!")
+        if isinstance(excluded, list):
+            self.excluded = excluded
+        else:
+            self.excluded = []
+            self.logger.error(msg="Excluded is not a list!")
+
+    def get(self):
+        if isinstance(self.data, dict):
+            for id, data in list(self.data.items()):
+                if len(self.required) > 0:
+                    # Loop over required keys
+                    for key in list(data.keys()):
+                        if key not in self.required:
+                            del self.data[id][key]
+                elif len(self.excluded) > 0:
+                    # Loop over excluded keys
+                    for key in list(data.keys()):
+                        if key in self.excluded:
+                            del self.data[id][key]
+                else:
+                    continue
+            return self.data
+
+        elif isinstance(self.data, list):
+            for i in range(len(self.data)):
+                if isinstance(self.data[i], dict):
+                    if len(self.required) > 0:
+                        for key in list(self.data[i].keys()):
+                            if key not in self.required:
+                                del self.data[i][key]
+                    elif len(self.blocked) > 0:
+                        for key in list(self.data[i].keys()):
+                            if key in self.excluded:
+                                del self.data[i][key]
+                    else:
+                        continue
+            return self.data
+
+        else:
+            self.logger.error(msg="Data is not a dict or list!")
+            return None

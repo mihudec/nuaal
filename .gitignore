@@ -104,3 +104,7 @@ ENV/
 nuaal/data/logs/
 
 nuaal/examples/cez\.py
+
+\.pypirc
+
+nuaal/data/outputs/

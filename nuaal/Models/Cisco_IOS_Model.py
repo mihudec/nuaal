@@ -1,5 +1,5 @@
 from nuaal.connections.cli import Cisco_IOS_Cli
-from nuaal.utils import int_name_convert, mac_addr_convert, interface_split, vlan_range_expander, vlan_range_shortener
+from nuaal.utils import int_name_convert, mac_addr_convert, interface_split, vlan_range_expander, vlan_range_shortener, Filter, OutputFilter
 from nuaal.Models.BaseModels import BaseModel, DeviceBaseModel
 import json
 import copy
@@ -36,12 +36,17 @@ class CiscoIOSModel(DeviceBaseModel):
 
         return new_interface
     
-    def _update(self):
+    def _interface_update(self):
 
-        with self.cli_connection as device:
-            access_vlans = device.get_vlans()
-            trunks = device.get_trunks()
-            interfaces = device.get_interfaces()
+        if not self.cli_connection.is_alive:
+            with self.cli_connection as device:
+                access_vlans = device.get_vlans()
+                trunks = device.get_trunks()
+                interfaces = device.get_interfaces()
+        else:
+            access_vlans = self.cli_connection.get_vlans()
+            trunks = self.cli_connection.get_trunks()
+            interfaces = self.cli_connection.get_interfaces()
 
         #
         for interface in interfaces:
@@ -60,7 +65,6 @@ class CiscoIOSModel(DeviceBaseModel):
 
                 port_long = int_name_convert(port)
                 self.vlans[vlan_id]["untaggedPorts"].append(port_long)
-                print(vlan_id, port, port_long, self.vlans[vlan_id]["untaggedPorts"])
                 self.interfaces[port_long]["portMode"] = "access"
                 self.interfaces[port_long]["untaggedVlanId"] = vlan_id
 
@@ -75,10 +79,29 @@ class CiscoIOSModel(DeviceBaseModel):
                 if vlan_id not in self.vlans[vlan_id]["taggedPorts"]:
                     self.vlans[vlan_id]["taggedPorts"].append(port)
 
-        print(json.dumps(self.vlans, indent=2))
+    def get_interfaces(self):
+        if len(self.interfaces) == 0:
+            self._interface_update()
+        return self.interfaces
 
-        for interface in self.interfaces.values():
-            print(interface)
+    def get_l3_interfaces(self):
+        if len(self.interfaces) == 0:
+            self._interface_update()
+        filter = Filter(required={"portMode": "routed"}, exact_match=True)
+        l3_interfaces = filter.universal_cleanup(data=self.interfaces)
+        return l3_interfaces
+
+    def get_l2_interfaces(self):
+        if len(self.interfaces) == 0:
+            self._interface_update()
+        filter = Filter(required={"portMode": ["access", "trunk"]})
+        l2_interfaces = filter.universal_cleanup(data=self.interfaces)
+        return l2_interfaces
+
+    def get_vlans(self):
+        if len(self.vlans) == 0:
+            self._interface_update()
+        return self.vlans
 
     def get_inventory(self):
         """
@@ -86,7 +109,7 @@ class CiscoIOSModel(DeviceBaseModel):
         :return:
         """
         device_inventory = []
-        if not self.cli_connection.device.is_alive():
+        if not self.cli_connection.is_alive:
             with self.cli_connection as device:
                 device_inventory = device.get_inventory()
         else:
