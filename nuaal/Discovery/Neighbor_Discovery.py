@@ -16,6 +16,11 @@ class Neighbor_Discovery:
     CDP must be enabled on devices.
     """
     def __init__(self, provider, DEBUG=False):
+        """
+
+        :param dict provider: Provider dictionary containing information for creating connection object, such as credentials
+        :param bool DEBUG: Enables/disables debugging output
+        """
         self.DEBUG = DEBUG
         self.logger = get_logger(name="NeighborDiscovery", DEBUG=self.DEBUG)
         self.provider = provider
@@ -35,6 +40,7 @@ class Neighbor_Discovery:
         """
         Function to generate pseudo-unique identification of device. By default, it returns device hostname,
         if hostname is one of the default hostnames, it uses IP address to distinguish devices with same hostname.
+
         :param ip: String - IP address of the device
         :param hostname: String (optional) - Hostname of the device
         :return: String - such as "C2960X_AB01" or "Router(192.168.1.1)"
@@ -51,9 +57,10 @@ class Neighbor_Discovery:
         """
         This function performs the discovery of the neighbors for given device. Results are stored in self.to_process.
         After each round, the results are processed by self.process_neigbors()
+
         :param ip: String - IP Address of the device
         :param hostname: String (optinal) - Hostname of the device, if not given, will be set after connecting to device
-        :return:
+        :return: ``None``
         """
         device_id = self._gen_device_id(ip=ip)
         start_time = timeit.default_timer()
@@ -90,7 +97,8 @@ class Neighbor_Discovery:
         """
         This functions decides what to do with neighbors of device, such as which were already discovered or visited.
         It runs after every discovery round to combine data retrieved by individual worker threads.
-        :return:
+
+        :return: ``None``
         """
         start_time = timeit.default_timer()
         for item in self.to_process:
@@ -122,7 +130,8 @@ class Neighbor_Discovery:
     def worker(self):
         """
         This is a wrapper function that is run as thread.
-        :return:
+
+        :return: ``None``
         """
         self.logger.debug(msg="Thread {} started.".format(threading.current_thread().getName()))
         if self.queue.empty():
@@ -135,6 +144,12 @@ class Neighbor_Discovery:
             self.queue.task_done()
 
     def run(self, ip):
+        """
+        This function starts the discovery process based on given IP address of the `seed` device.
+
+        :param str ip: IP address of the seed device
+        :return: ``None``
+        """
         self.get_neighbors(ip=ip)
         self.process_neighbors()
         while len(self.to_visit) > 0:

@@ -6,7 +6,7 @@ from nuaal.utils import Filter
 
 class BaseModel(object):
     """
-    This is a parent object that all high-level API models inherit from
+    This is a parent object that all high-level API models inherit from.
     """
     def __init__(self, name=None, DEBUG=False):
         """
@@ -26,7 +26,7 @@ class BaseModel(object):
 
 class DeviceBaseModel(BaseModel):
     """
-    This is a parent object for device models
+    This is a parent object for device models.
     """
     def __init__(self, name="DeviceBaseModel", DEBUG=False):
         """

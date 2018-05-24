@@ -7,7 +7,15 @@ from nuaal.definitions import ROOT_DIR, DATA_PATH
 
 
 class Writer:
+    """
+    This object handles writing structured data in JSON format in tabular formats, such as CSV or Microsoft Excel (.xlsx).
+    """
     def __init__(self, type, DEBUG=False):
+        """
+
+        :param str type: String representation of writer type, used in logging messages.
+        :param bool DEBUG: Enables/disables debugging output.
+        """
         self.type = type
         self.logger = get_logger(name="{}-Writer".format(self.type), DEBUG=DEBUG)
 
@@ -18,6 +26,13 @@ class Writer:
         return "[{}-Writer]".format(self.type)
 
     def json_to_lists(self, data):
+        """
+        This function transfers list of dictionaries into two lists, one containing the column headers (keys of dictionary) and the
+        other containing individual list of values (representing rows).
+
+        :param list data: List of dictionaries with common structure
+        :return: Dict with "headers" list and "list_data" list containing rows.
+        """
         headers = []
         list_data = []
         if isinstance(data, list) and len(data) > 0:
@@ -35,6 +50,11 @@ class Writer:
                 return {"headers": headers, "list_data": list_data}
 
     def _get_headers(self, data):
+        """
+        This function returns sorted list of column headers (dictionary keys).
+        :param list|dict data: List or dict of dictionaries containing common keys.
+        :return: List of headers.
+        """
         if isinstance(data, dict):
             headers = list(data.keys())
             headers.sort()
@@ -50,6 +70,13 @@ class Writer:
             return headers
 
     def combine_data(self, data):
+        """
+        Function for combining data from multiple sections. Each section represents data gathered by some of the `get_` functions. Each returned dataset includes
+        common headers identifying device, from which the data originates.
+
+        :param list data: List of dictionaries, content of single section
+        :return: (list) section_headers, (list) section_content
+        """
         sections = set()
         section_headers = {}
         section_content = {}

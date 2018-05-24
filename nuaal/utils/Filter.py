@@ -4,9 +4,23 @@ import copy
 
 class Filter:
     """
-    Object for making filtering of required field easier
+    Object for making filtering of required field easier.
     """
     def __init__(self, required={}, excluded={}, exact_match=True, DEBUG=False):
+        """
+        This class finds elements in JSON-like format based on provided values.
+
+        :param dict required: Dictionary of required keys. Example: `{"key1": "value1"}` will return only those dictionaries, which key `"key1"` \
+               contains the value `"value1"`. You can also use list of required values, such as `{"key1": ["value1", "value2"]}` together with option \
+               ``exact_match=False``.
+
+        :param dict excluded: Dictionary of excluded keys. Example: `{"key1": "value1"}` will return only those dictionaries, which key `"key1"` \
+               does not contain the value `"value1"`. You can also use list of excluded values, such as `{"key1": ["value1", "value2"]}` together with option \
+               ``exact_match=False``.
+
+        :param bool exact_match: Specifies whether the filter value must match exactly, or partially.
+        :param DEBUG: Enables/disables debugging output.
+        """
         self.logger = get_logger(name="Filter", DEBUG=DEBUG)
         self.required = None
         self.excluded = None
@@ -26,6 +40,12 @@ class Filter:
         return "[FilterObject: Required='%s' Excluded='%s' Exact-match: %s]" % (str(self.required), str(self.excluded), str(self.exact_match))
 
     def dict_cleanup(self, data):
+        """
+        Function for filtering dictionary structures (eg. dictionary where values are also dictionaries).
+
+        :param dict data: Dictionary containing dicts as values, which you want to filter.
+        :return: Filtered dictionary.
+        """
         for data_key, data_value in list(data.items()):
             # TODO: Add DEBUG logging (?)
             for filter_key, filter_value in self.required.items():
@@ -100,6 +120,12 @@ class Filter:
         return data
 
     def list_cleanup(self, data):
+        """
+        Function for filtering list structures (eg. list of dictionaries).
+
+        :param list data: List of dictionaries, which you want to filter.
+        :return: Filtered list of dictionaries.
+        """
         for data_value in list(data):
             # TODO: Add DEBUG logging (?)
             for filter_key, filter_value in self.required.items():
@@ -175,6 +201,12 @@ class Filter:
         return data
 
     def universal_cleanup(self, data=None):
+        """
+        This function calls proper cleanup function base on data type.
+
+        :param data: Data to be filtered, either list of dictionaries or dictionary of dictionaries.
+        :return: Filtered data
+        """
         data = copy.deepcopy(data)
         output = None
         if isinstance(data, list):
@@ -187,9 +219,18 @@ class Filter:
 
 class OutputFilter:
     """
-    Object for making filtering dictionaries easier
+    This class helps to minimize dictionary structure by specifying only the desired keys.
     """
     def __init__(self, data=None, required=[], excluded=[]):
+        """
+
+        :param data: Data to be filtered.
+        :param list required: List of required keys. Returned entries will contain only these specified keys. Example: `{"key1": "value1", "key2": "value2"}` \
+               with ``required`` `["key1"]` will only return `{"key1": "value1"}`.
+
+        :param list excluded: List of excluded keys. Returned entries will not contain these specified keys. Example: `{"key1": "value1", "key2": "value2"}` \
+               with ``excluded`` `["key1"]` will only return `{"key2": "value2"}`.
+        """
         self.logger = get_logger(name="OutputFilter")
         self.data = copy.deepcopy(data)
         self.required = None
@@ -206,6 +247,11 @@ class OutputFilter:
             self.logger.error(msg="Excluded is not a list!")
 
     def get(self):
+        """
+        After instantiating object, call this function to retrieve filtered data.
+
+        :return: Filtered data.
+        """
         if isinstance(self.data, dict):
             for id, data in list(self.data.items()):
                 if len(self.required) > 0:

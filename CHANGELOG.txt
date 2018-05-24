@@ -1,0 +1,4 @@
+Version 0.1.4
+
+# Fixed issue when CiscoIOSParser would not match entries in "show inventory" output, which contained '&' symbol in description field
+# Added 'xlsxwriter' to requirements

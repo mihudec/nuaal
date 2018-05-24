@@ -2,7 +2,16 @@ import re
 
 
 class Patterns:
+    """
+    This class holds all the necessary regex patterns, which are used by `ParserModule`. This class returns compiled regex patterns based on specified device
+    type.
+    """
     def __init__(self, device_type, DEBUG=False):
+        """
+
+        :param str device_type: String representation of device type, such as `cisco_ios`
+        :param bool DEBUG: Enables/disables debugging output
+        """
         self.device_type = device_type
         self.DEBUG = DEBUG
         self.map = {
@@ -10,14 +19,22 @@ class Patterns:
         }
 
     def get_patterns(self):
+        """
+        Function used for retrieving compiled regex patterns.
+        :return: Dictionary of compiled regex patterns
+        """
         return self.map[self.device_type]
 
     def cisco_ios_patterns(self):
+        """
+        This function holds regex patterns for `cisco_ios` device type.
+        :return:
+        """
         patterns = {
             "level0": {
                 "show inventory": [
                     re.compile(
-                        pattern=r"^NAME:\s\"(?P<name>[\w\s()/]+)\",\s+DESCR:\s\"(?P<desc>(?:[\w\s(),.\-_+/#:]+))\"\s*PID:\s(?P<pid>\S+)\s*,\s+VID:\s(?P<vid>\S+)?\s*,\s+SN:\s+(?P<sn>\S+)",
+                        pattern=r"^NAME:\s\"(?P<name>[\w\s()/]+)\",\s+DESCR:\s\"(?P<desc>(?:[\w\s(),.\-_+/#:&]+))\"\s*PID:\s(?P<pid>\S+)\s*,\s+VID:\s(?P<vid>\S+)?\s*,\s+SN:\s+(?P<sn>\S+)",
                         flags=re.MULTILINE
                     )
                 ],

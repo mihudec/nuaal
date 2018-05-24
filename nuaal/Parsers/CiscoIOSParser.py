@@ -3,10 +3,19 @@ import timeit
 import re
 
 class CiscoIOSParser(ParserModule):
+    """
+    Child class of `ParserModule` designed for `cisco_ios` device type.
+    """
     def __init__(self, DEBUG=False):
         super(CiscoIOSParser, self).__init__(device_type="cisco_ios", DEBUG=DEBUG)
 
     def trunk_parser(self, text):
+        """
+        Function specifically designed for parsing output of `show interfaces trunk` command.
+
+        :param str text: Plaintext output of `show interfaces trunk` command.
+        :return: List of dictionaries representing trunk interfaces.
+        """
         start_time = timeit.default_timer()
         section_pattern = re.compile(pattern=r"(?:^Port.*$(?:\s^\S.*$)+)", flags=re.MULTILINE)
         sections = self.match_single_pattern(pattern=section_pattern, text=text)

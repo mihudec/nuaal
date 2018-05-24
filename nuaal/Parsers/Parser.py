@@ -8,12 +8,13 @@ import timeit
 
 class ParserModule(object):
     """
-
+    This class provides necessary functions for parsing plaintext output of network devices. Uses patterns from ``PatternsLib`` for specified device type.
+    The outputs are usually lists of dictionaries, which contain keys based on name groups of used regex patterns.
     """
     def __init__(self, device_type, DEBUG=False):
         """
 
-        :param str device_type:
+        :param str device_type: String representation of device type, such as `cisco_ios`
         :param bool DEBUG: Enables/disables debugging output
         """
         self.device_type = device_type
@@ -108,10 +109,11 @@ class ParserModule(object):
 
     def _level_zero(self, text, patterns):
         """
+        This function handles parsing of less complex plaintext outputs, which can be parsed in  one step.
 
-        :param text:
-        :param patterns:
-        :return:
+        :param str text: Plaintex output which will be parsed
+        :param patterns: List of compiled regex patterns, which are used to parse the ``text``
+        :return: List dics (if ``patterns`` contain named groups) or list of strings (if they don't)
         """
         if not isinstance(text, str):
             self.logger.debug(msg="Level Zero: Expected string, got {}".format(type(text)))
@@ -140,10 +142,11 @@ class ParserModule(object):
 
     def _level_one(self, text, command):
         """
+        This function handles parsing of more complex plaintext outputs. First, the output of ``_level_zero()`` function is retrieved and then further parsed.
 
-        :param text:
-        :param command:
-        :return:
+        :param str text: Plaintex output of given ``command``, which will be parsed
+        :param str command: Command string used to generate the output
+        :return: List of dictionaries
         """
         level_one_outputs = []
         level_zero_outputs = self._level_zero(text=text, patterns=self.patterns["level0"][command])
@@ -183,7 +186,7 @@ class ParserModule(object):
         Used for :ref:`autoparse <autoparse>`
 
         :param str command: Command used to generate the output, eg. `show vlan brief`
-        :return:
+        :return: (str) Highest level of specified command (top PatternsLib Key)
         """
         levels = ["level0", "level1"]
         max_level = None

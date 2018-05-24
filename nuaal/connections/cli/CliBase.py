@@ -53,10 +53,20 @@ class CliBaseConnection(object):
         self.device = None
 
     def __enter__(self):
+        """
+        Enables usage of Python's Context Manager, using ``with`` statement.
+
+        :return: Instance of the ``self`` object.
+        """
         self._connect()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        This function is used when exiting Python's Context Manager.
+
+        :return: ``None``
+        """
         try:
             self.store_raw_output(self.data["hostname"], json.dumps(self.data, indent=2), ext="json")
         except KeyError:
@@ -298,6 +308,15 @@ class CliBaseConnection(object):
             return parsed_output
 
     def store_raw_output(self, command, raw_output, ext="txt"):
+        """
+        This function is used for storing the plaintext output of the commands called on the device in separate files. Used mainly for debugging and
+        development purposes. This function is only called if the `store_outputs` parameter is set to `True`.
+
+        :param str command: Command string executed on the device.
+        :param str raw_output: Plaintext output of the command.
+        :param str ext: Extension of the file, ".txt" by default.
+        :return: ``None``
+        """
         path = "{}/outputs/{}".format(DATA_PATH, self.ip)
         path = check_path(path)
         if path:
@@ -305,6 +324,11 @@ class CliBaseConnection(object):
                 f.write(raw_output)
 
     def check_connection(self):
+        """
+        This function can be used to check state of the connection. Returns `True` if the connection is active and `False` if it isn't.
+
+        :return: Bool value representing the connection state.
+        """
         if self.device is not None:
             if self.device.is_alive():
                 self.is_alive = True
@@ -343,57 +367,70 @@ class CliBaseConnection(object):
 
     def get_vlans(self):
         """
+        This function returns JSON representation of all VLANs enabled on the device, together with list of assigned interfaces. In Cisco terms, this represents
+        the `show vlan brief` command.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_vlans")
 
     def get_inventory(self):
         """
+        This function return JSON representation of all installed modules and HW parts of the device. In Cisco terms, this represents the command `show inventory`.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_inventory")
 
     def get_interfaces(self):
         """
+        This function returns JSON representation of all physical and virtual interfaces of the device, containing all available info about each interface.
+        In Cisco terms, this represents usage of command `show interfaces`.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_interfaces")
 
     def get_portchannels(self):
         """
+        This function returns JSON representation of all logical bind interfaces (etherchannels, portchannels). In Cisco terms, this represents the
+        `show etherchannel summary` command.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_portchannels")
 
     def get_license(self):
-        """
 
-        :return:
+        """
+        This function return JSON representation of licenses activated or installed on the device. In Cisco terms, this represents the `show license` command.
+
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_license")
 
     def get_version(self):
         """
+        Returns JSON representation of basic device information, such as vendor, device platform, software version etc. In Cisco terms, this represents the
+        command `show version`.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_version")
 
     def get_mac_address_table(self):
         """
+        Returns content of device MAC address table in JSON format. In Cisco terms, this represents the command `show mac address-table`.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_mac_address_table")
 
     def get_arp(self):
         """
+        Returns content of device ARP table in JSON format. In Cisco terms, this represents the command `show ip arp`.
 
-        :return:
+        :return: List of dictionaries.
         """
         return self._command_handler(action="get_arp")
 

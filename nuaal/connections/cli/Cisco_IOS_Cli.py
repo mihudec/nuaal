@@ -109,6 +109,11 @@ class Cisco_IOS_Cli(CliBaseConnection):
         return parsed_output
 
     def get_config(self):
+        """
+        Function for retrieving current configuration of the device.
+
+        :return str: Device configuration
+        """
         command = "show running-config"
         raw_output = self._send_command(command=command)
         if self.store_outputs:

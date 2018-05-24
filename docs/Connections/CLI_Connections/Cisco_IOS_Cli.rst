@@ -1,6 +1,11 @@
 Cisco_IOS_Cli
 =============
-This class provides low-level connection to Cisco networking devices running Cisco IOS and IOS XE. In order for this connection to work, SSH or Telnet must be enabled on the target device.
+.. _Cisco_IOS_Cli:
+
+This class provides low-level connection to Cisco networking devices running Cisco IOS and IOS XE. In order for this connection to work, SSH or Telnet
+must be enabled on the target device. After creating connection object and connecting to the device using either Python's Context Manager or by calling
+``_connect()`` method, you can start retrieving structured data by calling `get_` functions. To see other supported `get_` functions, please check out the
+documentation page of the parent object :ref:`CliBaseConnection <CliBaseConnection>`.
 
 
 Example usage:

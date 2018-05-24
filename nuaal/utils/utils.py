@@ -7,6 +7,14 @@ from nuaal.definitions import LOG_PATH, ROOT_DIR
 
 
 def get_logger(name, DEBUG=False, handle=["stderr"]):
+    """
+    This function provides common logging facility by creating instances of `loggers` from python standard ``logging`` library.
+
+    :param str name: Name of the logger
+    :param bool DEBUG: Enables/disables debugging output
+    :param list handle: Changing value of this parameter is not recommended.
+    :return: Instance of logger object
+    """
     logfile_path = os.path.join(check_path(LOG_PATH), "log.txt")
     formatter = logging.Formatter("[%(asctime)s] : %(name)s - %(levelname)s - %(message)s")
     stdout_handler = logging.StreamHandler(sys.stdout)
@@ -47,7 +55,11 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
     return root
 
 def interface_split(interface):
-    # TODO: Make more reliable
+    """
+    Function for splitting names of interfaces to interface type and number. Example: `FastEthernet0/18` -> `FastEthernet`, `0/18`
+    :param str interface: Interface name.
+    :return: Interface type, interface number
+    """
     int_type, int_num = None, None
     if isinstance(interface, str):
         search_result = re.search(r"(?P<int_type>\D+)(?P<int_num>\d.*)", interface)
@@ -71,6 +83,13 @@ def interface_split(interface):
 
 
 def vlan_range_expander(all_vlans):
+    """
+    Function for expanding list of allowed VLANs on trunk interface. Example: `1-4096` -> range(1, 4097). Can be used when trying to figure out whether certain
+    VLAN is allowed or not. Reverse function is ``vlan_range_shortener``.
+
+    :param all_vlans: Either list (`["1-10", "15", "20-30"]`) or string (`"1-10,15,20-30"`) of VLAN range.
+    :return: List of VLAN numbers (integers).
+    """
     if isinstance(all_vlans, list):
         pass
     elif isinstance(all_vlans, str):
@@ -86,6 +105,12 @@ def vlan_range_expander(all_vlans):
 
 
 def vlan_range_shortener(full_vlan_list):
+    """
+    Function for shortening list of allowed VLANs on trunk interface. Example: `[1,2,3,4,5]` -> `["1-5"]`. Reverse function is ``vlan_range_expander``.
+
+    :param full_vlan_list: List of integers representing VLAN numbers.
+    :return: List of strings.
+    """
     # TODO: Make more reliable
     shortened_vlan_list = []
     # Initialize with first element
@@ -122,6 +147,12 @@ def vlan_range_shortener(full_vlan_list):
 
 
 def int_name_convert(int_name):
+    """
+    Function for converting long interface names to short and vice versa. Example: `"GigabitEthernet0/12"` -> `"Gi0/12"` and `"Gi0/12"` -> `"GigabitEthernet0/12"`
+
+    :param str int_name: Interface name
+    :return: Interface name
+    """
     int_type, int_num = interface_split(int_name)
     short = ["Eth", "Et", "Se", "Fa", "Gi", "Te", "Po"]
     long = ["Ethernet", "Ethernet", "Serial", "FastEthernet", "GigabitEthernet", "TenGigabitEthernet", "Port-channel"]
@@ -136,6 +167,12 @@ def int_name_convert(int_name):
 
 
 def mac_addr_convert(mac_address=u""):
+    """
+    Function for providing single format for MAC addresses.
+
+    :param str mac_address: MAC address to be converted.
+    :return: MAC address in format `XX:XX:XX:XX:XX:XX`.
+    """
     try:
         mac = mac_address.replace(".", "")
         mac = [mac[i:i + 2].upper() for i in range(0, len(mac), 2)]
@@ -147,6 +184,13 @@ def mac_addr_convert(mac_address=u""):
 
 
 def update_dict(orig_dict, update_dict):
+    """
+    Function for updating dictionary values.
+
+    :param dict orig_dict: Dictionary to be updated.
+    :param dict update_dict: Dictionary to update from.
+    :return: Updated dictionary.
+    """
     for k, v in update_dict.items():
         if isinstance(v, collections.Mapping):
             orig_dict[k] = update_dict(orig_dict.get(k, {}), v)
@@ -156,6 +200,14 @@ def update_dict(orig_dict, update_dict):
 
 
 def check_path(path, create_missing=True):
+    """
+    Function for checking path availability, returns `path` if specified folder exists, ``False`` otherwise. Can also create missing folders. Used for handling
+    absolute and relative paths.
+
+    :param str path: Path of the folder.
+    :param bool create_missing: Whether or not to create missing folders.
+    :return: Bool
+    """
     if os.path.isabs(path):
         if not os.path.exists(path):
             if create_missing:

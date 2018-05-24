@@ -7,19 +7,25 @@ import copy
 
 class CiscoIOSModel(DeviceBaseModel):
     """
-
+    High-level abstraction model for Cisco IOS devices.
     """
     def __init__(self, cli_connection=None, DEBUG=False):
         """
 
-        :param cli_connection:
-        :param DEBUG:
+        :param cli_connection: Instance of ``Cisco_IOS_Cli`` connection object.
+        :param bool DEBUG: Enables/disables debugging output.
         """
         super(CiscoIOSModel, self).__init__(name="CiscoIOSCliModel", DEBUG=DEBUG)
         self.cli_connection = cli_connection
         self.physical_interfaces = ["FastEthernet", "GigabitEthernet", "TenGigabitEthernet"]
 
     def _map_interface(self, interface):
+        """
+        Internal function for changing the format of interface dictionary representation.
+
+        :param dict interface: Dictionary representation of interface in a format provided by connection object's ``get_interfaces()`` function.
+        :return: Dictionary representation interface in common format.
+        """
         new_interface = copy.deepcopy(self.interface_model)
         new_interface["portName"] = interface["name"]
         new_interface["description"] = interface["description"]
@@ -37,6 +43,11 @@ class CiscoIOSModel(DeviceBaseModel):
         return new_interface
     
     def _interface_update(self):
+        """
+        Internal function for retrieving needed data to build complete interface representation.
+
+        :return: ``None``
+        """
 
         if not self.cli_connection.is_alive:
             with self.cli_connection as device:
@@ -80,11 +91,21 @@ class CiscoIOSModel(DeviceBaseModel):
                     self.vlans[vlan_id]["taggedPorts"].append(port)
 
     def get_interfaces(self):
+        """
+        Retrieves list of all interfaces in common format.
+
+        :return: List of dictionaries.
+        """
         if len(self.interfaces) == 0:
             self._interface_update()
         return self.interfaces
 
     def get_l3_interfaces(self):
+        """
+        Retrieves list of L3 (routed) interfaces in common format.
+
+        :return: List of dictionaries.
+        """
         if len(self.interfaces) == 0:
             self._interface_update()
         filter = Filter(required={"portMode": "routed"}, exact_match=True)
@@ -92,6 +113,12 @@ class CiscoIOSModel(DeviceBaseModel):
         return l3_interfaces
 
     def get_l2_interfaces(self):
+        """
+        Retrieves list of L2 (switched) interfaces in common format.
+
+
+        :return: List of dictionaries.
+        """
         if len(self.interfaces) == 0:
             self._interface_update()
         filter = Filter(required={"portMode": ["access", "trunk"]})
@@ -99,14 +126,20 @@ class CiscoIOSModel(DeviceBaseModel):
         return l2_interfaces
 
     def get_vlans(self):
+        """
+        Retrieves list of all configured VLANs on device in common format.
+
+        :return: List of dictionaries.
+        """
         if len(self.vlans) == 0:
             self._interface_update()
         return self.vlans
 
     def get_inventory(self):
         """
+        Retrieves list of all installed HW parts on device in common format.
 
-        :return:
+        :return: List of dictionaries.
         """
         device_inventory = []
         if not self.cli_connection.is_alive:

@@ -24,3 +24,9 @@ The core idea behind ``ParserModule`` is that the complexity of various command 
     :undoc-members:
     :private-members:
     :show-inheritance:
+
+.. autoclass:: nuaal.Parsers.CiscoIOSParser
+    :members:
+    :undoc-members:
+    :private-members:
+    :show-inheritance:
