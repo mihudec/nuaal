@@ -9,8 +9,6 @@ This project aims to bring multiple ways of communicating with networking gear u
 information about the network configuration in a fast and simple manner. In the early stage, this project focuses mainly on retrieving the information
 from the devices, not so much on performing configuration changes.
 
-Quickstart
-**********
 
 **Installation**
 

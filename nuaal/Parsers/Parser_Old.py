@@ -1,6 +1,6 @@
 from nuaal.utils import *
 from nuaal.definitions import DATA_PATH
-from nuaal.Parsers.PatternsLib import PatternsLib
+from nuaal.Parsers import Patterns
 import json
 import re
 import timeit
@@ -17,11 +17,12 @@ class ParserModule(object):
         :param str device_type: String representation of device type, such as `cisco_ios`
         :param bool DEBUG: Enables/disables debugging output
         """
+        raise DeprecationWarning("This Class is deprecated")
         self.device_type = device_type
         self.DEBUG = DEBUG
         self.logger = get_logger(name="ParserModule-{}".format(device_type), DEBUG=DEBUG)
         self.logger.info(msg="Creating ParserModule Object for {}".format(device_type))
-        self.patterns = PatternsLib(device_type=device_type, DEBUG=DEBUG).compiled_patterns
+        self.patterns = Patterns(device_type=device_type).get_patterns()
 
     def match_single_pattern(self, text, pattern):
         """
@@ -149,18 +150,18 @@ class ParserModule(object):
         :return: List of dictionaries
         """
         level_one_outputs = []
-        level_zero_outputs = self._level_zero(text=text, patterns=self.patterns[command]["level0"])
+        level_zero_outputs = self._level_zero(text=text, patterns=self.patterns["level0"][command])
         if len(level_zero_outputs) == 0:
             self.logger.error(msg="Level Zero returned 0 outputs for command {}".format(command))
             return level_zero_outputs
-        if "level1" not in self.patterns[command].keys():
+        if command not in self.patterns["level1"].keys():
             self.logger.warning(msg="Command {} is not a 'level1' command.".format(command))
             return level_zero_outputs
         self.logger.debug(msg="Level Zero returned {} outputs.".format(len(level_zero_outputs)))
         if isinstance(level_zero_outputs[0], dict):
             for level_zero_entry in level_zero_outputs:
                 entry = level_zero_entry
-                for key, patterns in self.patterns[command]["level1"].items():
+                for key, patterns in self.patterns["level1"][command].items():
                     try:
                         entry[key] = self._level_zero(text=level_zero_entry[key], patterns=patterns)
                     except KeyError:
@@ -172,7 +173,7 @@ class ParserModule(object):
                 level_one_outputs.append(entry)
         elif isinstance(level_zero_outputs[0], str):
             all_patterns = []
-            for key, patterns in self.patterns[command]["level1"].items():
+            for key, patterns in self.patterns["level1"][command].items():
                 all_patterns += patterns
             for level_zero_entry in level_zero_outputs:
                 entry = {}
@@ -191,9 +192,9 @@ class ParserModule(object):
         levels = ["level0", "level1"]
         max_level = None
         for level in levels:
-            if level in self.patterns[command].keys():
+            if command in list(self.patterns[level].keys()):
                 max_level = level
-        self.logger.debug(msg="Command '{}' level is: {}".format(command, max_level))
+        self.logger.debug(msg="Command '{}' level is: {}".format(command, level))
         return max_level
 
     def autoparse(self, text, command):
@@ -209,7 +210,7 @@ class ParserModule(object):
         command_level = self.command_mapping(command=command)
         parsed_output = None
         if command_level == "level0":
-            return self._level_zero(text=text, patterns=self.patterns[command]["level0"])
+            return self._level_zero(text=text, patterns=self.patterns["level0"][command])
         elif command_level == "level1":
             return self._level_one(text=text, command=command)
         else:

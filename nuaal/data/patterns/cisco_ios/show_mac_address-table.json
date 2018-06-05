@@ -1,0 +1,13 @@
+{
+  "command": "show mac address-table",
+  "level0": [
+    {
+      "pattern": "^\\s+(?P<vlan>\\S+)\\s+(?P<mac>(?:[\\da-f]{4}\\.?){3})\\s+(?P<type>\\S+)\\s+(?P<ports>\\S+)",
+      "flags": 40
+    },
+    {
+      "pattern": "^(?P<mac>(?:[\\da-f]{4}\\.?){3})\\s+(?P<type>\\S+)\\s+(?P<vlan>\\S+)\\s+(?P<ports>\\S+)",
+      "flags": 40
+    }
+  ]
+}

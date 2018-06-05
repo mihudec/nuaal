@@ -1,0 +1,59 @@
+{
+  "command": "show license",
+  "level0": [
+    {
+      "pattern": "^Index.*(?:(?:$\\s+^\\s.*)+)?",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "index": [
+      {
+        "pattern": "^Index\\s(?P<index>\\d+)",
+        "flags": 0
+      }
+    ],
+    "feature": [
+      {
+        "pattern": "Feature:\\s(?P<feature>\\S+)",
+        "flags": 0
+      }
+    ],
+    "period_left": [
+      {
+        "pattern": "Period\\sleft:\\s(?P<period_left>.*)",
+        "flags": 0
+      }
+    ],
+    "period_used": [
+      {
+        "pattern": "Period\\sUsed:\\s(?P<period_used>.*)",
+        "flags": 0
+      }
+    ],
+    "license_type": [
+      {
+        "pattern": "License\\sType:\\s(?P<license_type>.*)",
+        "flags": 0
+      }
+    ],
+    "license_state": [
+      {
+        "pattern": "License\\sState:\\s(?P<license_state>.*)",
+        "flags": 0
+      }
+    ],
+    "license_count": [
+      {
+        "pattern": "License\\sCount:\\s(?P<license_count>.*)",
+        "flags": 0
+      }
+    ],
+    "license_priority": [
+      {
+        "pattern": "License\\sPriority:\\s(?P<license_priority>.*)",
+        "flags": 0
+      }
+    ]
+  }
+}
