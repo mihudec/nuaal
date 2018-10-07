@@ -54,6 +54,7 @@ class ApicEmBase(RestBase):
                     self.authorized = False
             except Exception as e:
                 self.logger.error(msg="_Authorize: Unhandled Exception occurred. Exception: {}".format(repr(e)))
+                self.authorized = False
 
     def _load_credentials(self):
         """

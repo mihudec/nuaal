@@ -219,4 +219,3 @@ class RestBase(object):
         except Exception as e:
             self.logger.critical(msg="Response Handler: Unhandled exception occurred. Exception: {}".format(repr(e)))
 
-

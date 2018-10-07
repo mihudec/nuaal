@@ -1,0 +1,2122 @@
+[
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48F-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48F-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48U-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48U-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12X48U-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12X48U-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12X48U-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12X48U-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12X48U-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12X48U-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24XU-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24XU-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24XU-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24XU-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24XU-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24XU-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12S-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12S-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12S-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12S-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24S-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24S-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24S-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24S-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12XS-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12XS-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-12XS-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-12XS-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24XS-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24XS-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24XS-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24XS-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48XS-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48XS-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48XS-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48XS-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48XS-F-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48XS-F-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48XS-F-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48XS-F-E"
+  },
+  {
+    "EOLProductID": "WS-C3560G-48PS-S",
+    "ProductIDDescription": "Catalyst 3560 48 10/100/1000T PoE + 4 SFP + IPB Image",
+    "ProductBulletinNumber": "EOL8044",
+    "LinkToProductBulletinURL": "http://www.cisco.com/en/US/prod/collateral/switches/ps5718/ps5023/eol_c51-696372.html",
+    "EOXExternalAnnouncementDate": {
+      "value": "2012-01-31",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfSaleDate": {
+      "value": "2013-01-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "2014-01-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfSecurityVulSupportDate": {
+      "value": "2016-01-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "2014-01-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "2017-04-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "LastDateOfSupport": {
+      "value": "2018-01-31",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EndOfSvcAttachDate": {
+      "value": "2014-01-30",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "UpdatedTimeStamp": {
+      "value": "2013-09-18",
+      "dateFormat": "YYYY-MM-DD"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "Y",
+      "MigrationInformation": "Catalyst 3560X 48 Port PoE IP Base",
+      "MigrationOption": "Enter PID(s)",
+      "MigrationProductId": "WS-C3560X-48P-S",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": "http://www.cisco.com/en/US/products/ps10745/index.html and http://www.cisco.com/en/US/products/ps10744/index.html"
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3560G-48PS-S "
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24T-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24T-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48T-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48T-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24P-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24P-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24U-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24U-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48P-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48P-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48F-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48F-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48U-L"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48U-L"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24T-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24T-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48T-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48T-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24P-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24P-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24U-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24U-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48P-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48P-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48F-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48F-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48U-S"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48U-S"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24T-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24T-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48T-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48T-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24P-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24P-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-24U-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-24U-E"
+  },
+  {
+    "EOLProductID": "",
+    "ProductIDDescription": "",
+    "ProductBulletinNumber": "",
+    "LinkToProductBulletinURL": "",
+    "EOXExternalAnnouncementDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSaleDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSWMaintenanceReleases": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfRoutineFailureAnalysisDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfServiceContractRenewal": {
+      "value": "",
+      "dateFormat": null
+    },
+    "LastDateOfSupport": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EndOfSvcAttachDate": {
+      "value": "",
+      "dateFormat": null
+    },
+    "UpdatedTimeStamp": {
+      "value": "",
+      "dateFormat": null
+    },
+    "EOXError": {
+      "ErrorID": "SSA_ERR_026",
+      "ErrorDescription": "EOX information does not exist for the following product ID(s): WS-C3850-48P-E"
+    },
+    "EOXMigrationDetails": {
+      "PIDActiveFlag": "",
+      "MigrationInformation": "",
+      "MigrationOption": "",
+      "MigrationProductId": "",
+      "MigrationProductName": "",
+      "MigrationStrategy": "",
+      "MigrationProductInfoURL": ""
+    },
+    "EOXInputType": "ShowEOXByPids",
+    "EOXInputValue": "WS-C3850-48P-E"
+  }
+]

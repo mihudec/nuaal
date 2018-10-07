@@ -25,8 +25,8 @@
     ],
     "platform": [
       {
-        "pattern": "^Platform:\\s(?:(?:Cisco|cisco\\s)?(?P<platform>(?:\\S+\\s?)+))",
-        "flags": 40
+        "pattern": "Platform:\\s(?:[Cc]isco\\s)?(?P<platform>[\\w\\-\\/]+)",
+        "flags": 0
       }
     ],
     "capabilities": [
@@ -38,13 +38,23 @@
     "localInterface": [
       {
         "pattern": "^Interface:\\s(?P<localInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
-        "flags": 40
+        "flags": 0
       }
     ],
     "remoteInterface": [
       {
         "pattern": "Port\\sID\\s\\(outgoing\\sport\\):\\s(?P<remoteInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
         "flags": 0
+      }
+    ],
+    "version": [
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<software>IOS(?:\\sXE)?)\\sSoftware,.*Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)(?:,)?",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s.*\\((?P<software>NX-OS)\\)\\sSoftware,\\sVersion\\s(?P<version>[\\w\\.\\(\\)\\-]+)",
+        "flags": 40
       }
     ]
   }
