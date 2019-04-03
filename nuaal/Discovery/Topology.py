@@ -36,6 +36,7 @@ class CliTopology(Topology):
                     self.logger.error(msg="Device data do not contain required keys.")
                     continue
             data = new_data
+        
         self.logger.info(msg="Building topology based on {} visited devices.".format(len(data)))
         all_nodes = []
         all_links = []

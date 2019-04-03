@@ -3,8 +3,8 @@ import json
 
 
 class CiscoPsirtApi(CiscoApiBase):
-    def __init__(self, usernaeme=None, password=None, api_user_id=None, DEBUG=False):
-        super(CiscoPsirtApi, self).__init__(username=usernaeme,
+    def __init__(self, username=None, password=None, api_user_id=None, DEBUG=False):
+        super(CiscoPsirtApi, self).__init__(username=username,
                                             password=password,
                                             api_user_id=api_user_id,
                                             api_base_path="/security/advisories",

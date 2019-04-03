@@ -9,6 +9,22 @@ class CiscoIOSParser(ParserModule):
     def __init__(self, DEBUG=False):
         super(CiscoIOSParser, self).__init__(device_type="cisco_ios", DEBUG=DEBUG)
 
+    def vlanGroup_check(self, vlanGroup):
+        if isinstance(vlanGroup, list):
+            if len(vlanGroup) > 0:
+                vlanGroup = vlanGroup[0]
+            else:
+                vlanGroup = []
+                return vlanGroup
+        if isinstance(vlanGroup, str):
+            if vlanGroup == "none":
+                vlanGroup = []
+                return vlanGroup
+            vlanGroup = vlanGroup.split(",")
+        elif isinstance(vlanGroup, int):
+            vlanGroup = [str(vlanGroup)]
+        return vlanGroup
+
     def trunk_parser(self, text):
         """
         Function specifically designed for parsing output of `show interfaces trunk` command.
@@ -33,18 +49,9 @@ class CiscoIOSParser(ParserModule):
         trunks = []
         for trunk in mode:
             entry = dict(trunk)
-            try:
-                entry["allowed"] = [x["vlanGroup"] for x in allowed if x["interface"] == entry["interface"]][0].split(",")
-            except AttributeError:
-                entry["allowed"] = [x["vlanGroup"] for x in allowed if x["interface"] == entry["interface"]][0]
-            try:
-                entry["active"] = [x["vlanGroup"] for x in active if x["interface"] == entry["interface"]][0].split(",")
-            except AttributeError:
-                entry["active"] = [x["vlanGroup"] for x in active if x["interface"] == entry["interface"]][0]
-            try:
-                entry["forwarding"] = [x["vlanGroup"] for x in forwarding if x["interface"] == entry["interface"]][0].split(",")
-            except AttributeError:
-                entry["forwarding"] = [x["vlanGroup"] for x in forwarding if x["interface"] == entry["interface"]][0]
+            entry["allowed"] = self.vlanGroup_check([x["vlanGroup"] for x in allowed if x["interface"] == entry["interface"]])
+            entry["active"] = self.vlanGroup_check([x["vlanGroup"] for x in active if x["interface"] == entry["interface"]])
+            entry["forwarding"] = self.vlanGroup_check([x["vlanGroup"] for x in forwarding if x["interface"] == entry["interface"]])
             trunks.append(entry)
         self.logger.info(msg="Parsing of 'show interfaces trunk' took {} seconds.".format((timeit.default_timer()-start_time)))
         return trunks

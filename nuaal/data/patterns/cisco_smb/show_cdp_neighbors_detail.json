@@ -1,0 +1,55 @@
+{
+  "command": "show cdp neighbors detail",
+  "level0": [
+    {
+      "pattern": "(?<=-{45}\\s).*?(?=-{45}|$)",
+      "flags": 48
+    }
+  ],
+  "level1": {
+    "hostname": [
+      {
+        "pattern": "^Device-ID:\\s(?P<deviceId>\\S+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^SysName:\\s(?P<hostname>\\S+)",
+        "flags": 40
+      }
+    ],
+    "ipAddress": [
+      {
+        "pattern": "^\\s+IP\\s(?P<ipAddress>(?:\\d{1,3}\\.?){4})",
+        "flags": 40
+      }
+    ],
+    "platform": [
+      {
+        "pattern": "^Platform:\\s(?:(?P<vendor>[Cc]isco)\\s)?(?P<platform>[\\w\\-\\/]+)(?:\\s+\\(PID:(?P<pid>\\S+)\\))",
+        "flags": 40
+      }
+    ],
+    "capabilities": [
+      {
+        "pattern": "^Capabilities:\\s(?P<capabilities>(?:\\S+\\s)+)",
+        "flags": 40
+      }
+    ],
+    "interface": [
+      {
+        "pattern": "^Interface:\\s(?P<localInterface>[A-Za-z]+\\d+(?:\\/\\d+)*).*?:\\s(?P<remoteInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
+        "flags": 40
+      }
+    ],
+    "version": [
+      {
+        "pattern": "^Version:.*?Version(?::)?\\s(?P<version>[\\w\\-\\(\\)\\.]+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^Version:\\s(?P<version>[\\d\\.]+)",
+        "flags": 40
+      }
+    ]
+  }
+}

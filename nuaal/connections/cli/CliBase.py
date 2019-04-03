@@ -3,8 +3,9 @@ from netmiko.ssh_exception import *
 import json
 from nuaal.utils import get_logger, check_path
 from nuaal.utils import Filter
-from nuaal.definitions import DATA_PATH
+from nuaal.definitions import DATA_PATH, OUTPUT_PATH
 import timeit
+import os
 
 class CliBaseConnection(object):
     """
@@ -102,6 +103,9 @@ class CliBaseConnection(object):
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: TimeOut.".format(self.ip, self.telnet_method))
         except ConnectionRefusedError:
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Connection Refused.".format(self.ip, self.telnet_method))
+        # TODO: Check fix in netmiko
+        except AttributeError("module 'serial' has no attribute 'EIGHTBITS'", ):
+            pass
         except Exception as e:
             print(repr(e))
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.telnet_method))
@@ -125,6 +129,9 @@ class CliBaseConnection(object):
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Timeout.".format(self.ip, self.ssh_method))
         except NetMikoAuthenticationException:
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Authentication Failed.".format(self.ip, self.ssh_method))
+        # TODO: Check fix in netmiko
+        except AttributeError("module 'serial' has no attribute 'EIGHTBITS'",):
+            pass
         except Exception as e:
             print(repr(e))
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.ssh_method))
@@ -317,10 +324,10 @@ class CliBaseConnection(object):
         :param str ext: Extension of the file, ".txt" by default.
         :return: ``None``
         """
-        path = "{}/outputs/{}".format(DATA_PATH, self.ip)
+        path = os.path.join(OUTPUT_PATH, self.ip)
         path = check_path(path)
         if path:
-            with open("{}/{}.{}".format(path, command, ext), mode="w+") as f:
+            with open(os.path.join(path, "{}.{}".format(command, ext)), mode="w+") as f:
                 f.write(raw_output)
 
     def check_connection(self):

@@ -38,7 +38,7 @@
     "localInterface": [
       {
         "pattern": "^Interface:\\s(?P<localInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
-        "flags": 0
+        "flags": 40
       }
     ],
     "remoteInterface": [
@@ -50,6 +50,10 @@
     "version": [
       {
         "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<software>IOS(?:\\sXE)?)\\sSoftware,.*Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)(?:,)?",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>Cisco).*?$\\s(?P<software>IOS).*?Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)",
         "flags": 40
       },
       {

@@ -1,0 +1,17 @@
+{
+  "command": "show spanning-tree",
+  "level0": [
+    {
+      "pattern": "^VLAN0*(?P<vlan_id>\\d+)\\n^\\s+Span.*?(?P<protocol>ieee|rstp|mst)\\n^\\s+Root ID\\s+Priority\\s+(?P<root_bid>\\d+)\\n^\\s+Address\\s+(?P<root_address>(?:[A-f0-9]{4}\\.){2}[A-f0-9]{4})\\n(?:(?:^\\s+This bridge is the root\\n)|(?:^\\s+Cost\\s+(?P<root_cost>\\d+)\\n^\\s+Port\\s+(?P<root_port_id>\\d+) \\((?P<root_port>\\S*?)\\))\\n)^\\s+Hello Time\\s+(?P<root_hello_time>\\d+).*?(?P<root_max_age>\\d+).*?(?P<root_forward_delay>\\d+).*?\\n^\\s*?Bridge ID\\s+Priority\\s+(?P<bridge_bid>\\d+)\\s+\\(priority (?P<bridge_priority>\\d+).*?(?P<sys_ext_id>\\d+)\\)\\n^\\s+Address\\s+(?P<bridge_address>(?:[A-f0-9]{4}\\.){2}[A-f0-9]{4})\\n^\\s+Hello Time\\s+(?P<bridge_hello_time>\\d+).*?(?P<bridge_max_age>\\d+).*?(?P<bridge_forward_delay>\\d+) sec\\n\\s+Aging Time\\s+(?P<aging_time>\\d+)(?: sec)?\\n\\s+Interface.*?\\n^[-\\s]*?\\n(?P<interfaces>(?:^\\S.*?\\n)+)",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "interfaces": [
+      {
+        "pattern": "^(?P<interface>[A-Z][a-z]+\\d+(?:\\/\\d+)*)\\s+(?P<role>\\S+)\\s+(?P<state>\\S+)\\s(?P<cost>\\d+)\\s+(?P<port_priority>\\d+)\\.(?P<port_id>\\d+)\\s+(?P<type>.*?)(?=\\s+$)",
+        "flags": 40
+      }
+    ]
+  }
+}

@@ -94,6 +94,8 @@ def vlan_range_expander(all_vlans):
         pass
     elif isinstance(all_vlans, str):
         all_vlans = all_vlans.split(",")
+    elif isinstance(all_vlans, int):
+        all_vlans = [str(all_vlans)]
     full_list = []
     for vlan in all_vlans:
         if "-" in vlan:

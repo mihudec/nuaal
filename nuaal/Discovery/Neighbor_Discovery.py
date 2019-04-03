@@ -1,7 +1,7 @@
 from nuaal.utils import get_logger
 from nuaal.utils import Filter
 from nuaal.connections.cli import Cisco_IOS_Cli
-from nuaal.Discovery.Topology import CliTopology
+from nuaal.discovery.Topology import CliTopology
 import threading
 from nuaal.definitions import DATA_PATH
 import json

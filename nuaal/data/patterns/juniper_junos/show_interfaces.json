@@ -1,0 +1,41 @@
+{
+    "command": "show interfaces",
+    "level0": [
+      {
+        "pattern": "(?:Physical|Logical)\\sinterface.*?\\n(?:^ +\\S.*?\\n)+",
+        "flags": 40
+      }
+    ],
+    "level1": {
+      "basic": [
+        {
+          "pattern": "Physical\\sinterface:\\s(?P<interface_name>\\S+)\\s(?P<admin_status>Enabled|Disabled).*?(?P<link_status>Up|Down)",
+          "flags": 40
+        },
+        {
+          "pattern": "Logical\\sinterface\\s(?P<interface_name>\\S+)",
+          "flags": 40
+        },
+        {
+          "pattern": "Description:\\s(?P<description>.*?)\\n",
+          "flags": 40
+        }
+      ],
+      "vlan_tag": [
+        {
+          "pattern": "VLAN-Tag\\s\\[\\s(?P<vlan_tag_protocol>0x\\S{4})\\.(?P<vlan_tag>\\d+)\\s\\]\\s+Encapsulation:\\s(?P<encapsulation>\\S+)\\s",
+          "flags": 40
+        }
+      ],
+      "address": [
+        {
+          "pattern": "Destination:\\s(?P<subnet>(?:\\d{1,3}\\.){3}\\d{1,3})\\/(?P<subnet_mask>\\d{1,2}),\\sLocal:\\s(?P<ip_address>(?:\\d{1,3}\\.){3}\\d{1,3}),\\sBroadcast:\\s(?P<broadcast>(?:\\d{1,3}\\.){3}\\d{1,3})",
+          "flags": 40
+        },
+        {
+          "pattern": "Local:\\s(?P<ip_address>(?!127)(?:\\d{1,3}\\.){3}\\d{1,3})\\n",
+          "flags": 40
+        }
+      ]
+    }
+  }

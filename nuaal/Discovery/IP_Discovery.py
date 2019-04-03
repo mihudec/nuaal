@@ -1,5 +1,5 @@
 from nuaal.connections.cli import CliMultiRunner
-from nuaal.Discovery.Topology import CliTopology
+from nuaal.discovery.Topology import CliTopology
 from nuaal.utils import get_logger
 from nuaal.Parsers import CiscoIOSParser
 import json

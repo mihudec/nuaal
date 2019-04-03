@@ -135,7 +135,7 @@ class ParserModule(object):
         elif isinstance(level_zero_outputs[0], str):
             self.logger.debug(msg="Level Zero: Found {} matches without named groups.".format(len(level_zero_outputs)))
         elif isinstance(level_zero_outputs[0], dict):
-            self.logger.debug(msg="Level Zero: Found {} matches without named groups.".format(len(level_zero_outputs)))
+            self.logger.debug(msg="Level Zero: Found {} matches with named groups.".format(len(level_zero_outputs)))
         else:
             self.logger.critical(msg="Level Zero: Unexpected event when trying to match {} with patterns {}.".format(text, patterns))
         return level_zero_outputs
@@ -209,8 +209,10 @@ class ParserModule(object):
         command_level = self.command_mapping(command=command)
         parsed_output = None
         if command_level == "level0":
+            #parsed_output = self._level_zero(text=text, patterns=self.patterns[command]["level0"])
             return self._level_zero(text=text, patterns=self.patterns[command]["level0"])
         elif command_level == "level1":
+            #parsed_output = self._level_one(text=text, command=command)
             return self._level_one(text=text, command=command)
         else:
             self.logger.critical(msg="AutoParse: Unknown level for command: '{}'".format(command))

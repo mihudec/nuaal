@@ -90,7 +90,7 @@ class ApicEmBase(RestBase):
 
         :param path: Path of API resource, such as "/network-device". Each path must begin with "/" forward-slash character
         :param params: Dictionary of parameters for request, such as {"deviceId": "<ID of device in APIC-EM database>"}
-        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>.json()["response"] or ``None``
+        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>show_ip_route.json()["response"] or ``None``
         """
         if not self.authorized:
             self.logger.error(msg="Connection is not authorized")
@@ -115,7 +115,7 @@ class ApicEmBase(RestBase):
         :param json data: JSON string data payload
         :param dict files: Dictionary with files to upload
         :param params: Dictionary of parameters for request, such as {"deviceId": "<ID of device in APIC-EM database>"}
-        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>.json()["response"] or ``None``
+        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>show_ip_route.json()["response"] or ``None``
         """
         if not self.authorized:
             return None
@@ -138,7 +138,7 @@ class ApicEmBase(RestBase):
         :param json data: JSON string data payload
         :param dict files: Dictionary with files to upload
         :param dict params: Dictionary of parameters for request, such as {"deviceId": "<ID of device in APIC-EM database>"}
-        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>.json()["response"] or ``None``
+        :return: Dictionary representation of response content under "response" key, eg. <request_response_object>show_ip_route.json()["response"] or ``None``
         """
         if not self.authorized:
             return None

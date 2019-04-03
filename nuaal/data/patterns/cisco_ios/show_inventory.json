@@ -2,7 +2,7 @@
   "command": "show inventory",
   "level0": [
     {
-      "pattern": "^NAME:\\s\\\"(?P<name>[\\w\\s()/]+)\\\",\\s+DESCR:\\s\\\"(?P<desc>(?:[\\w\\s(),.\\-_+/#:&]+))\\\"\\s*PID:\\s(?P<pid>\\S+)\\s*,\\s+VID:\\s(?P<vid>\\S+)?\\s*,\\s+SN:\\s+(?P<sn>\\S+)",
+      "pattern": "^NAME:\\s\"(?P<name>.*?)\",\\sDESCR:\\s\"(?P<desc>.*?)\"$\\s^PID:\\s(?P<pid>.*?)(?:\\s+)?,\\s+VID:\\s(.*?)(?:\\s+)?,\\sSN:\\s(?P<sn>.*?)\\s+$",
       "flags": 40
     }
   ]
