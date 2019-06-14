@@ -148,24 +148,44 @@ def vlan_range_shortener(full_vlan_list):
     return shortened_vlan_list
 
 
-def int_name_convert(int_name):
+def int_name_convert(int_name, out_type=None):
     """
     Function for converting long interface names to short and vice versa. Example: `"GigabitEthernet0/12"` -> `"Gi0/12"` and `"Gi0/12"` -> `"GigabitEthernet0/12"`
 
     :param str int_name: Interface name
+    :param str out_type: Desired form of interface name, either `"long"` or `"short"`. If None, return opposite form
     :return: Interface name
     """
     int_type, int_num = interface_split(int_name)
-    short = ["Eth", "Et", "Se", "Fa", "Gi", "Te", "Po"]
-    long = ["Ethernet", "Ethernet", "Serial", "FastEthernet", "GigabitEthernet", "TenGigabitEthernet", "Port-channel"]
-    new_int = ""
-    if int_type in short:
-        new_int = long[short.index(int_type)] + int_num
-    elif int_type in long:
-        new_int = short[long.index(int_type)] + int_num
+    short = ["Eth", "Et", "Se", "Fa", "Gi", "Te", "Po", "Tu"]
+    long = ["Ethernet", "Ethernet", "Serial", "FastEthernet", "GigabitEthernet", "TenGigabitEthernet", "Port-channel", "Tunnel"]
+    if out_type is None:
+        # Return opposite version
+        if int_type in short:
+            return long[short.index(int_type)] + int_num
+        elif int_type in long:
+            return short[long.index(int_type)] + int_num
+        else:
+            # Error
+            return int_name
+    elif out_type == "long":
+        if int_type in short:
+            return long[short.index(int_type)] + int_num
+        elif int_type in long:
+            return int_name
+        else:
+            # Error
+            return int_name
+    elif out_type == "short":
+        if int_type in short:
+            return int_name
+        elif int_type in long:
+            return short[long.index(int_type)] + int_num
+        else:
+            # Error
+            return int_name
     else:
-        new_int = int_type + int_num
-    return new_int
+        return int_name
 
 
 def mac_addr_convert(mac_address=u""):
@@ -182,7 +202,6 @@ def mac_addr_convert(mac_address=u""):
         return mac
     except Exception as e:
         return mac_address
-
 
 
 def update_dict(orig_dict, update_dict):
