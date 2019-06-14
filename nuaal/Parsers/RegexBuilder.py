@@ -33,7 +33,7 @@ class RegexBuilder:
             self.logger.error(msg="Encountered exception when compiling pattern '{}'. Exception: {}".format(pattern_dict["pattern"], repr(e)))
 
     def _decompile_pattern(self, pattern):
-        if not isinstance(pattern, re._pattern_type):
+        if not isinstance(pattern, re.Pattern):
             self.logger.error(msg="Given pattern is not a compiled re pattern.")
         pattern_string = pattern.pattern
         pattern_dict = {"pattern": pattern_string, "flags": 0}
@@ -58,12 +58,15 @@ if __name__ == '__main__':
     device_type = "cisco_ios"
     rb = RegexBuilder(device_type=device_type)
 
-    pattern_dict = {"command": "show spanning-tree", "pattern": r"^VLAN0*(?P<vlan_id>\d+)\n^\s+Span.*?(?P<protocol>ieee|rstp|mst)\n^\s+Root ID\s+Priority\s+(?P<root_bid>\d+)\n^\s+Address\s+(?P<root_address>(?:[A-f0-9]{4}\.){2}[A-f0-9]{4})\n(?:(?:^\s+This bridge is the root\n)|(?:^\s+Cost\s+(?P<root_cost>\d+)\n^\s+Port\s+(?P<root_port_id>\d+) \((?P<root_port>\S*?)\))\n)^\s+Hello Time\s+(?P<root_hello_time>\d+).*?(?P<root_max_age>\d+).*?(?P<root_forward_delay>\d+).*?\n^\s*?Bridge ID\s+Priority\s+(?P<bridge_bid>\d+)\s+\(priority (?P<bridge_priority>\d+).*?(?P<sys_ext_id>\d+)\)\n^\s+Address\s+(?P<bridge_address>(?:[A-f0-9]{4}\.){2}[A-f0-9]{4})\n^\s+Hello Time\s+(?P<bridge_hello_time>\d+).*?(?P<bridge_max_age>\d+).*?(?P<bridge_forward_delay>\d+) sec\n\s+Aging Time\s+(?P<aging_time>\d+)(?: sec)?\n\s+Interface.*?\n^[-\s]*?\n(?P<interfaces>(?:^\S.*?\n)+)", "flags": re.MULTILINE}
+    pattern_dict = {
+        "command": "show lldp neighbors detail",
+        "pattern": r"^Enabled Capabilities: (?P<enCapabilities>\S+)$",
+        "flags": re.MULTILINE
+    }
     pattern = rb._compile_pattern(pattern_dict=pattern_dict)
     decompiled_pattern = rb._decompile_pattern(pattern=pattern)
-    print(decompiled_pattern)
+    print(json.dumps(obj=decompiled_pattern, indent=2))
     pattern_dict.update(decompiled_pattern)
     print(pattern_dict)
-    rb._store_json(pattern_data=pattern_dict)
 
 

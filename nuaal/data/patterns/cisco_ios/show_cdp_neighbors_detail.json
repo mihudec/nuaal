@@ -2,7 +2,7 @@
   "command": "show cdp neighbors detail",
   "level0": [
     {
-      "pattern": "(?<=-{25}\\n).*?(?=-{25}|$)",
+      "pattern": "Device ID:.*?\\n(?:.*?)(?=-{10,50}|\\n\\n\\n)",
       "flags": 48
     }
   ],
@@ -58,6 +58,10 @@
       },
       {
         "pattern": "^(?P<vendor>[Cc]isco)\\s.*\\((?P<software>NX-OS)\\)\\sSoftware,\\sVersion\\s(?P<version>[\\w\\.\\(\\)\\-]+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco).*?(?P<software>IOSXE).*?(?P<version>(?:\\d+\\.)+\\d+)",
         "flags": 40
       }
     ]
