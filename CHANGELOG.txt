@@ -1,0 +1,10 @@
+Version 0.1.5
+
+# IMPORTANT: Changed structure of PatternsLib - Regular expressions are no longer stored in Python class, but in separate JSON files inside nuaal/data/patterns/<device-type>,
+# Added class RegexBuilder which can be used for testing Regular Expressions and saving them to a JSON file
+# Minor bug fixes
+
+Version 0.1.4
+
+# Fixed issue when CiscoIOSParser would not match entries in "show inventory" output, which contained '&' symbol in description field
+# Added 'xlsxwriter' to requirements

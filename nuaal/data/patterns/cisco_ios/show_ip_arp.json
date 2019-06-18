@@ -1,0 +1,9 @@
+{
+  "command": "show ip arp",
+  "level0": [
+    {
+      "pattern": "^(?P<protocol>\\S+)\\s+(?P<ipAddress>((?:\\d{1,3}\\.?){4}))\\s+(?P<age>(?:\\d+|-))\\s+(?P<mac>(?:[\\da-f]{4}\\.?){3})\\s+(?P<type>\\S+)\\s+(?P<interface>\\S+)",
+      "flags": 40
+    }
+  ]
+}

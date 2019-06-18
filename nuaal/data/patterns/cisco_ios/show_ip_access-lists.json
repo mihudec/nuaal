@@ -1,0 +1,21 @@
+{
+  "command": "show ip access-lists",
+  "level0": [
+    {
+      "pattern": "^(?P<aclType>.*)\\saccess\\slist\\s(?P<aclName>.*)$\\s(?P<aclLines>(?:^\\s+.*$(?:\\s)?)*)",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "aclLine": [
+      {
+        "pattern": "^(?P<name>\\S+)\\sis\\s(?P<status>.*),\\sline\\sprotocol\\sis\\s(?P<lineProtocol>\\S+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<name>\\S+)",
+        "flags": 40
+      }
+    ]
+  }
+}

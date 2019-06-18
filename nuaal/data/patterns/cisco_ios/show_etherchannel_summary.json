@@ -1,0 +1,17 @@
+{
+  "command": "show etherchannel summary",
+  "level0": [
+    {
+      "pattern": "^(?P<group>\\d+)\\s+(?P<portchannel>Po\\d{1,3})\\((?P<status>[DIHRUPsSfMuwd]{1,2})\\)\\s+(?P<protocol>\\S+)\\s+(?P<ports>(?:(?:\\w+\\d+(?:\\/\\d+)*)\\(\\S\\)\\s*)+)",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "ports": [
+      {
+        "pattern": "(?P<port>\\w+\\d+(?:\\/\\d+)*)\\((?P<status>[A-Za-z]+)\\)",
+        "flags": 0
+      }
+    ]
+  }
+}

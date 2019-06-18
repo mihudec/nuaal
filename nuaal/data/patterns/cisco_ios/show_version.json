@@ -1,0 +1,41 @@
+{
+  "command": "show version",
+  "level0": [
+    {
+      "pattern": "^Cisco.*Configuration\\sregister\\sis\\s\\S+",
+      "flags": 48
+    }
+  ],
+  "level1": {
+    "version": [
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<software>IOS(?:\\sXE)?)\\sSoftware,.*Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)(?:,)?",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<platform>[\\w-]+).*with\\s(?P<systemMemory>\\d+K/\\d+K)\\sbytes\\sof\\smemory.",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<platform>[\\w-]+).*with\\s(?P<systemMemory>\\d+K)\\sbytes\\sof\\smemory.",
+        "flags": 40
+      },
+      {
+        "pattern": "^$\\s^(?P<hostname>[\\w\\-_]+)\\suptime\\sis\\s(?P<uptime>.*)$",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<hostname>[\\w\\-_]+)\\suptime\\sis\\s(?P<uptime>.*)$",
+        "flags": 40
+      },
+      {
+        "pattern": "^System\\simage\\sfile\\sis\\s\\\"(?P<imageFile>.*)\\\"",
+        "flags": 40
+      },
+      {
+        "pattern": "Experimental\\sVersion\\s(?P<experimental_version>\\S+)",
+        "flags": 40
+      }
+    ]
+  }
+}

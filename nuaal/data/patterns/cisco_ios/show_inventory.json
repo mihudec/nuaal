@@ -1,0 +1,9 @@
+{
+  "command": "show inventory",
+  "level0": [
+    {
+      "pattern": "^NAME:\\s\"(?P<name>.*?)\",\\sDESCR:\\s\"(?P<desc>.*?)\"$\\s^PID:\\s(?P<pid>.*?)(?:\\s+)?,\\s+VID:\\s(.*?)(?:\\s+)?,\\sSN:\\s(?P<sn>.*?)\\s+$",
+      "flags": 40
+    }
+  ]
+}

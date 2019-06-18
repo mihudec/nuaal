@@ -1,0 +1,23 @@
+{
+    "command": "show bgp neighbors",
+    "level0": [
+      {
+        "pattern": "^Peer.*?\\n(?:^ +\\S.*?\\n)+",
+        "flags": 40
+      }
+    ],
+    "level1": {
+      "basic": [
+        {
+          "pattern": "^Peer:\\s(?P<peer_addr>\\S+?)(?:\\+(?P<peer_port>\\d+))?\\sAS\\s(?P<peer_as>\\d+)\\s+Local:\\s(?P<local_addr>\\S+?)(?:\\+(?P<local_port>\\d+))?\\sAS\\s(?P<local_as>\\d+)",
+          "flags": 40
+        }
+      ],
+      "type": [
+        {
+          "pattern": "^\\s+Type:\\s(?P<type>\\S+)\\s+State:\\s(?P<state>\\S+)\\s+Flags:\\s(?P<flags>.*?)\\n",
+          "flags": 40
+        }
+      ]
+    }
+  }

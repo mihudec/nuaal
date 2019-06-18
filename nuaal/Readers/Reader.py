@@ -9,17 +9,17 @@ class Reader:
 
     def filename_check(self, filename):
         if os.path.exists(filename):
-            self.logger.debug(msg=f"Filename {filename} exists.")
+            self.logger.debug(msg="Filename {} exists.".format(filename))
             print(os.path.dirname(__file__))
             return filename
         else:
             cwd = os.path.dirname(__file__)
             filepath = os.path.join(cwd, filename)
             if os.path.exists(filepath):
-                self.logger.debug(msg=f"Filename {filename} exists.")
+                self.logger.debug(msg="Filename {} exists.".format(filename))
                 return os.path.abspath(filepath)
             else:
-                self.logger.error(msg=f"Filename {filename} does not exist.")
+                self.logger.error(msg="Filename {} does not exist.".format(filename))
                 return None
 
     def load_json(self, filename):
@@ -30,11 +30,11 @@ class Reader:
                 try:
                     data = json.load(f)
                 except Exception as e:
-                    self.logger.critical(msg=f"Failed to load JSON file, Exception: {e}")
+                    self.logger.critical(msg="Failed to load JSON file, Exception: {}".format(repr(e)))
                 finally:
                     return data
         else:
-            self.logger.critical(msg=f"Could not open file {filename}, file does not exist")
+            self.logger.critical(msg="Could not open file {}, file does not exist".format(filename))
             return data
 
     def load_csv(self, filename, delimiter=","):
@@ -50,10 +50,10 @@ class Reader:
                         lines.append([x.strip() for x in line])
                     return lines
                 except Exception as e:
-                    self.logger.critical(msg=f"Failed to load CSV file, Exception: {e}")
+                    self.logger.critical(msg="Failed to load CSV file, Exception: {}".format(repr(e)))
                     return lines
 
         else:
-            self.logger.critical(msg=f"Could not open file {filename}, file does not exist")
+            self.logger.critical(msg="Could not open file {}, file does not exist".format(filename))
             return lines
 

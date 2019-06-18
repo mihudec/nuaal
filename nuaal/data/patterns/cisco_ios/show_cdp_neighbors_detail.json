@@ -1,0 +1,69 @@
+{
+  "command": "show cdp neighbors detail",
+  "level0": [
+    {
+      "pattern": "Device ID:.*?\\n(?:.*?)(?=-{10,50}|\\n\\n\\n)",
+      "flags": 48
+    }
+  ],
+  "level1": {
+    "hostname": [
+      {
+        "pattern": "^Device\\sID:\\s(?P<hostname>[\\w\\_\\-\\(\\)]+)(?:.\\S+)?",
+        "flags": 40
+      },
+      {
+        "pattern": "^Device\\sID:\\s(?P<hostname>\\S+)",
+        "flags": 40
+      }
+    ],
+    "ipAddress": [
+      {
+        "pattern": "IP\\saddress:\\s(?P<ipAddress>(?:\\d{1,3}\\.?){4})",
+        "flags": 40
+      }
+    ],
+    "platform": [
+      {
+        "pattern": "Platform:\\s(?:[Cc]isco\\s)?(?P<platform>[\\w\\-\\/]+)",
+        "flags": 0
+      }
+    ],
+    "capabilities": [
+      {
+        "pattern": "Capabilities:\\s(?P<capabilities>(?:\\S+\\s)+)",
+        "flags": 0
+      }
+    ],
+    "localInterface": [
+      {
+        "pattern": "^Interface:\\s(?P<localInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
+        "flags": 40
+      }
+    ],
+    "remoteInterface": [
+      {
+        "pattern": "Port\\sID\\s\\(outgoing\\sport\\):\\s(?P<remoteInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
+        "flags": 0
+      }
+    ],
+    "version": [
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s(?P<software>IOS(?:\\sXE)?)\\sSoftware,.*Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)(?:,)?",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>Cisco).*?$\\s(?P<software>IOS).*?Version\\s(?P<version>[\\w\\.\\(\\)\\-]+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco)\\s.*\\((?P<software>NX-OS)\\)\\sSoftware,\\sVersion\\s(?P<version>[\\w\\.\\(\\)\\-]+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<vendor>[Cc]isco).*?(?P<software>IOSXE).*?(?P<version>(?:\\d+\\.)+\\d+)",
+        "flags": 40
+      }
+    ]
+  }
+}

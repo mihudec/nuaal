@@ -1,0 +1,7 @@
+include requirements.txt
+include CHANGELOG.txt
+include nuaal/data *.json
+recursive-include nuaal/data/patterns *
+recursive-include docs *
+prune nuaal/examples
+prune nuaal/tests

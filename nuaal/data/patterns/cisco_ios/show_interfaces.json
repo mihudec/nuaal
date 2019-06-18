@@ -1,0 +1,123 @@
+{
+  "command": "show interfaces",
+  "level0": [
+    {
+      "pattern": "^\\S.*(?:$\\s+^\\s.*)+",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "name": [
+      {
+        "pattern": "^(?P<name>\\S+)\\sis\\s(?P<status>.*),\\sline\\sprotocol\\sis\\s(?P<lineProtocol>\\S+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^(?P<name>\\S+)",
+        "flags": 40
+      }
+    ],
+    "address": [
+      {
+        "pattern": "^\\s+Hardware\\sis\\s(?P<hardware>.*),\\saddress\\sis\\s(?P<mac>\\S+)\\s\\(bia\\s(?P<bia>\\S+)\\)",
+        "flags": 40
+      }
+    ],
+    "description": [
+      {
+        "pattern": "^\\s+Description:\\s(?P<description>.*)",
+        "flags": 40
+      }
+    ],
+    "ipv4Address": [
+      {
+        "pattern": "^\\s+Internet\\saddress\\sis\\s(?P<ipv4Address>[\\d\\.]+)\\/(?P<ipv4Mask>\\d+)",
+        "flags": 40
+      }
+    ],
+    "rates": [
+      {
+        "pattern": "^\\s+(?P<loadInterval>\\d+\\s\\S+)\\sinput\\srate\\s(?P<inputRate>\\d+).*,\\s(?P<inputPacketsInterval>\\d+).*$\\s+.*output\\srate\\s(?P<outputRate>\\d+).*,\\s(?P<outputPacketsInterval>\\d+)",
+        "flags": 40
+      }
+    ],
+    "duplex": [
+      {
+        "pattern": "^\\s+(?P<duplex>\\S+)-duplex,\\s(?P<speed>(?:\\d+)?\\S+)(?:,\\s+link\\stype\\sis\\s(?P<linkType>\\S+))?,\\smedia\\stype\\sis\\s(?P<mediaType>.*)",
+        "flags": 40
+      },
+      {
+        "pattern": "^\\s+(?P<duplex>\\S+)-duplex,\\s(?P<sped>\\S+)$",
+        "flags": 40
+      }
+    ],
+    "mtu": [
+      {
+        "pattern": "^\\s+MTU\\s(?P<mtu>\\d+).*BW\\s(?P<bandwidth>\\d+)\\sKbit(?:/sec)?,\\sDLY\\s(?P<delay>\\d+).*$\\s+reliability\\s(?P<reliability>\\S+),\\stxload\\s(?P<txLoad>\\S+),\\srxload\\s(?P<rxLoad>\\S+)",
+        "flags": 40
+      }
+    ],
+    "pseudowire": [
+      {
+        "pattern": "^\\s+Encapsulation\\s(?P<encapsulation>\\w+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^\\s+RX\\s+(?P<rxPackets>\\d+)\\spackets\\s(?P<rxBytes>\\d+)\\sbytes\\s(?P<rxDrops>\\d+)\\sdrops\\s+TX\\s+(?P<txPackets>\\d+)\\spackets\\s(?P<txBytes>\\d+)\\sbytes\\s(?P<txDrops>\\d+)\\sdrops",
+        "flags": 40
+      },
+      {
+        "pattern": "^\\s+Peer\\sIP\\s(?P<peerIP>[\\d\\.]+),\\sVC\\sID\\s(?P<virtualCircuitID>\\d+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^\\s+MTU\\s(?P<mtu>\\d+)\\sbytes",
+        "flags": 40
+      }
+    ],
+    "input_counters": [
+      {
+        "pattern": "^\\s+(?P<rxPackets>\\d+)\\spackets\\sinput,\\s(?P<rxBytes>\\d+)\\sbytes,\\s(?P<noBuffer>\\d+)\\sno\\sbuffer$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+Received\\s(?P<rxBroadcasts>\\d+).*\\((?P<rxMulticasts>\\d+).*$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<runts>\\d+)\\srunts,\\s(?P<giants>\\d+)\\sgiants,\\s(?P<throttles>\\d+).*$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<inputErrors>\\d+)\\sinput\\serrors,\\s(?P<crc>\\d+)\\sCRC,\\s(?P<frame>\\d)\\sframe,\\s(?P<overrun>\\d+)\\soverrun,\\s(?P<ignored>\\d+).*$",
+        "flags": 40
+      },
+      {
+        "pattern": "(?:\\s+(?P<watchdog>\\d+)\\swatchdog,\\s(?P<multicasts>\\d+)\\smulticast,\\s(?P<pauseInput>\\d+)\\spause\\sinput$\\s+(?P<inputPacketsWithDribbleCondition>\\d+)\\sinput.*)?",
+        "flags": 40
+      }
+    ],
+    "output_counters": [
+      {
+        "pattern": "^\\s+(?P<txPackets>\\d+)\\spackets\\soutput,\\s(?P<txBytes>\\d+)\\sbytes,\\s(?P<underruns>\\d+)\\sunderruns$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<outputErrors>\\d+)\\soutput\\serrors,\\s(?:(?P<collision>\\d+)\\scollisions,\\s)?(?P<interfaceResets>\\d+)\\sinterface\\sresets$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<babbles>\\d+)\\sbabbles,\\s(?P<lateCollision>\\d+)\\slate\\scollision,\\s(?P<deferred>\\d+)\\sdeferred$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<lostCarrier>\\d+)\\slost\\scarrier,\\s(?P<noCarrier>\\d+)\\sno\\scarrier,\\s(?P<pauseOutput>\\d+)\\sPAUSE\\soutput$",
+        "flags": 40
+      },
+      {
+        "pattern": "\\s+(?P<outputBufferFailures>\\d+)\\soutput\\sbuffer\\sfailures,\\s(?P<outputBufferSwappedOut>\\d+)\\soutput buffers swapped out$",
+        "flags": 40
+      }
+    ]
+  }
+}
