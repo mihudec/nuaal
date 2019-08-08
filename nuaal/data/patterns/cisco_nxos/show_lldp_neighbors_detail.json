@@ -1,0 +1,51 @@
+{
+  "command": "show lldp neighbors detail",
+  "level0": [
+    {
+      "pattern": "^(Chassis id:.*?\\n(?:^.*?\\n)*?(?=\\n))",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "hostname": [
+      {
+        "pattern": "^System Name: (?P<hostname>[\\w\\-_\\(\\)]+?)(?:(?:\\.)(?P<domain>[\\w\\.\\-_]+))?$",
+        "flags": 40
+      }
+    ],
+    "localInterface": [
+      {
+        "pattern": "^Local Port id: (?P<localInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)$",
+        "flags": 40
+      }
+    ],
+    "remoteInterface": [
+      {
+        "pattern": "^Port id: (?P<remoteInterface>[A-Za-z]+\\d+(?:\\/\\d+)*|(?:[a-f0-9]{4}\\.){2}[a-f0-9]{4})$",
+        "flags": 40
+      }
+    ],
+    "remoteInterfaceDescription": [
+      {
+        "pattern": "^Port Description: (?P<remotePortDescription>.*?)$",
+        "flags": 40
+      }
+    ],
+    "chassisId": [
+      {
+        "pattern": "^Chassis id: (?P<chassisId>(?:[a-f0-9]{4}\\.){2}[a-f0-9]{4})$",
+        "flags": 40
+      }
+    ],
+    "capabilities": [
+      {
+        "pattern": "^System Capabilities: (?P<capabilities>\\S+)$",
+        "flags": 40
+      },
+      {
+        "pattern": "^Enabled Capabilities: (?P<enCapabilities>\\S+)$",
+        "flags": 40
+      }
+    ]
+  }
+}

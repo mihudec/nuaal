@@ -1,0 +1,9 @@
+{
+  "command": "show authentication sessions",
+  "level0": [
+      {
+        "pattern": "(?P<interface>[A-Z][a-z][A-z]*?\\d+(?:\\/\\d+)*)\\s+(?P<mac_address>\\S+)\\s+(?P<method>mab|dot1x)\\s+(?P<domain>\\S+)\\s+(?P<status>[\\w\\s]+?)\\s{2,}(?P<session_id>[0-9A-F]{20,})",
+        "flags": 40
+      }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "command": "show authentication sessions interface",
+  "level0": [
+    {
+      "pattern": "^\\s+Interface.*\\n(?:^.*?\\n)*?^Runnable methods list:\\n(?:^.*?\\S+.*?\\n){3}",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "interface": [
+      {
+        "pattern": "^\\s+Interface:\\s+(?P<interface>[A-Z][a-z][A-z]*?\\d+(?:\\/\\d+)*)\\n",
+        "flags": 40
+      }
+    ],
+    "mac_address": [
+      {
+        "pattern": "^\\s+MAC Address:\\s+(?P<mac_address>\\S+)\\n",
+        "flags": 40
+      }
+    ],
+    "ip_address": [
+      {
+        "pattern": "^\\s+IP Address:\\s+(?P<ip_address>\\S+)\\n",
+        "flags": 40
+      }
+    ],
+    "user_name": [
+      {
+        "pattern": "^\\s+User-Name:\\s+(?P<user_name>\\S+)\\n",
+        "flags": 40
+      }
+    ],
+    "status": [
+      {
+        "pattern": "^\\s+Status:\\s+(?P<status>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "domain": [
+      {
+        "pattern": "^\\s+Domain:\\s+(?P<domain>\\S+)\\n",
+        "flags": 40
+      }
+    ],
+    "security_policy": [
+      {
+        "pattern": "^\\s+Security Policy:\\s+(?P<security_policy>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "security_status": [
+      {
+        "pattern": "^\\s+Security Status:\\s+(?P<security_status>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "oper_host_mode": [
+      {
+        "pattern": "^\\s+Oper host mode:\\s+(?P<oper_host_mode>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "oper_control_dir": [
+      {
+        "pattern": "^\\s+Oper control dir:\\s+(?P<oper_control_dir>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "authorized_by": [
+      {
+        "pattern": "^\\s+Authorized By:\\s+(?P<authorized_by>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "vlan_policy": [
+      {
+        "pattern": "^\\s+Vlan Policy:\\s+(?P<vlan_policy>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "vlan_group": [
+      {
+        "pattern": "^\\s+Vlan Group:\\s+(?P<vlan_group>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "session_timeout": [
+      {
+        "pattern": "^\\s+Session timeout:\\s+(?P<session_timeout_server>\\d+)s \\(server\\), Remaining: (?P<session_timeout_remaining>\\d+)s\\n",
+        "flags": 40
+      }
+    ],
+    "timeout_action": [
+      {
+        "pattern": "^\\s+Timeout action:\\s+(?P<timeout_action>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "idle_timeout": [
+      {
+        "pattern": "^\\s+Idle timeout:\\s+(?P<idle_timeout_server>\\d+)s \\(server\\), Remaining: (?P<idle_timeout_remaining>\\d+)s\\n",
+        "flags": 40
+      }
+    ],
+    "common_session_id": [
+      {
+        "pattern": "^\\s+Common Session ID:\\s+(?P<common_session_id>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "acct_session_id": [
+      {
+        "pattern": "^\\s+Acct Session ID:\\s+(?P<acct_session_id>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "handle": [
+      {
+        "pattern": "^\\s+Handle:\\s+(?P<handle>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "mab": [
+      {
+        "pattern": "^\\s+mab\\s+(?P<mab>.*?)\\n",
+        "flags": 40
+      }
+    ],
+    "dot1x": [
+      {
+        "pattern": "^\\s+dot1x\\s+(?P<dot1x>.*?)\\n",
+        "flags": 40
+      }
+    ]
+  }
+}

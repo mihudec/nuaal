@@ -1,0 +1,9 @@
+{
+  "command": "show interfaces status",
+  "level0": [
+    {
+      "pattern": "^(?P<interface>[A-Za-z]+\\d+(?:\/\\d+)*)\\s+(?P<name>.*?)\\s+(?P<status>connected|notconnect|disabled|monitoring|err-disabled)\\s+(?P<vlan>trunk|routed|\\d+)\\s+(?P<duplex>\\S+)\\s+(?P<speed>\\S+)\\s(?P<type>.*?)$",
+      "flags": 40
+    }
+  ]
+}
