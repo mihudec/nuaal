@@ -59,8 +59,8 @@ if __name__ == '__main__':
     rb = RegexBuilder(device_type=device_type)
 
     pattern_dict = {
-        "command": "show lldp neighbors detail",
-        "pattern": r"^Enabled Capabilities: (?P<enCapabilities>\S+)$",
+        "command": "show authentication sessions interface",
+        "pattern": r"Interface:\s+(?P<interface>[A-Z][a-z][A-z]*?\d+(?:\/\d+)*)\n^\s+MAC Address:\s+(?P<mac_address>\S+)\n^\s+IP Address:\s+(?P<ip_address>\S+)\n^\s+User-Name:\s+(?P<user_name>\S+)\n^\s+Status:\s+(?P<status>.*?)\n^\s+Domain:\s+(?P<domain>\S+)\n^\s+Security Policy:\s+(?P<security_policy>.*?)\n^\s+Security Status:\s+(?P<security_status>.*?)\n^\s+Oper host mode:\s+(?P<oper_host_mode>.*?)\n^\s+Oper control dir:\s+(?P<oper_control_dir>.*?)\n^\s+Authorized By:\s+(?P<authorized_by>.*?)\n^\s+Vlan Policy:\s+(?P<vlan_policy>.*?)\n^\s+Vlan Group:\s+(?P<vlan_group>.*?)\n^\s+Session timeout:\s+(?P<session_timeout_server>\d+)s \(server\), Remaining: (?P<session_timeout_remaining>\d+)s\n^\s+Timeout action:\s+(?P<timeout_acction>.*?)\n^\s+Idle timeout:\s+(?P<idle_timeout>.*?)\n^\s+Common Session ID:\s+(?P<common_session_id>.*?)\n^\s+Acct Session ID:\s+(?P<acct_session_id>.*?)\n^\s+Handle:\s+(?P<handle>.*?)\n\nRunnable methods list:\n^\s+Method\s+State\n^\s+mab\s+(?P<mab>.*?)\n^\s+dot1x\s+(?P<dot1x>.*?)\n",
         "flags": re.MULTILINE
     }
     pattern = rb._compile_pattern(pattern_dict=pattern_dict)
@@ -68,5 +68,5 @@ if __name__ == '__main__':
     print(json.dumps(obj=decompiled_pattern, indent=2))
     pattern_dict.update(decompiled_pattern)
     print(pattern_dict)
-
+{}
 

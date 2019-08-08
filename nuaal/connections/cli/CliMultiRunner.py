@@ -26,6 +26,7 @@ class CliMultiRunner(object):
         self.threads = []
         self.actions = actions if isinstance(actions, list) else []
         self.data = []
+        self.error_hosts = []
 
     def fill_queue(self):
         """
@@ -45,10 +46,11 @@ class CliMultiRunner(object):
 
         :return: ``None``
         """
-        self.logger.debug(msg="Spawned new worker in {}".format(threading.current_thread()))
+        self.logger.debug(msg="Spawned new worker in {}".format(threading.current_thread().getName()))
         while not self.queue.empty():
             provider = self.queue.get()
             if provider is None:
+                self.logger.info(msg="Queue Empty")
                 break
             try:
                 with Cisco_IOS_Cli(**provider) as device:
@@ -72,8 +74,10 @@ class CliMultiRunner(object):
                         device.get_config()
                     self.data.append(device.data)
             except Exception as e:
-                self.logger.error(msg="Unhandled Exception occurred in thread '{}'. Exception: {}".format(threading.current_thread().getName(), repr(e)))
-            self.queue.task_done()
+                self.logger.error(msg="Unhandled Exception occurred in thread '{}' for host {}. Exception: {}".format(threading.current_thread().getName(), provider["ip"], repr(e)))
+                self.error_hosts.append(provider["ip"])
+            finally:
+                self.queue.task_done()
 
     def thread_factory(self):
         """
@@ -85,13 +89,18 @@ class CliMultiRunner(object):
             t = threading.Thread(name="WorkerThread-{}".format(i), target=self.worker, args=())
             self.threads.append(t)
 
-    def run(self):
+    def run(self, adjust_worker_count=True):
         """
         Main entry function, puts all pieces together. Firs populates Queue with IP addreses and connection information, spawns threads and starts them.
         Blocks until ``self.queue`` is empty.
 
+        :param bool adjust_worker_count: If set to `True` (default), number of workers will be reduced if number of given hosts is lower than number of workers.
+
         :return:
         """
+        if adjust_worker_count and (len(self.ips) < self.workers):
+            self.logger.info(msg="Adjusted number of workers according to number of given IPs: {}".format(self.workers))
+            self.workers = len(self.ips)
         self.fill_queue()
         self.thread_factory()
         [t.start() for t in self.threads]

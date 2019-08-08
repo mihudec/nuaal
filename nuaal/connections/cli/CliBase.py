@@ -48,6 +48,7 @@ class CliBaseConnection(object):
         self.logger = get_logger(name="Connection-{}".format(self.ip), DEBUG=DEBUG)
         self.parser = parser
         self.connected = False
+        self.failures = []
 
         self.outputs = {}
         self.data = {"ipAddress": self.ip}
@@ -101,13 +102,16 @@ class CliBaseConnection(object):
             device = ConnectHandler(**self.provider)
         except TimeoutError:
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: TimeOut.".format(self.ip, self.telnet_method))
+            self.failures.append("telnet_connection_timeout")
         except ConnectionRefusedError:
+            self.failures.append("telnet_connection_refused")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Connection Refused.".format(self.ip, self.telnet_method))
         # TODO: Check fix in netmiko
         except AttributeError("module 'serial' has no attribute 'EIGHTBITS'", ):
             pass
         except Exception as e:
             print(repr(e))
+            self.failures.append("telnet_unknown")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.telnet_method))
         finally:
             if device:
@@ -126,14 +130,17 @@ class CliBaseConnection(object):
         try:
             device = ConnectHandler(**self.provider)
         except NetMikoTimeoutException:
+            self.failures.append("ssh_connection_timeout")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Timeout.".format(self.ip, self.ssh_method))
         except NetMikoAuthenticationException:
+            self.failures.append("ssh_auth_fail")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Authentication Failed.".format(self.ip, self.ssh_method))
         # TODO: Check fix in netmiko
         except AttributeError("module 'serial' has no attribute 'EIGHTBITS'",):
             pass
         except Exception as e:
             print(repr(e))
+            self.failures.append("ssh_unknown")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Unknown.".format(self.ip, self.ssh_method))
         finally:
             if device:
@@ -254,7 +261,6 @@ class CliBaseConnection(object):
         finally:
             return output
 
-
     def _send_commands(self, commands):
         """
         Sends multiple commands to device.
@@ -267,18 +273,22 @@ class CliBaseConnection(object):
             output[command] = self._send_command(command)
         return output
 
-    def _command_handler(self, action, filter=None):
+    def _command_handler(self, commands=None, action=None, out_filter=None, return_raw=False):
         """
         This function tries to send multiple 'types' of given command and waits for correct output.
         This should solve the problem with different command syntax, such as 'show mac address-table' vs
         'show mac-address-table' on different versions of Cisco IOS.
         When correct output is returned, it is then parsed and the result is returned.
 
+        :param str action: Action to perform - has to be key of self.command_mappings
         :param list commands: List of command string to try, such as ['show mac-address-table', 'show mac address-table']
+        :param out_filter: Instance of Filter class
+        :param bool return_raw: If set to `True`, raw output will be returned.
         :return: JSON representation of command output
         """
         start_time = timeit.default_timer()
-        commands = self.command_mappings[action]
+        if commands is None:
+            commands = self.command_mappings[action]
         command_output = ""
         used_command = ""
         parsed_output = []
@@ -300,19 +310,26 @@ class CliBaseConnection(object):
         if self.store_outputs and command_output != "":
             self.store_raw_output(command=used_command, raw_output=command_output)
         if command_output == "" or command_output is None:
-            return []
-        # Try parsing the output
-        try:
-            parsed_output = self.parser.autoparse(command=commands[0], text=command_output)
-            if isinstance(filter, Filter):
-                parsed_output = filter.universal_cleanup(data=parsed_output)
-            self.data[action[4:]] = parsed_output
-        except Exception as e:
-            print(repr(e))
-            self.logger.error(msg="Device {}: Failed to parse output of command '{}'".format(self.ip, used_command))
-        finally:
-            self.logger.debug(msg="Processing of action {} took {} seconds.".format(action, timeit.default_timer()-start_time))
-            return parsed_output
+            self.logger.error(msg="Device {} did not return output for any of the commands: {}".format(self.ip, commands))
+            if return_raw:
+                return ""
+            else:
+                return []
+        if return_raw:
+            return command_output
+        else:
+            # Try parsing the output
+            try:
+                parsed_output = self.parser.autoparse(command=commands[0], text=command_output)
+                if isinstance(out_filter, Filter):
+                    parsed_output = out_filter.universal_cleanup(data=parsed_output)
+                self.data[action[4:]] = parsed_output
+            except Exception as e:
+                print(repr(e))
+                self.logger.error(msg="Device {}: Failed to parse output of command '{}'".format(self.ip, used_command))
+            finally:
+                self.logger.debug(msg="Processing of action {} took {} seconds.".format(action, timeit.default_timer()-start_time))
+                return parsed_output
 
     def store_raw_output(self, command, raw_output, ext="txt"):
         """

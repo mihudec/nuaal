@@ -7,6 +7,7 @@ import threading
 import queue
 import datetime
 
+
 class Cisco_IOS_Cli(CliBaseConnection):
     """
     Object for interaction with network devices running Cisco IOS (or IOS XE) software via CLI interface.
@@ -108,6 +109,15 @@ class Cisco_IOS_Cli(CliBaseConnection):
         self.data["trunk_interfaces"] = parsed_output
         return parsed_output
 
+    def get_mac_address_table(self, vlan=None, interface=None):
+        """
+        Returns content of device MAC address table in JSON format. In Cisco terms, this represents the command `show mac address-table`.
+
+        :param int vlan: Number of VLAN to get MAC addresses from
+        :return: List of dictionaries.
+        """
+        return self._command_handler(action="get_mac_address_table")
+
     def get_config(self):
         """
         Function for retrieving current configuration of the device.
@@ -119,3 +129,25 @@ class Cisco_IOS_Cli(CliBaseConnection):
         if self.store_outputs:
             self.store_raw_output(command=command, raw_output=raw_output)
         return raw_output
+
+    def get_auth_sessions(self):
+        """
+
+        :return:
+        """
+        pass
+
+    def get_auth_sessions_intf(self, interface=None):
+        """
+
+        :param str interface: Name of the interface to retrieve auth session from
+        :return:
+        """
+
+        commands = ["show authentication sessions interface {}".format(interface), "show authentication sessions interface {} detail".format(interface)]
+        output = self._command_handler(commands=commands)
+        if output:
+            return self.parser.autoparse(command="show authentication sessions interface", text=output)
+        else:
+            return []
+
