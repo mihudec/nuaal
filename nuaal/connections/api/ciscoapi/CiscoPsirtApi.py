@@ -14,7 +14,7 @@ class CiscoPsirtApi(CiscoApiBase):
 
     def psirt_by_sw(self, sw_type, sw_version):
         response = self.get(path="/{}".format(sw_type), params={"version": sw_version})
-        print(json.dumps(response, indent=2))
+        return response
 
 if __name__ == '__main__':
     psirt_client = CiscoPsirtApi(api_user_id="ad", DEBUG=True)
