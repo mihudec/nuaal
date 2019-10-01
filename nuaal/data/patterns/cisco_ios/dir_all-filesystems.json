@@ -1,0 +1,17 @@
+{
+  "command": "dir all-filesystems",
+  "level0": [
+      {
+        "pattern": "^Directory of (?P<filesystem>\\S+?)/\\n(?:^\\s*?\\n)(?P<files>(?:^.+?\\n)+?)(?:^\\s*?\\n)^(No space.*?$|(?P<bytes_total>\\d+) bytes total \\((?P<bytes_free>\\d+) bytes free\\)$)",
+        "flags": 40
+      }
+  ],
+  "level1": {
+    "files": [
+      {
+        "pattern": "^(?: +)?(?P<file_no>\\d+)\\s+(?P<permissions>[-d][-rw]{2}[-x])\\s+(?P<size>\\d+)\\s+(?P<timestamp>(?:\\<no date\\>|.*?[+-]\\d{2}:\\d{2}))\\s+(?P<name>.*?)\\s*?$",
+        "flags": 40
+      }
+    ]
+  }
+}

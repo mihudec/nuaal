@@ -9,6 +9,7 @@ import queue
 import timeit
 from datetime import datetime
 
+
 class Neighbor_Discovery:
     """
     This class provides a simple way to perform network discovery based on CDP neighbors of device.
