@@ -12,22 +12,32 @@ class Cisco_IOS_Cli(CliBaseConnection):
     """
     Object for interaction with network devices running Cisco IOS (or IOS XE) software via CLI interface.
     """
-    def __init__(self, ip=None, username=None, password=None, parser=None, secret=None, method="ssh", enable=False, store_outputs=False, DEBUG=False):
+
+    def __init__(
+            self, ip=None, username=None, password=None,
+            parser=None, secret=None, method="ssh", enable=False,
+            store_outputs=False, DEBUG=False, verbosity=3,
+            netmiko_params={}
+    ):
         """
 
         :param ip: (str) IP address or FQDN of the device you're trying to connect to
         :param username: (str) Username used for login to device
         :param password: (str) Password used for login to device
-        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs. By default, new instance of ParserModule is created.
+        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs.
+        By default, new instance of ParserModule is created.
         :param secret: (str) Enable secret for accessing Privileged EXEC Mode
         :param method: (str) Primary method of connection, 'ssh' or 'telnet'. (Default is 'ssh')
         :param enable: (bool) Whether or not enable Privileged EXEC Mode on device
         :param store_outputs: (bool) Whether or not store text outputs of sent commands
         :param DEBUG: (bool) Enable debugging logging
         """
-        super(Cisco_IOS_Cli, self).__init__(ip=ip, username=username, password=password,
-                                            parser=parser if isinstance(parser, CiscoIOSParser) else CiscoIOSParser(DEBUG=False),
-                                            secret=secret, enable=enable, store_outputs=store_outputs, DEBUG=DEBUG)
+        super(Cisco_IOS_Cli, self).__init__(
+            ip=ip, username=username, password=password,
+            parser=parser if isinstance(parser, CiscoIOSParser) else CiscoIOSParser(),
+            secret=secret, enable=enable, store_outputs=store_outputs,
+            DEBUG=DEBUG, verbosity=verbosity, netmiko_params=netmiko_params
+        )
         self.prompt_end = [">", "#"]
         self.ssh_method = "cisco_ios"
         self.telnet_method = "cisco_ios_telnet"
@@ -68,6 +78,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
     def get_neighbors(self, output_filter=None, strip_domain=False):
         """
         Function to get neighbors of the device with possibility to filter neighbors
+
         :param output_filter: (Filter) Instance of Filter class, used to filter neighbors, such as only "Switch" or "Router"
         :param strip_domain: (bool) Whether or not to strip domain names and leave only device hostname
         :return: List of dictionaries
@@ -77,7 +88,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
         if not raw_output:
             return []
         if self.store_outputs:
-            self.store_raw_output(command=command, raw_output=raw_output)
+            self.save_output(filename=command, data=raw_output)
         parsed_output = self.parser.autoparse(text=raw_output, command=command)
         if output_filter:
             parsed_output = output_filter.universal_cleanup(data=parsed_output)
@@ -90,6 +101,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
     def get_trunks(self, expand_vlan_groups=False):
         """
         Custom parsing function for output of "show interfaces trunk"
+
         :param expand_vlan_groups: (bool) Whether or not to expand VLAN ranges, for example '100-102' -> [100, 101, 102]
         :return: List of dictionaries
         """
@@ -99,7 +111,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
             self.data["trunk_interfaces"] = []
             return []
         if self.store_outputs:
-            self.store_raw_output(command=command, raw_output=raw_output)
+            self.save_output(filename=command, data=raw_output)
         parsed_output = self.parser.trunk_parser(text=raw_output)
         if expand_vlan_groups:
             for trunk in parsed_output:
@@ -127,7 +139,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
         command = "show running-config"
         raw_output = self._send_command(command=command)
         if self.store_outputs:
-            self.store_raw_output(command=command, raw_output=raw_output)
+            self.save_output(filename=command, data=raw_output)
         return raw_output
 
     def get_auth_sessions(self):
@@ -144,7 +156,10 @@ class Cisco_IOS_Cli(CliBaseConnection):
         :return:
         """
 
-        commands = ["show authentication sessions interface {}".format(interface), "show authentication sessions interface {} detail".format(interface)]
+        commands = [
+            "show authentication sessions interface {}".format(interface),
+            "show authentication sessions interface {} detail".format(interface)
+        ]
         output = self._command_handler(commands=commands)
         if output:
             return self.parser.autoparse(command="show authentication sessions interface", text=output)

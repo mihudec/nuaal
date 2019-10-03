@@ -1,3 +1,11 @@
+Version 0.1.10
+
+# Changed function for writing outputs to files, now utilizes pathlib
+# Changed function nuaal.utils.get_logger to accept verbosity parameter - this parameter has been implemented to most of the classes
+# Fixed Neighbor_Discovery potential infinite loop, added dept parameter to limit scope of discovery
+# Added optional parameter netmiko_params to classes using Netmiko Connections - this allows passing netmiko parameters to Netmiko's ConnectHandler
+# Added some parsing regexes
+
 Version 0.1.5
 
 # IMPORTANT: Changed structure of PatternsLib - Regular expressions are no longer stored in Python class, but in separate JSON files inside nuaal/data/patterns/<device-type>,

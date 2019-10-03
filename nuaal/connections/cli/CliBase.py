@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import *
 import json
-from nuaal.utils import get_logger, check_path
+from nuaal.utils import get_logger, check_path, write_output
 from nuaal.utils import Filter
 from nuaal.definitions import DATA_PATH, OUTPUT_PATH
 import timeit
@@ -9,7 +9,10 @@ import os
 
 class CliBaseConnection(object):
     """
-    This class represents the base object, from which other (vendor specific classes) inherit. This class is basically a wrapper class around Kirk Byers' excellent library, netmiko. Even though the netmiko library already provides pretty straightforward and easy way to access network devices, the CliBaseConnection tries to handle multiple events which can arise, such as:
+    This class represents the base object, from which other (vendor specific classes) inherit.
+    This class is basically a wrapper class around Kirk Byers' excellent library, netmiko.
+    Even though the netmiko library already provides pretty straightforward and easy way to access network devices,
+    the CliBaseConnection tries to handle multiple events which can arise, such as:
 
     - Device is unreachable
     - Fallback to Telnet if SSH is not supported by device (and vice-versa)
@@ -17,13 +20,18 @@ class CliBaseConnection(object):
 
     Apart from the 'send command, receive output'  this class also performs the parsing and storing outputs.
     """
-    def __init__(self, ip=None, username=None, password=None, parser=None, secret=None, enable=False, store_outputs=False, DEBUG=False):
+    def __init__(
+            self, ip=None, username=None, password=None,
+            parser=None, secret=None, enable=False, store_outputs=False,
+            DEBUG=False, verbosity=3, netmiko_params={}
+    ):
         """
 
         :param ip: (str) IP address or FQDN of the device you're trying to connect to
         :param username: (str) Username used for login to device
         :param password: (str) Password used for login to device
-        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs. By default, new instance of ParserModule is created.
+        :param parser: (ParserModule) Instance of ParserModule class which will be used for parsing of text outputs.
+        By default, new instance of ParserModule is created.
         :param secret: (str) Enable secret for accessing Privileged EXEC Mode
         :param enable: (bool) Whether or not enable Privileged EXEC Mode on device
         :param store_outputs: (bool) Whether or not store text outputs of sent commands
@@ -38,6 +46,7 @@ class CliBaseConnection(object):
         self.secondary_method = None
         self.secret = secret
         self.enable = enable
+        self.netmiko_params = netmiko_params if isinstance(netmiko_params, dict) else {}
         self.provider = None
         self._get_provider()
         self.store_outputs = store_outputs
@@ -45,11 +54,10 @@ class CliBaseConnection(object):
         self.is_alive = False
         self.config = False
         self.prompt_end = [">", "#"] # The first item is for 'not-enabled mode', the second is for 'Privileged EXEC Mode'
-        self.logger = get_logger(name="Connection-{}".format(self.ip), DEBUG=DEBUG)
+        self.logger = get_logger(name="Connection-{}".format(self.ip), DEBUG=DEBUG, verbosity=verbosity)
         self.parser = parser
         self.connected = False
         self.failures = []
-
         self.outputs = {}
         self.data = {"ipAddress": self.ip}
         self.device = None
@@ -70,10 +78,13 @@ class CliBaseConnection(object):
         :return: ``None``
         """
         try:
-            self.store_raw_output(self.data["hostname"], json.dumps(self.data, indent=2), ext="json")
+            self.save_output(filename=self.data["hostname"], data=self.data)
         except KeyError:
-            self.logger.error(msg="Could not store data of device {}.".format(self.ip))
-        self.disconnect()
+            self.logger.error(msg="Could not store data of device {}. Reason: Could not retrieve any data".format(self.ip))
+        except Exception as e:
+            self.logger.error(msg="Could not store data of device {}. Reason: Unhandled Exception: {}".format(self.ip, repr(e)))
+        finally:
+            self.disconnect()
 
     def _get_provider(self):
         """
@@ -99,7 +110,7 @@ class CliBaseConnection(object):
         self.provider["device_type"] = self.telnet_method
         self.logger.debug(msg="Trying to connect to device {} via Telnet...".format(self.ip))
         try:
-            device = ConnectHandler(**self.provider)
+            device = ConnectHandler(**self.provider, **self.netmiko_params)
         except TimeoutError:
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: TimeOut.".format(self.ip, self.telnet_method))
             self.failures.append("telnet_connection_timeout")
@@ -128,7 +139,7 @@ class CliBaseConnection(object):
         self.logger.debug(msg="Trying to connect to device {} via SSH...".format(self.ip))
         self.provider["device_type"] = self.ssh_method
         try:
-            device = ConnectHandler(**self.provider)
+            device = ConnectHandler(**self.provider, **self.netmiko_params)
         except NetMikoTimeoutException:
             self.failures.append("ssh_connection_timeout")
             self.logger.error(msg="Could not connect to '{}' using '{}'. Reason: Timeout.".format(self.ip, self.ssh_method))
@@ -259,6 +270,8 @@ class CliBaseConnection(object):
         except Exception as e:
             self.logger.error(msg="Unhandled exception occurred when trying to send command. Exception: {}".format(repr(e)))
         finally:
+            if output and self.store_outputs:
+                self.save_output(filename=command, data=output)
             return output
 
     def _send_commands(self, commands):
@@ -308,7 +321,7 @@ class CliBaseConnection(object):
                 used_command = command
                 break
         if self.store_outputs and command_output != "":
-            self.store_raw_output(command=used_command, raw_output=command_output)
+            self.save_output(filename=used_command, data=command_output)
         if command_output == "" or command_output is None:
             self.logger.error(msg="Device {} did not return output for any of the commands: {}".format(self.ip, commands))
             if return_raw:
@@ -341,11 +354,24 @@ class CliBaseConnection(object):
         :param str ext: Extension of the file, ".txt" by default.
         :return: ``None``
         """
+        folder_name = str(self.ip)
+        if "hostname" in self.data.keys():
+            folder_name = "{}_{}".format(self.ip, self.data["hostname"])
+        write_output(path=folder_name, filename=command.replace(" ", "_"), data=raw_output, logger=self.logger)
+        """
         path = os.path.join(OUTPUT_PATH, self.ip)
         path = check_path(path)
         if path:
             with open(os.path.join(path, "{}.{}".format(command, ext)), mode="w+") as f:
                 f.write(raw_output)
+        """
+
+    def save_output(self, filename, data):
+        folder_name = str(self.ip)
+        if "hostname" in self.data.keys():
+            folder_name = "{}_{}".format(self.ip, self.data["hostname"])
+        write_output(path=folder_name, filename=filename.replace(" ", "_"), data=data, logger=self.logger)
+
 
     def check_connection(self):
         """

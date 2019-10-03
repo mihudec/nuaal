@@ -45,6 +45,10 @@
       {
         "pattern": "Port\\sID\\s\\(outgoing\\sport\\):\\s(?P<remoteInterface>[A-Za-z]+\\d+(?:\\/\\d+)*)",
         "flags": 0
+      },
+      {
+        "pattern": "Port\\sID\\s\\(outgoing\\sport\\):\\s(?P<remoteInterface>\\S+)",
+        "flags": 0
       }
     ],
     "version": [

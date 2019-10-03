@@ -5,7 +5,9 @@ import json
 import re
 import timeit
 
+
 class PatternsLib:
+
     def __init__(self, device_type, DEBUG=False):
         start_time = timeit.default_timer()
         self.device_type = device_type
@@ -14,7 +16,6 @@ class PatternsLib:
         self._compile_all()
         total_time = round((timeit.default_timer() - start_time) * 1000, 3)
         self.logger.debug(msg="Initialization of PatternsLib took {} ms.".format(total_time))
-
 
     def _dir_modules(self):
         path = check_path(os.path.abspath(os.path.join(DATA_PATH, "patterns", self.device_type)))

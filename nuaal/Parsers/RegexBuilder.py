@@ -2,7 +2,6 @@ import re
 import json
 from nuaal.definitions import DATA_PATH
 from nuaal.utils import get_logger
-from nuaal.Parsers.PatternsLib_Old import Patterns
 
 class RegexBuilder:
     def __init__(self, device_type, DEBUG=False):

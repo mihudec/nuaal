@@ -3,10 +3,12 @@ import sys
 import os
 import re
 import collections
-from nuaal.definitions import LOG_PATH, ROOT_DIR
+import pathlib
+import json
+from nuaal.definitions import LOG_PATH, ROOT_DIR, OUTPUT_PATH
 
 
-def get_logger(name, DEBUG=False, handle=["stderr"]):
+def get_logger(name, DEBUG=False, verbosity=1, handle=["stderr"]):
     """
     This function provides common logging facility by creating instances of `loggers` from python standard ``logging`` library.
 
@@ -15,6 +17,16 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
     :param list handle: Changing value of this parameter is not recommended.
     :return: Instance of logger object
     """
+    verbosity_map = {
+        1: logging.CRITICAL,
+        2: logging.ERROR,
+        3: logging.WARNING,
+        4: logging.INFO,
+        5: logging.DEBUG
+    }
+    if DEBUG:
+        verbosity = 4
+
     logfile_path = os.path.join(check_path(LOG_PATH), "log.txt")
     formatter = logging.Formatter("[%(asctime)s] : %(name)s - %(levelname)s - %(message)s")
     stdout_handler = logging.StreamHandler(sys.stdout)
@@ -32,14 +44,16 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
 
     for handler in handlers:
         handler.setFormatter(formatter)
-        if DEBUG:
-            handler.setLevel(logging.DEBUG)
-        else:
+        try:
+            handler.setLevel(verbosity_map[verbosity])
+        except KeyError:
             handler.setLevel(logging.INFO)
 
     root = logging.getLogger(name)
-    root.setLevel(logging.DEBUG)
     root.propagate = 0
+    root.setLevel(logging.NOTSET)
+    if verbosity == 0:
+        root.disabled = True
     has_handler = {"file_handler": False, "stderr_handler": False, "stdout_handler": False}
     for handler in root.handlers:
         if isinstance(handler, logging.FileHandler):
@@ -50,6 +64,7 @@ def get_logger(name, DEBUG=False, handle=["stderr"]):
         root.addHandler(file_handler)
     if not has_handler["stderr_handler"]:
         root.addHandler(stderr_handler)
+
 
 
     return root
@@ -218,6 +233,34 @@ def update_dict(orig_dict, update_dict):
         else:
             orig_dict[k] = v
     return orig_dict
+
+
+def write_output(path, filename, data, logger=None):
+    extension = ""
+    data_type = type(data)
+    if data_type is str:
+        extension = ".txt"
+    elif data_type in [dict, list]:
+        extension = ".json"
+    try:
+        output_path = pathlib.Path(OUTPUT_PATH).joinpath(path)
+        output_path.mkdir(parents=True, exist_ok=True)
+        output_path = output_path.joinpath("{}{}".format(filename, extension))
+        with output_path.open(mode="w") as f:
+            if data_type in [dict, list]:
+                json.dump(obj=data, fp=f, indent=2)
+            else:
+                f.write(str(data))
+    except PermissionError:
+        if logger:
+            logger.error(msg="Could not write discovery results to file ('{}'). Reason: Permission Denied.".format(output_path))
+        else:
+            pass
+    except Exception:
+        if logger:
+            logger.error(msg="Could not write discovery results to file ('{}'). Reason: Unhandled Exception: {}.".format(output_path, repr(e)))
+        else:
+            pass
 
 
 def check_path(path, create_missing=True):

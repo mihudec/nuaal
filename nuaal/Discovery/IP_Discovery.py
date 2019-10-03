@@ -8,15 +8,16 @@ class IP_Discovery:
     """
     This function performs discovery of the network devices based on their IP addresses.
     """
-    def __init__(self, provider, DEBUG=False):
+    def __init__(self, provider, DEBUG=False, verbosity=3, netmiko_params={}):
         """
 
         :param dict provider: Provider dictionary containing information for creating connection object, such as credentials
         :param bool DEBUG: Enables debugging output
         """
         self.DEBUG = DEBUG
-        self.logger = get_logger(name="IP_Discovery", DEBUG=self.DEBUG)
+        self.logger = get_logger(name="IP_Discovery", DEBUG=self.DEBUG, verbosity=verbosity)
         self.provider = provider
+        self.netmiko_params = netmiko_params
         self.data = None
         self.topology = None
 
@@ -27,7 +28,7 @@ class IP_Discovery:
         :param list ips: List of IP addresses for discovery
         :return: ``None``
         """
-        runner = CliMultiRunner(provider=self.provider, ips=ips, workers=6)
+        runner = CliMultiRunner(provider=self.provider, ips=ips, workers=6, netmiko_params=self.netmiko_params)
         runner.actions = ["get_neighbors"]
         runner.run()
         self.data = runner.data

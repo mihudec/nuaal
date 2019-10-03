@@ -8,7 +8,7 @@ class CliMultiRunner(object):
     """
     This class allows running set of CLI commands on multiple devices in parallel, using Worker threads
     """
-    def __init__(self, provider, ips, actions=None, workers=4, DEBUG=False):
+    def __init__(self, provider, ips, actions=None, workers=4, DEBUG=False, verbosity=3, netmiko_params={}):
         """
 
         :param dict provider: Dictionary with necessary info for creating connection
@@ -18,10 +18,11 @@ class CliMultiRunner(object):
         :param bool DEBUG: Enables/disables debugging output
         """
         self.provider = provider
+        self.netmiko_params = netmiko_params
         self.ips = ips
         self.workers = workers
         self.DEBUG = DEBUG
-        self.logger = get_logger(name="CliMultiRunner", DEBUG=self.DEBUG)
+        self.logger = get_logger(name="CliMultiRunner", DEBUG=self.DEBUG, verbosity=verbosity)
         self.queue = queue.Queue()
         self.threads = []
         self.actions = actions if isinstance(actions, list) else []
@@ -53,7 +54,7 @@ class CliMultiRunner(object):
                 self.logger.info(msg="Queue Empty")
                 break
             try:
-                with Cisco_IOS_Cli(**provider) as device:
+                with Cisco_IOS_Cli(**provider, netmiko_params=self.netmiko_params) as device:
                     if "get_vlans" in self.actions:
                         device.get_vlans()
                     if "get_neighbors" in self.actions:

@@ -1,12 +1,12 @@
-from nuaal.utils import get_logger
-from nuaal.utils import Filter
+from nuaal.utils import get_logger, write_output, Filter
 from nuaal.connections.cli import Cisco_IOS_Cli
 from nuaal.discovery.Topology import CliTopology
 import threading
-from nuaal.definitions import DATA_PATH
+from nuaal.definitions import OUTPUT_PATH
 import json
 import queue
 import timeit
+import pathlib
 from datetime import datetime
 
 
@@ -16,26 +16,33 @@ class Neighbor_Discovery:
     Given IP address of initial device (or 'seed device') it tries to crawl trough ne network and discover all supported devices.
     CDP must be enabled on devices.
     """
-    def __init__(self, provider, DEBUG=False):
+    def __init__(self, provider, max_depth=16, workers=4, verbosity=1, DEBUG=False, netmiko_params={}):
         """
 
         :param dict provider: Provider dictionary containing information for creating connection object, such as credentials
+        :param int max_depth: Maximum depth of discovery in terms of distance (hops) from seed device. Eg. max_depth=1 means,
+        that the discovery will stop after direct neighbors of seed have been visited.
         :param bool DEBUG: Enables/disables debugging output
         """
         self.DEBUG = DEBUG
-        self.logger = get_logger(name="NeighborDiscovery", DEBUG=self.DEBUG)
+        self.logger = get_logger(name="NeighborDiscovery", DEBUG=self.DEBUG, verbosity=verbosity)
         self.provider = provider
+        self.netmiko_params = netmiko_params
         self.data = {}
         self.topology = None
         self.visited = []
         self.discovered = []
         self.to_process = []
         self.to_visit = []
-        self.workers = 4
+        self.failed = []
+        self.workers = workers
         self.queue = queue.Queue()
         self.threads = []
         self.current_id = 0
-        self.neighbor_filter = Filter(required={"capabilities": ["Router", "Switch"]}, exact_match=False)
+        self.current_depth = 0
+        self.max_depth = max_depth
+        self.discover_filter = Filter(required={"capabilities": ["Router", "Switch"], "vendor": ["Cisco"]}, exact_match=False)
+        self.neighbor_filter = Filter(excluded={"capabilities": ["Host"]}, exact_match=False)
 
     def _gen_device_id(self, ip, hostname=None):
         """
@@ -68,11 +75,12 @@ class Neighbor_Discovery:
         if hostname:
             device_id = self._gen_device_id(ip=ip, hostname=hostname)
         device_neighbors = []
-        self.logger.info(msg="Discovering device {}".format(device_id))
-        with Cisco_IOS_Cli(ip=ip, **self.provider) as device:
+        self.logger.info(msg="Visiting device {}".format(device_id))
+        with Cisco_IOS_Cli(ip=ip, **self.provider, netmiko_params=self.netmiko_params) as device:
             if not device.device:
                 self.logger.error(msg="Could not connect to device {}. Failed after {} seconds.".format(device_id, timeit.default_timer() - start_time))
                 self.to_process.append({device_id: []})
+                self.failed.append(device_id)
             else:
                 device_id = self._gen_device_id(ip=ip, hostname=device.data["hostname"])
                 if device_id not in self.discovered:
@@ -85,14 +93,15 @@ class Neighbor_Discovery:
                 finally:
                     if {device_id: device_neighbors} in self.to_process:
                         print("THIS SHOULD NOT HAPPEN!")
+                        self.logger.warning(msg="Revisited device: {}".format(str({device_id: device_neighbors})))
                     self.logger.debug(msg="Storing results from {} for later processing. Time: {} seconds.".format(device_id, timeit.default_timer() - start_time))
                     self.to_process.append({device_id: device_neighbors})
-                    try:
-                        self.to_visit.remove({device_id: {"ip": ip, "hostname": hostname}})
-                    except ValueError:
-                        self.logger.debug(msg="Could not remove device {} from self.to_visit. Item not in list.".format(device_id))
-                    except Exception as e:
-                        print(repr(e))
+            try:
+                self.to_visit.remove({device_id: {"ip": ip, "hostname": hostname}})
+            except ValueError:
+                self.logger.debug(msg="Could not remove device {} from self.to_visit. Item not in list.".format(device_id))
+            except Exception as e:
+                print(repr(e))
 
     def process_neighbors(self):
         """
@@ -112,7 +121,7 @@ class Neighbor_Discovery:
                     self.logger.debug(msg="Device {} has been visited.".format(device_id))
                 self.logger.info(msg="Processing {} neighbor(s) of device {}".format(len(neighbors), device_id))
                 self.data[device_id] = neighbors
-                for neighbor in neighbors:
+                for neighbor in self.discover_filter.universal_cleanup(data=neighbors):
                     neighbor_id = self._gen_device_id(ip= neighbor["ipAddress"], hostname=neighbor["hostname"])
                     if neighbor_id in self.visited:
                         self.logger.info(msg="Neighbor {} of device {} has already been visited.".format(neighbor_id, device_id))
@@ -154,8 +163,15 @@ class Neighbor_Discovery:
         self.get_neighbors(ip=ip)
         self.process_neighbors()
         while len(self.to_visit) > 0:
+            self.current_depth += 1
+            self.logger.info("Current Discovery Depth: {} (Max: {})".format(self.current_depth, self.max_depth))
+            if self.current_depth > self.max_depth:
+                self.logger.info("Stopping Discovery, Max Depth Exceeded")
+                break
+            current_hosts = [list(x.keys())[0] for x in self.to_visit]
+            self.logger.info("Nodes to be visited in this round: {}".format(current_hosts))
             try:
-                for i in range(self.workers):
+                for i in range(min([self.workers, len(self.to_visit)])):
                     t = threading.Thread(name="DiscoveryThread-{}".format(i), target=self.worker)
                     self.threads.append(t)
                 [t.start() for t in self.threads]
@@ -167,13 +183,12 @@ class Neighbor_Discovery:
                 break
             finally:
                 self.process_neighbors()
-        try:
-            with open("{}\discovery\{}-{}.json".format(DATA_PATH, ip, str(datetime.now()).replace(':', '-')), mode="w") as f:
-                json.dump(self.data, f, indent=2)
-        except FileNotFoundError:
-            self.logger.error(msg="Could not write discovery results to file. Reason: File does not exist.")
-        topo = CliTopology()
-        topo.build_topology(self.data)
-        self.topology = topo.topology
 
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = "{}-{}".format(ip, timestamp)
+        write_output(path="discovery", filename=filename, data=self.data, logger=self.logger)
+        self.topology = CliTopology()
+        self.topology.build_topology(self.data)
+        filename = "{}_topology-{}".format(ip, timestamp)
+        write_output(path="discovery", filename=filename, data=self.topology.topology, logger=self.logger)
 
