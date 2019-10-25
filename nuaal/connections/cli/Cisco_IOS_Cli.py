@@ -61,6 +61,9 @@ class Cisco_IOS_Cli(CliBaseConnection):
             "get_interfaces": [
                 "show interfaces"
             ],
+            "get_interfaces_status": [
+                "show interfaces status"
+            ],
             "get_portchannels": [
                 "show etherchannel summary"
             ],
@@ -129,6 +132,12 @@ class Cisco_IOS_Cli(CliBaseConnection):
         :return: List of dictionaries.
         """
         return self._command_handler(action="get_mac_address_table")
+
+    def get_interfaces_status(self):
+        return self._command_handler(action="get_interfaces_status")
+
+    def get_portchannels(self):
+        return self._command_handler(action="get_portchannels")
 
     def get_config(self):
         """

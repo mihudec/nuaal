@@ -11,7 +11,7 @@ class ParserModule(object):
     This class provides necessary functions for parsing plaintext output of network devices. Uses patterns from ``PatternsLib`` for specified device type.
     The outputs are usually lists of dictionaries, which contain keys based on name groups of used regex patterns.
     """
-    def __init__(self, device_type, DEBUG=False):
+    def __init__(self, device_type, verbosity=4, DEBUG=False):
         """
 
         :param str device_type: String representation of device type, such as `cisco_ios`
@@ -19,7 +19,7 @@ class ParserModule(object):
         """
         self.device_type = device_type
         self.DEBUG = DEBUG
-        self.logger = get_logger(name="ParserModule-{}".format(device_type), DEBUG=DEBUG)
+        self.logger = get_logger(name="ParserModule-{}".format(device_type), verbosity=verbosity, DEBUG=DEBUG)
         self.logger.info(msg="Creating ParserModule Object for {}".format(device_type))
         self.patterns = PatternsLib(device_type=device_type, DEBUG=DEBUG).compiled_patterns
 

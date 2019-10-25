@@ -28,14 +28,9 @@ class CliTopology(Topology):
 
     def build_topology(self, data):
         if isinstance(data, list):
-            new_data = {}
-            for device in data:
-                try:
-                    new_data[device["hostname"]] = device["neighbors"]
-                except KeyError:
-                    self.logger.error(msg="Device data do not contain required keys.")
-                    continue
-            data = new_data
+            data = {x["hostname"]: x["neighbors"] for x in data}
+        elif isinstance(data, dict):
+            data = {k: data[k]["neighbors"] for k in data.keys()}
         
         self.logger.info(msg="Building topology based on {} visited devices.".format(len(data)))
         all_nodes = []

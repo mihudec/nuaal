@@ -8,10 +8,10 @@ import timeit
 
 class PatternsLib:
 
-    def __init__(self, device_type, DEBUG=False):
+    def __init__(self, device_type, verbosity=4, DEBUG=False):
         start_time = timeit.default_timer()
         self.device_type = device_type
-        self.logger = get_logger(name="PatternsLib_{}".format(self.device_type), DEBUG=DEBUG)
+        self.logger = get_logger(name="PatternsLib_{}".format(self.device_type), verbosity=verbosity, DEBUG=DEBUG)
         self.compiled_patterns = {}
         self._compile_all()
         total_time = round((timeit.default_timer() - start_time) * 1000, 3)

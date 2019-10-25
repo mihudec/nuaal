@@ -8,7 +8,7 @@ import json
 from nuaal.definitions import LOG_PATH, ROOT_DIR, OUTPUT_PATH
 
 
-def get_logger(name, DEBUG=False, verbosity=1, handle=["stderr"]):
+def get_logger(name, DEBUG=False, verbosity=4, handle=["stderr"]):
     """
     This function provides common logging facility by creating instances of `loggers` from python standard ``logging`` library.
 
@@ -25,7 +25,7 @@ def get_logger(name, DEBUG=False, verbosity=1, handle=["stderr"]):
         5: logging.DEBUG
     }
     if DEBUG:
-        verbosity = 4
+        verbosity = 5
 
     logfile_path = os.path.join(check_path(LOG_PATH), "log.txt")
     formatter = logging.Formatter("[%(asctime)s] : %(name)s - %(levelname)s - %(message)s")
@@ -51,7 +51,7 @@ def get_logger(name, DEBUG=False, verbosity=1, handle=["stderr"]):
 
     root = logging.getLogger(name)
     root.propagate = 0
-    root.setLevel(logging.NOTSET)
+    root.setLevel(logging.DEBUG)
     if verbosity == 0:
         root.disabled = True
     has_handler = {"file_handler": False, "stderr_handler": False, "stdout_handler": False}
@@ -64,8 +64,6 @@ def get_logger(name, DEBUG=False, verbosity=1, handle=["stderr"]):
         root.addHandler(file_handler)
     if not has_handler["stderr_handler"]:
         root.addHandler(stderr_handler)
-
-
 
     return root
 

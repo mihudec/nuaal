@@ -6,8 +6,8 @@ class CiscoIOSParser(ParserModule):
     """
     Child class of `ParserModule` designed for `cisco_ios` device type.
     """
-    def __init__(self, DEBUG=False):
-        super(CiscoIOSParser, self).__init__(device_type="cisco_ios", DEBUG=DEBUG)
+    def __init__(self, verbosity=4, DEBUG=False):
+        super(CiscoIOSParser, self).__init__(device_type="cisco_ios", verbosity=verbosity, DEBUG=DEBUG)
 
     def vlanGroup_check(self, vlanGroup):
         if isinstance(vlanGroup, list):

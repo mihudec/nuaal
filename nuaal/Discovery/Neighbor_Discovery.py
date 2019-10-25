@@ -88,6 +88,8 @@ class Neighbor_Discovery:
                     self.discovered.append(device_id)
                 try:
                     device_neighbors = device.get_neighbors(output_filter=self.neighbor_filter, strip_domain=True)
+                    self.custom_commands(device=device)
+                    self.data[device_id] = device.data
                 except Exception as e:
                     self.logger.error(msg="Could not retrieve neighbors of {}. Reason: {}. {} seconds.".format(device_id, repr(e), timeit.default_timer() - start_time))
                 finally:
@@ -102,6 +104,9 @@ class Neighbor_Discovery:
                 self.logger.debug(msg="Could not remove device {} from self.to_visit. Item not in list.".format(device_id))
             except Exception as e:
                 print(repr(e))
+
+    def custom_commands(self, device):
+        pass
 
     def process_neighbors(self):
         """
@@ -120,7 +125,7 @@ class Neighbor_Discovery:
                     self.visited.append(device_id)
                     self.logger.debug(msg="Device {} has been visited.".format(device_id))
                 self.logger.info(msg="Processing {} neighbor(s) of device {}".format(len(neighbors), device_id))
-                self.data[device_id] = neighbors
+                #self.data[device_id] = neighbors
                 for neighbor in self.discover_filter.universal_cleanup(data=neighbors):
                     neighbor_id = self._gen_device_id(ip= neighbor["ipAddress"], hostname=neighbor["hostname"])
                     if neighbor_id in self.visited:
