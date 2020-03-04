@@ -336,7 +336,8 @@ class CliBaseConnection(object):
                 parsed_output = self.parser.autoparse(command=commands[0], text=command_output)
                 if isinstance(out_filter, Filter):
                     parsed_output = out_filter.universal_cleanup(data=parsed_output)
-                self.data[action[4:]] = parsed_output
+                if action is not None:
+                    self.data[action[4:]] = parsed_output
             except Exception as e:
                 print(repr(e))
                 self.logger.error(msg="Device {}: Failed to parse output of command '{}'".format(self.ip, used_command))

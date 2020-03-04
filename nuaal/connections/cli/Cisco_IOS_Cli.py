@@ -156,20 +156,28 @@ class Cisco_IOS_Cli(CliBaseConnection):
 
         :return:
         """
-        pass
+        commands = ["show authentication sessions"]
+        return self._command_handler(commands=commands)
 
-    def get_auth_sessions_intf(self, interface=None):
+
+
+    def get_auth_sessions_intf(self, interface: str):
         """
+        Function for retrieving 802.1X Auth Session on an interface
 
         :param str interface: Name of the interface to retrieve auth session from
         :return:
         """
 
+        if interface is None:
+            self.logger.error("This function needs interface parameter to be specified.")
+            return []
+
         commands = [
-            "show authentication sessions interface {}".format(interface),
-            "show authentication sessions interface {} detail".format(interface)
+            "show authentication sessions interface {} detail".format(interface),
+            "show authentication sessions interface {}".format(interface)
         ]
-        output = self._command_handler(commands=commands)
+        output = self._command_handler(commands=commands, return_raw=True)
         if output:
             return self.parser.autoparse(command="show authentication sessions interface", text=output)
         else:
