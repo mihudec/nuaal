@@ -88,8 +88,12 @@ class ExcelWriter(Writer):
                         row.append(str(element))
                     else:
                         row.append(element)
+
                 worksheet.write_row(row_pointer, column_pointer, row)
                 row_pointer += 1
+
+            if headers:
+                worksheet.autofilter(0, 0, row_pointer-1, len(headers)-1)
 
             self.logger.info(msg="{} entries writen.".format(len(data)))
 

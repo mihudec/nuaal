@@ -8,7 +8,7 @@ import json
 from nuaal.definitions import LOG_PATH, ROOT_DIR, OUTPUT_PATH
 
 
-def get_logger(name, DEBUG=False, verbosity=4, handle=["stderr"]):
+def get_logger(name, DEBUG=False, verbosity=4, handle=["stderr"], with_threads=False):
     """
     This function provides common logging facility by creating instances of `loggers` from python standard ``logging`` library.
 
@@ -27,8 +27,13 @@ def get_logger(name, DEBUG=False, verbosity=4, handle=["stderr"]):
     if DEBUG:
         verbosity = 5
 
+    threading_formatter_string = '[%(asctime)s] [%(levelname)s]\t[%(name)s][%(threadName)s][%(module)s][%(funcName)s]\t%(message)s'
+    single_formatter_string = '[%(asctime)s] [%(levelname)s]\t[%(name)s][%(module)s][%(funcName)s]\t%(message)s'
+
+    formatter_string = threading_formatter_string if with_threads else single_formatter_string
+
     logfile_path = os.path.join(check_path(LOG_PATH), "log.txt")
-    formatter = logging.Formatter("[%(asctime)s] : %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(formatter_string)
     stdout_handler = logging.StreamHandler(sys.stdout)
     stderr_handler = logging.StreamHandler(sys.stderr)
     file_handler = logging.FileHandler(logfile_path)

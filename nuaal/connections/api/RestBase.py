@@ -86,12 +86,13 @@ class RestBase(object):
         response = None
         try:
             self.logger.debug(msg="_GET: Path: '{}', Params: '{}'".format(path, params))
+            url = self.path_base + path
             if params:
-                response = requests.get(url=self.path_base + path, **self.common_headers, params=params)
+                response = requests.get(url=url, **self.common_headers, params=params)
             else:
-                response = requests.get(url=self.path_base + path, **self.common_headers)
+                response = requests.get(url=url, **self.common_headers)
         except ConnectionError:
-            self.logger.critical(msg="_GET: Could not connect to {}. Wrong address?".format(self.url))
+            self.logger.critical(msg="_GET: Could not connect to {}. Wrong address?".format(url))
         except Exception as e:
             self.logger.error(msg="_GET: Encountered unhandled Exception: {}".format(repr(e)))
         finally:
