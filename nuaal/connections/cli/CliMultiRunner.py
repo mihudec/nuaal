@@ -1,5 +1,6 @@
 from nuaal.utils import get_logger
 from nuaal.connections.cli import Cisco_IOS_Cli
+from nuaal.Parsers import CiscoIOSParser
 import queue
 import threading
 import time
