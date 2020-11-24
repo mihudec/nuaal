@@ -4,7 +4,7 @@ from nuaal.utils import get_logger
 from nuaal.Parsers import CiscoIOSParser
 import json
 
-class IP_Discovery:
+class IP_Discovery(object):
     """
     This function performs discovery of the network devices based on their IP addresses.
     """

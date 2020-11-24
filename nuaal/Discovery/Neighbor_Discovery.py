@@ -10,7 +10,7 @@ import pathlib
 from datetime import datetime
 
 
-class Neighbor_Discovery:
+class Neighbor_Discovery(object):
     """
     This class provides a simple way to perform network discovery based on CDP neighbors of device.
     Given IP address of initial device (or 'seed device') it tries to crawl trough ne network and discover all supported devices.

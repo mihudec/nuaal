@@ -149,6 +149,7 @@ class Cisco_IOS_Cli(CliBaseConnection):
         raw_output = self._send_command(command=command)
         if self.store_outputs:
             self.save_output(filename=command, data=raw_output)
+        self.data["running_config"] = raw_output
         return raw_output
 
     def get_auth_sessions(self):

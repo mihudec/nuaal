@@ -26,9 +26,9 @@ author = 'nuaal'
 add_module_names = False
 
 # The short X.Y version
-version = '0.1.13'
+version = '0.1.14'
 # The full version, including alpha/beta/rc tags
-release = '0.1.13-beta'
+release = '0.1.14-beta'
 
 
 # -- General configuration ---------------------------------------------------
