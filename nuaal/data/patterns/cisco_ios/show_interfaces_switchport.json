@@ -1,0 +1,175 @@
+{
+  "command": "show interfaces switchport",
+  "level0": [
+    {
+      "pattern": "Name:.*\\n(?:^.*(?:\\n)?)+?(?=^Name|\\Z)",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "name": [
+      {
+        "pattern": "^Name:\\s+(?P<name>.*?)$",
+        "flags": 40
+      }
+    ],
+    "switchport": [
+      {
+        "pattern": "^Switchport:\\s+(?P<switchport>.*?)$",
+        "flags": 40
+      }
+    ],
+    "mode_admin": [
+      {
+        "pattern": "^Administrative Mode:\\s+(?P<mode_administrative>.*?)$",
+        "flags": 40
+      }
+    ],
+    "mode_oper": [
+      {
+        "pattern": "^Operational Mode:\\s+(?P<mode_operational>\\S+)$",
+        "flags": 40
+      },
+      {
+        "pattern": "^Operational Mode:\\s+(?P<mode_operational>\\S+) \\(member of bundle (?P<member_of>\\S+)\\)$",
+        "flags": 40
+      }
+    ],
+     "trunk_encapsulation_administrative": [
+      {
+        "pattern": "^Administrative Trunking Encapsulation:\\s+(?P<trunk_encap_administrative>.*?)$",
+        "flags": 40
+      }
+    ],
+    "trunk_encapsulation_operational": [
+      {
+        "pattern": "^Administrative Trunking Encapsulation:\\s+(?P<trunk_encap_operational>.*?)$",
+        "flags": 40
+      }
+    ],
+    "trunk_negotiation": [
+      {
+        "pattern": "^Negotiation of Trunking:\\s+(?P<trunk_negotiation>.*?)$",
+        "flags": 40
+      }
+    ],
+    "access_vlan": [
+      {
+        "pattern": "^Access Mode VLAN:\\s+(?P<access_vlan_id>\\d+)\\s\\((?P<access_vlan_name>\\S+)\\)$",
+        "flags": 40
+      }
+    ],
+    "trunk_native_vlan": [
+      {
+        "pattern": "^Access Mode VLAN:\\s+(?P<trunk_native_vlan_id>\\d+)\\s\\((?P<trunk_native_vlan_name>\\S+)\\)$",
+        "flags": 40
+      }
+    ],
+    "native_vlan_tagging": [
+      {
+        "pattern": "^Administrative Native VLAN tagging:\\s+(?P<trunk_native_vlan_tagging_administrative>.*?)$",
+        "flags": 40
+      }
+    ],
+    "voice_vlan": [
+      {
+        "pattern": "^Voice VLAN:\\s+(?P<voice_vlan_id>\\d+)\\s\\((?P<voice_vlan_name>\\S+)\\)$",
+        "flags": 40
+      },
+      {
+        "pattern": "^Voice VLAN:\\s+(?P<voice_vlan_id>\\S+)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_host_association": [
+      {
+        "pattern": "^Administrative private-vlan host-association:\\s+(?P<private_vlan_administrative_host_association>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_mapping": [
+      {
+        "pattern": "^Administrative private-vlan mapping:\\s+(?P<private_vlan_administrative_mapping>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_native_vlan": [
+      {
+        "pattern": "^Administrative private-vlan trunk native VLAN:\\s+(?P<private_vlan_administrative_trunk_native_vlan>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_native_vlan_tagging": [
+      {
+        "pattern": "^Administrative private-vlan trunk Native VLAN tagging:\\s+(?P<private_vlan_administrative_trunk_native_vlan_tagging>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_encapsulation": [
+      {
+        "pattern": "^Administrative private-vlan trunk encapsulation:\\s+(?P<private_vlan_administrative_trunk_encapsulation>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_normal_vlans": [
+      {
+        "pattern": "^Administrative private-vlan trunk normal VLANs:\\s+(?P<private_vlan_administrative_trunk_encapsulation>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_associations": [
+      {
+        "pattern": "^Administrative private-vlan trunk associations:\\s+(?P<private_vlan_administrative_trunk_associations>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_administrative_trunk_mappings": [
+      {
+        "pattern": "^Administrative private-vlan trunk mappings:\\s+(?P<private_vlan_administrative_trunk_mappings>.*?)$",
+        "flags": 40
+      }
+    ],
+    "private_vlan_operational": [
+      {
+        "pattern": "^Operational private-vlan:\\s+(?P<private_vlan_administrative_trunk_mappings>.*?)$",
+        "flags": 40
+      }
+    ],
+    "trunk_enabled_vlans": [
+      {
+        "pattern": "^Trunking VLANs Enabled:\\s+(?P<trunk_enabled_vlans>.*(\\n\\s+\\S+)*)$",
+        "flags": 40
+      }
+    ],
+    "pruning_enabled_vlans": [
+      {
+        "pattern": "^Pruning VLANs Enabled:\\s+(?P<pruning_enabled_vlans>.*(\\n\\s+\\S+)*)$",
+        "flags": 40
+      }
+    ],
+    "protected": [
+      {
+        "pattern": "^Appliance trust:\\s+(?P<protected>.*?)$",
+        "flags": 40
+      }
+    ],
+    "unknown_unicast_blocked": [
+      {
+        "pattern": "^Appliance trust:\\s+(?P<unknown_unicast_blocked>.*?)$",
+        "flags": 40
+      }
+    ],
+    "unknown_multicast_blocked": [
+      {
+        "pattern": "^Unknown multicast blocked:\\s+(?P<unknown_multicast_blocked>.*?)$",
+        "flags": 40
+      }
+    ],
+    "appliance_trust": [
+      {
+        "pattern": "^Appliance trust:\\s+(?P<appliance_trust>.*?)$",
+        "flags": 40
+      }
+    ]
+  }
+}

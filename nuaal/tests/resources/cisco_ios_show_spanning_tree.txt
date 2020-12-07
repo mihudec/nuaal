@@ -1,0 +1,111 @@
+VLAN0336
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    336
+             Address     50f7.2211.a180
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    336    (priority 0 sys-id-ext 336)
+             Address     50f7.2211.a180
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/0/24            Desg FWD 2         128.24   P2p
+Te1/0/25            Desg FWD 2         128.25   P2p
+Te2/0/24            Desg FWD 2         128.120  P2p
+Te2/0/25            Desg FWD 2         128.121  P2p
+Po1                 Desg FWD 1         128.2377 P2p Edge
+Po2                 Desg FWD 1         128.2378 P2p Edge
+Po3                 Desg FWD 1         128.2379 P2p
+Po4                 Desg FWD 1         128.2380 P2p
+Po5                 Desg FWD 1         128.2381 P2p
+Po6                 Desg FWD 1         128.2382 P2p
+Po7                 Desg FWD 2         128.2383 P2p
+Po10                Desg FWD 2         128.2386 P2p
+Po11                Desg FWD 2         128.2387 P2p
+Po12                Desg FWD 2         128.2388 P2p
+Po20                Desg FWD 1         128.2396 P2p
+Po21                Desg FWD 1         128.2397 P2p
+Po22                Desg FWD 1         128.2398 P2p
+Po23                Desg FWD 1         128.2399 P2p
+Po24                Desg FWD 1         128.2400 P2p
+Po30                Desg FWD 1         128.2406 P2p
+Po31                Desg FWD 1         128.2407 P2p
+Po32                Desg FWD 1         128.2408 P2p
+Po40                Desg FWD 1         128.2416 P2p
+Po41                Desg FWD 1         128.2417 P2p
+Po42                Desg FWD 1         128.2418 P2p
+Po43                Desg FWD 1         128.2419 P2p
+Po44                Desg FWD 1         128.2420 P2p
+Po45                Desg FWD 1         128.2421 P2p
+Po50                Desg FWD 1         128.2426 P2p
+Po51                Desg FWD 1         128.2427 P2p
+Po94                Desg FWD 1         128.2470 P2p
+Po95                Desg FWD 1         128.2471 P2p
+Po100               Desg FWD 1         128.2476 P2p
+Po101               Desg FWD 1         128.2477 P2p
+Po102               Desg FWD 1         128.2478 P2p
+Po103               Desg FWD 1         128.2479 P2p
+Po104               Desg FWD 1         128.2480 P2p
+Po105               Desg FWD 1         128.2481 P2p
+Po106               Desg FWD 1         128.2482 P2p
+Po108               Desg FWD 1         128.2484 P2p
+
+
+
+VLAN0337
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    337
+             Address     50f7.2211.a180
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    337    (priority 0 sys-id-ext 337)
+             Address     50f7.2211.a180
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Te1/0/24            Desg FWD 2         128.24   P2p
+Te1/0/25            Desg FWD 2         128.25   P2p
+Te2/0/24            Desg FWD 2         128.120  P2p
+Te2/0/25            Desg FWD 2         128.121  P2p
+Po1                 Desg FWD 1         128.2377 P2p Edge
+Po2                 Desg FWD 1         128.2378 P2p Edge
+Po3                 Desg FWD 1         128.2379 P2p
+Po4                 Desg FWD 1         128.2380 P2p
+Po5                 Desg FWD 1         128.2381 P2p
+Po6                 Desg FWD 1         128.2382 P2p
+Po7                 Desg FWD 2         128.2383 P2p
+Po10                Desg FWD 2         128.2386 P2p
+Po11                Desg FWD 2         128.2387 P2p
+Po12                Desg FWD 2         128.2388 P2p
+Po20                Desg FWD 1         128.2396 P2p
+Po21                Desg FWD 1         128.2397 P2p
+Po22                Desg FWD 1         128.2398 P2p
+Po23                Desg FWD 1         128.2399 P2p
+Po24                Desg FWD 1         128.2400 P2p
+Po30                Desg FWD 1         128.2406 P2p
+Po31                Desg FWD 1         128.2407 P2p
+Po32                Desg FWD 1         128.2408 P2p
+Po40                Desg FWD 1         128.2416 P2p
+Po41                Desg FWD 1         128.2417 P2p
+Po42                Desg FWD 1         128.2418 P2p
+Po43                Desg FWD 1         128.2419 P2p
+Po44                Desg FWD 1         128.2420 P2p
+Po45                Desg FWD 1         128.2421 P2p
+Po50                Desg FWD 1         128.2426 P2p
+Po51                Desg FWD 1         128.2427 P2p
+Po94                Desg FWD 1         128.2470 P2p
+Po95                Desg FWD 1         128.2471 P2p
+Po100               Desg FWD 1         128.2476 P2p
+Po101               Desg FWD 1         128.2477 P2p
+Po102               Desg FWD 1         128.2478 P2p
+Po103               Desg FWD 1         128.2479 P2p
+Po104               Desg FWD 1         128.2480 P2p
+Po105               Desg FWD 1         128.2481 P2p
+Po106               Desg FWD 1         128.2482 P2p
+Po108               Desg FWD 1         128.2484 P2p

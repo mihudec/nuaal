@@ -107,6 +107,11 @@ class ParserModule(object):
         self.logger.debug(msg="MultiPatternMatch: Matched {} pattern(s) in {} miliseconds.".format(match_counter, (timeit.default_timer() - start_time)*1000))
         return entry
 
+    def split_to_list(self, text, delimiter=","):
+
+        return [x.strip() for x in text.split(delimiter)]
+
+
     def _level_zero(self, text, patterns):
         """
         This function handles parsing of less complex plaintext outputs, which can be parsed in  one step.

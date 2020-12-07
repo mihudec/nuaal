@@ -8,8 +8,9 @@
   ],
   "level1": {
     "interfaces": [
+
       {
-        "pattern": "^(?P<interface>[A-Z][a-z]+\\d+(?:\\/\\d+)*)\\s+(?P<role>\\S+)\\s+(?P<state>\\S+)\\s(?P<cost>\\d+)\\s+(?P<port_priority>\\d+)\\.(?P<port_id>\\d+)\\s+(?P<type>.*?)(?=\\s+$)",
+        "pattern": "^(?P<interface>[A-Z][a-z]+\\d+(?:\\/\\d+)*)\\s+(?P<role>\\S+)\\s+(?P<state>\\S+)\\s(?P<cost>\\d+)\\s+(?P<port_priority>\\d+)\\.(?P<port_id>\\d+)\\s+(?P<type>\\S+)(?:\\s+(?P<note>\\S+)$)?",
         "flags": 40
       }
     ]

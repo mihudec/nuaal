@@ -1,35 +1,22 @@
 import unittest
 import pathlib
 import json
-from nuaal.Parsers import CiscoIOSParser
+from nuaal.Parsers import PatternsLib
 
 def jprint(data):
     print(json.dumps(obj=data, indent=2))
 
-class TestCiscoIosParser(unittest.TestCase):
 
-    PARSER = CiscoIOSParser()
+class TestPatternsLib(unittest.TestCase):
 
-    @staticmethod
-    def get_text(test_file_name):
-        test_file_path = pathlib.Path(__file__).parent.joinpath("resources/{}.txt".format(test_file_name))
-        return test_file_path.read_text()
-
-    @staticmethod
-    def get_results(results_file_name):
-        result_file_path = pathlib.Path(__file__).parent.joinpath("results/{}.json".format(results_file_name))
-        return json.loads(result_file_path.read_text())
-
-    def test_show_interfaces_switchport(self):
-        command = "show interfaces switchport"
-        test_file_base = "cisco_ios_show_interfaces_switchport_01"
-        with self.subTest(msg=test_file_base):
-            text = self.get_text(test_file_name=test_file_base)
-            want = self.get_results(results_file_name=test_file_base)
-            have = self.PARSER.autoparse(text=text, command=command)
-            jprint(have)
-
-            # self.assertEqual(want, have)
+    def test_cisco_ios_patters_are_valid(self):
+        pl = None
+        try:
+            pl = PatternsLib(device_type="cisco_ios")
+        except json.decoder.JSONDecodeError as e:
+            msg = "Found invalid JSON file. Exception: {}".format(repr(e))
+            self.fail(msg=msg)
+        self.assertIsInstance(obj=pl, cls=PatternsLib)
 
 
 if __name__ == '__main__':

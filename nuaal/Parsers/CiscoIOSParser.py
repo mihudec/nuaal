@@ -55,3 +55,32 @@ class CiscoIOSParser(ParserModule):
             trunks.append(entry)
         self.logger.info(msg="Parsing of 'show interfaces trunk' took {} seconds.".format((timeit.default_timer()-start_time)))
         return trunks
+
+    def parse_interfaces_switchport(self, text):
+        entries = super(CiscoIOSParser, self).autoparse(text=text, command="show interfaces switchport")
+
+        to_list_keys = ["trunk_enabled_vlans", "pruning_enabled_vlans"]
+        for entry in entries:
+
+            for key in to_list_keys:
+                if isinstance(entry[key], str):
+                    entry[key] = self.split_to_list(text=entry[key], delimiter=",")
+        return entries
+
+    def autoparse(self, text, command):
+        """
+        .. _autoparse:
+
+        The main entry point for parsing, given just the ``text`` output and ``command`` it determines the proper way to parse the output and returns result.
+
+        :param str text: Text output to be processed
+        :param str command: Command used to generate ``text`` output. Based on this parameter, correct regex patterns are selected.
+        :return: List of found entities, usually list of dictionaries
+        """
+        # Process Special Commands
+        if command == "show interfaces trunk":
+            return self.trunk_parser(text=text)
+        elif command == "show interfaces switchport":
+            return self.parse_interfaces_switchport(text=text)
+        else:
+            return super(CiscoIOSParser, self).autoparse(text=text, command=command)
