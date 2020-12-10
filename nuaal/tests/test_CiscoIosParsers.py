@@ -22,13 +22,17 @@ class TestCiscoIosParser(unittest.TestCase):
 
     def test_show_interfaces_switchport(self):
         command = "show interfaces switchport"
-        test_file_base = "cisco_ios_show_interfaces_switchport_01"
-        with self.subTest(msg=test_file_base):
-            text = self.get_text(test_file_name=test_file_base)
-            want = self.get_results(results_file_name=test_file_base)
-            have = self.PARSER.autoparse(text=text, command=command)
-            # jprint(have)
-            self.assertEqual(want, have)
+        test_file_bases = [
+            "cisco_ios_show_interfaces_switchport_01",
+            "cisco_ios_show_interfaces_switchport_02"
+        ]
+        for test_file_base in test_file_bases:
+            with self.subTest(msg=test_file_base):
+                text = self.get_text(test_file_name=test_file_base)
+                want = self.get_results(results_file_name=test_file_base)
+                have = self.PARSER.autoparse(text=text, command=command)
+                jprint(have)
+                self.assertEqual(want, have)
 
     def test_show_spanning_tree(self):
         command = "show spanning-tree"

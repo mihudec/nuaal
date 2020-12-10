@@ -27,11 +27,11 @@
     ],
     "mode_oper": [
       {
-        "pattern": "^Operational Mode:\\s+(?P<mode_operational>\\S+)$",
+        "pattern": "^Operational Mode:\\s+(?P<mode_operational>\\S+) \\(member of bundle (?P<member_of>\\S+)\\)$",
         "flags": 40
       },
       {
-        "pattern": "^Operational Mode:\\s+(?P<mode_operational>\\S+) \\(member of bundle (?P<member_of>\\S+)\\)$",
+        "pattern": "^Operational Mode:\\s+(?P<mode_operational>.*?)$",
         "flags": 40
       }
     ],
