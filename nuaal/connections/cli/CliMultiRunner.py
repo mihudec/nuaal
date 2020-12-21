@@ -62,6 +62,8 @@ class CliMultiRunner(object):
                         device.get_neighbors()
                     if "get_interfaces" in self.actions:
                         device.get_interfaces()
+                    if "get_interfaces_status" in self.actions:
+                        device.get_interfaces_status()
                     if "get_trunks" in self.actions:
                         device.get_trunks()
                     if "get_portchannels" in self.actions:

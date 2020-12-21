@@ -5,7 +5,7 @@ with open("requirements.txt", "r") as fs:
 
 setup(
     name='nuaal',
-    version='0.1.17',
+    version='0.1.18',
     packages=find_packages(exclude=["tests", "examples"]),
     url='https://github.com/mijujda/nuaal',
     license='',
