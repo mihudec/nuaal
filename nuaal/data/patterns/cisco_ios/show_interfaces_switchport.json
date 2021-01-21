@@ -43,7 +43,7 @@
     ],
     "trunk_encapsulation_operational": [
       {
-        "pattern": "^Administrative Trunking Encapsulation:\\s+(?P<trunk_encap_operational>.*?)$",
+        "pattern": "^Operational Trunking Encapsulation:\\s+(?P<trunk_encap_operational>.*?)$",
         "flags": 40
       }
     ],
@@ -61,7 +61,7 @@
     ],
     "trunk_native_vlan": [
       {
-        "pattern": "^Access Mode VLAN:\\s+(?P<trunk_native_vlan_id>\\d+)\\s\\((?P<trunk_native_vlan_name>\\S+)\\)$",
+        "pattern": "^Trunking Native Mode VLAN:\\s+(?P<trunk_native_vlan_id>\\d+)\\s\\((?P<trunk_native_vlan_name>\\S+)\\)$",
         "flags": 40
       }
     ],
