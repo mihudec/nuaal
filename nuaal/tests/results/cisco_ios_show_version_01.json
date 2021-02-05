@@ -1,0 +1,13 @@
+[
+  {
+    "vendor": "Cisco",
+    "software": "IOS XE",
+    "version": "16.09.05",
+    "platform": "C9300-48P",
+    "systemMemory": "1418970K/6147K",
+    "hostname": "ABC-SW-ACC-015",
+    "uptime": "1 week, 6 days, 14 hours, 44 minutes",
+    "imageFile": "flash:packages.conf",
+    "experimental_version": null
+  }
+]

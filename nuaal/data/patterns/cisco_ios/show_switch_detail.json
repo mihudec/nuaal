@@ -1,0 +1,23 @@
+{
+  "command": "show switch detail",
+  "level0": [
+    {
+      "pattern": "^.*?Stack Mac Address : (?P<stack_mac_address>\\S+).*\\n(?:^.*\\n)*?^Switch#\\s+Role.*\\n^-+\\n(?P<members>(?:^.*?\\S+.*?\\n)+)(?:^.*\\n)*?^Switch#\\s+Port.*\\n^-+\\n(?P<stack_ports>(?:^.*?\\S+.*?\\n)+)",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "members": [
+      {
+        "pattern": "^(?:\\*)?(?:\\s+)?(?P<member>\\d+)\\s+(?P<role>\\S+)\\s+(?P<mac_address>\\S+)\\s+(?P<priority>\\d+)\\s+(?P<hw_revision>\\S+)\\s+(?P<state>\\S+)$",
+        "flags": 40
+      }
+    ],
+    "stack_ports": [
+      {
+        "pattern": "^(?:\\s+)?(?P<member>\\d+)\\s+(?P<port_1_status>\\S+)\\s+(?P<port_2_status>\\S+)\\s+(?P<port_1_neighbor>\\S+)\\s+(?P<port_2_neighbor>\\S+)$",
+        "flags": 40
+      }
+    ]
+  }
+}

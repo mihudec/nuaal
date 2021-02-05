@@ -31,7 +31,7 @@ class TestCiscoIosParser(unittest.TestCase):
                 text = self.get_text(test_file_name=test_file_base)
                 want = self.get_results(results_file_name=test_file_base)
                 have = self.PARSER.autoparse(text=text, command=command)
-                jprint(have)
+                # jprint(have)
                 self.assertEqual(want, have)
 
     def test_show_spanning_tree(self):
@@ -43,6 +43,46 @@ class TestCiscoIosParser(unittest.TestCase):
             have = self.PARSER.autoparse(text=text, command=command)
             # jprint(have)
             self.assertEqual(want, have)
+
+    def test_show_switch_detail(self):
+        command = "show switch detail"
+        test_file_bases = [
+            "cisco_ios_show_switch_detail_01",
+        ]
+        for test_file_base in test_file_bases:
+            with self.subTest(msg=test_file_base):
+                text = self.get_text(test_file_name=test_file_base)
+                want = self.get_results(results_file_name=test_file_base)
+                have = self.PARSER.autoparse(text=text, command=command)
+                # jprint(have)
+                self.assertEqual(want, have)
+
+    def test_show_boot(self):
+        command = "show boot"
+        test_file_bases = [
+            "cisco_ios_show_boot_01",
+        ]
+        for test_file_base in test_file_bases:
+            with self.subTest(msg=test_file_base):
+                text = self.get_text(test_file_name=test_file_base)
+                want = self.get_results(results_file_name=test_file_base)
+                have = self.PARSER.autoparse(text=text, command=command)
+                # jprint(have)
+                self.assertEqual(want, have)
+
+    def test_show_version(self):
+        command = "show version"
+        test_file_bases = [
+            "cisco_ios_show_version_01",
+        ]
+        for test_file_base in test_file_bases:
+            with self.subTest(msg=test_file_base):
+                text = self.get_text(test_file_name=test_file_base)
+                want = self.get_results(results_file_name=test_file_base)
+                have = self.PARSER.autoparse(text=text, command=command)
+                # jprint(have)
+                self.assertEqual(want, have)
+
 
 
 if __name__ == '__main__':

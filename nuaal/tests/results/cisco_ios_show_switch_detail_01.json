@@ -1,0 +1,129 @@
+[
+  {
+    "stack_mac_address": "7018.a792.c580",
+    "members": [
+      {
+        "member": 1,
+        "role": "Active",
+        "mac_address": "7018.a792.c580",
+        "priority": 15,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 2,
+        "role": "Standby",
+        "mac_address": "7018.a7b0.fc00",
+        "priority": 10,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 3,
+        "role": "Member",
+        "mac_address": "7018.a792.f780",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 4,
+        "role": "Member",
+        "mac_address": "7018.a7b0.4180",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 5,
+        "role": "Member",
+        "mac_address": "d4ad.7137.1400",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 6,
+        "role": "Member",
+        "mac_address": "7018.a75b.5a00",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 7,
+        "role": "Member",
+        "mac_address": "7018.a733.f380",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      },
+      {
+        "member": 8,
+        "role": "Member",
+        "mac_address": "7018.a792.9180",
+        "priority": 1,
+        "hw_revision": "V02",
+        "state": "Ready"
+      }
+    ],
+    "stack_ports": [
+      {
+        "member": 1,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 2,
+        "port_2_neighbor": 8
+      },
+      {
+        "member": 2,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 3,
+        "port_2_neighbor": 1
+      },
+      {
+        "member": 3,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 4,
+        "port_2_neighbor": 2
+      },
+      {
+        "member": 4,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 5,
+        "port_2_neighbor": 3
+      },
+      {
+        "member": 5,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 6,
+        "port_2_neighbor": 4
+      },
+      {
+        "member": 6,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 7,
+        "port_2_neighbor": 5
+      },
+      {
+        "member": 7,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 8,
+        "port_2_neighbor": 6
+      },
+      {
+        "member": 8,
+        "port_1_status": "OK",
+        "port_2_status": "OK",
+        "port_1_neighbor": 1,
+        "port_2_neighbor": 7
+      }
+    ]
+  }
+]

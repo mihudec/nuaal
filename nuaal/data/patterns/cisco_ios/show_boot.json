@@ -1,0 +1,9 @@
+{
+  "command": "show boot",
+  "level0": [
+    {
+      "pattern": "^-+\\n(?P<member>.*?)\\n-+\\nCurrent Boot Variables:\\nBOOT variable = (?P<current_boot_var>\\S+);\\n\\nBoot Variables on next reload:\\nBOOT variable = (?P<next_reload_boot_var>\\S+);\\n",
+      "flags": 40
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "member": "Switch 1",
+    "current_boot_var": "flash:packages.conf",
+    "next_reload_boot_var": "flash:packages.conf"
+  }
+]
