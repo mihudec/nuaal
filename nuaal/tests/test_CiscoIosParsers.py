@@ -83,6 +83,19 @@ class TestCiscoIosParser(unittest.TestCase):
                 # jprint(have)
                 self.assertEqual(want, have)
 
+    def test_show_platform(self):
+        command = "show platform"
+        test_file_bases = [
+            "cisco_ios_show_platform_01",
+        ]
+        for test_file_base in test_file_bases:
+            with self.subTest(msg=test_file_base):
+                text = self.get_text(test_file_name=test_file_base)
+                want = self.get_results(results_file_name=test_file_base)
+                have = self.PARSER.autoparse(text=text, command=command)
+                # jprint(have)
+                self.assertEqual(want, have)
+
 
 
 if __name__ == '__main__':

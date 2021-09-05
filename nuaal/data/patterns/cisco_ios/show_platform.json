@@ -1,0 +1,23 @@
+{
+  "command": "show platform",
+  "level0": [
+    {
+      "pattern": "^Chassis type: (?P<chassis_type>.*?)\\n(?:^\\n)*Slot +Type +State +Insert time \\(ago\\).*?\\n[\\- ]+\\n(?P<states>((?:^ *\\S+.*?\\n)+))(?:^\\n)Slot + CPLD Version +Firmware Version.*?\\n[\\- ]+\\n(?P<firmware>((?:^ *\\S+.*?\\n)+))(?:^\\n)?",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "states": [
+      {
+        "pattern": "^(?: *)(?P<slot>\\S+) {2,}(?P<type>\\S+)? {2,}(?P<state>\\S+?(?:, \\S+?)?) {2,}(?P<insert_time>(?:\\d+\\w)+)\\n",
+        "flags": 40
+      }
+    ],
+    "firmware": [
+      {
+        "pattern": "^(?: *)(?P<slot>\\S+) +(?P<cpld_version>[\\w]+) +(?P<firmware_version>\\S+)\\n",
+        "flags": 40
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "chassis_type": "ASR-903",
+    "states": [
+      {
+        "slot": "0/0",
+        "type": "A900-IMA8S",
+        "state": "ok",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "0/1",
+        "type": "A900-IMA8T",
+        "state": "ok",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "0/2",
+        "type": "A900-IMA8S",
+        "state": "ok",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "0/3",
+        "type": "A900-IMA8D",
+        "state": "ok",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "R0",
+        "type": "A900-RSP2A-128",
+        "state": "ok, active",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "R1",
+        "type": "A900-RSP2A-128",
+        "state": "ok, standby",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "F0",
+        "type": null,
+        "state": "ok, active",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "F1",
+        "type": null,
+        "state": "ok, standby",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "P0",
+        "type": "A900-PWR550-D-E",
+        "state": "ok",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "P1",
+        "type": "A900-PWR550-D-E",
+        "state": "ps, fail",
+        "insert_time": "1d20h"
+      },
+      {
+        "slot": "P2",
+        "type": "A903-FAN-E",
+        "state": "ok",
+        "insert_time": "1d20h"
+      }
+    ],
+    "firmware": [
+      {
+        "slot": "R0",
+        "cpld_version": "1905200E",
+        "firmware_version": "15.6(43r)S"
+      },
+      {
+        "slot": "R1",
+        "cpld_version": "1905200E",
+        "firmware_version": "15.6(43r)S"
+      },
+      {
+        "slot": "F0",
+        "cpld_version": "1905200E",
+        "firmware_version": "15.6(43r)S"
+      },
+      {
+        "slot": "F1",
+        "cpld_version": "1905200E",
+        "firmware_version": "15.6(43r)S"
+      }
+    ]
+  }
+]

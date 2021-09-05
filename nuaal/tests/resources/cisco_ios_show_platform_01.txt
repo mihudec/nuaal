@@ -1,0 +1,22 @@
+Chassis type: ASR-903
+
+Slot      Type                State                 Insert time (ago)
+--------- ------------------- --------------------- -----------------
+ 0/0      A900-IMA8S          ok                    1d20h
+ 0/1      A900-IMA8T          ok                    1d20h
+ 0/2      A900-IMA8S          ok                    1d20h
+ 0/3      A900-IMA8D          ok                    1d20h
+R0        A900-RSP2A-128      ok, active            1d20h
+R1        A900-RSP2A-128      ok, standby           1d20h
+F0                            ok, active            1d20h
+F1                            ok, standby           1d20h
+P0        A900-PWR550-D-E     ok                    1d20h
+P1        A900-PWR550-D-E     ps, fail              1d20h
+P2        A903-FAN-E          ok                    1d20h
+
+Slot      CPLD Version        Firmware Version
+--------- ------------------- ---------------------------------------
+R0        1905200E            15.6(43r)S
+R1        1905200E            15.6(43r)S
+F0        1905200E            15.6(43r)S
+F1        1905200E            15.6(43r)S
