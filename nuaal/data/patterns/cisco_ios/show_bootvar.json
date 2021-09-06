@@ -1,0 +1,31 @@
+{
+  "command": "show boot",
+  "level0": [
+    {
+      "pattern": "^BOOT.*(?:.*\\n)*(?:Standby )?Configuration register is .*",
+      "flags": 40
+    }
+  ],
+  "level1": {
+    "bootvar": [
+      {
+        "pattern": "^BOOT variable = (?P<boot_var>\\S+)?\\n",
+        "flags": 40
+      },
+      {
+        "pattern": "^Standby BOOT variable = (?P<standby_boot_var>\\S+)?\\n",
+        "flags": 40
+      }
+    ],
+    "confreg": [
+      {
+        "pattern": "^Configuration register is (?P<confreg>\\S+)",
+        "flags": 40
+      },
+      {
+        "pattern": "^Standby Configuration register is (?P<standby_confreg>\\S+)",
+        "flags": 40
+      }
+    ]
+  }
+}

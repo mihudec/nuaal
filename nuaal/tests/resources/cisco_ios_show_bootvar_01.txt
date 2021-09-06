@@ -1,0 +1,9 @@
+BOOT variable = bootflash:asr900rsp2-universalk9_npe.16.12.05.SPA.bin,1;
+CONFIG_FILE variable does not exist
+BOOTLDR variable does not exist
+Configuration register is 0x2
+
+Standby BOOT variable = bootflash:asr900rsp2-universalk9_npe.16.12.05.SPA.bin,1;
+Standby CONFIG_FILE variable = 
+Standby BOOTLDR variable does not exist
+Standby Configuration register is 0x2 

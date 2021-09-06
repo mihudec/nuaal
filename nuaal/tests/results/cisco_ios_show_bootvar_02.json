@@ -1,0 +1,8 @@
+[
+  {
+    "boot_var": null,
+    "standby_boot_var": null,
+    "confreg": "0x2",
+    "standby_confreg": "0x2"
+  }
+]

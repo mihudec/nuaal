@@ -1,0 +1,8 @@
+[
+  {
+    "boot_var": "bootflash:asr900rsp2-universalk9_npe.16.12.05.SPA.bin,1;",
+    "standby_boot_var": "bootflash:asr900rsp2-universalk9_npe.16.12.05.SPA.bin,1;",
+    "confreg": "0x2",
+    "standby_confreg": "0x2"
+  }
+]
