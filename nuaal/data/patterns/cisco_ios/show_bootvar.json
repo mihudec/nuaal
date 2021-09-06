@@ -1,5 +1,5 @@
 {
-  "command": "show boot",
+  "command": "show bootvar",
   "level0": [
     {
       "pattern": "^BOOT.*(?:.*\\n)*(?:Standby )?Configuration register is .*",
