@@ -2,7 +2,7 @@
   "command": "show interfaces",
   "level0": [
     {
-      "pattern": "^\\S.*(?:$\\s+^\\s.*)+",
+      "pattern": "^\\S+.*\\n(?:^.*(?:\\n)?)+?(?=^\\S+|\\Z)",
       "flags": 40
     }
   ],
